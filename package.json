@@ -1,0 +1,15 @@
+{
+  "name": "tt-ui",
+  "version": "1.0.0",
+  "description": "TT UI 2022",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "Max Cazares",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^18.0.4"
+  }
+}
