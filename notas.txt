@@ -1,0 +1,31 @@
+# Comandos
+Ejecutar Tailwind CSS => npx tailwindcss -i ./src/input.css -o ./src/dist/output.css --watch
+Ejecutar Electron => npm start
+
+# components
+https://tailwindcomponents.com/cheatsheet/
+https://tailblocks.cc/
+https://www.tailwindtoolbox.com/starter-templates
+https://tailwindui.com/
+https://daisyui.com/
+https://tailwind-elements.com/#section-components
+https://flowbite.com/
+https://mambaui.com/
+
+# otros recursos
+https://unsplash.com/
+https://mdbgo.com/
+https://heropatterns.com/
+
+# Templates
+https://dev.to/narottam04/free-tailwind-components-for-your-next-project-2gka
+https://blog.logrocket.com/best-tailwind-css-templates-component-collections/
+https://themeselection.com/the-best-tailwind-css-components-collection/
+https://superdevresources.com/tailwind-ui-kits/
+
+# Paleta de colores
+https://colorhunt.co/palette/effffdb8fff985f4ff42c2ff
+
+# iconos
+https://icons8.com/
+https://heroicons.com/

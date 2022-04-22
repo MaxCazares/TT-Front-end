@@ -2,14 +2,17 @@
   "name": "tt-ui",
   "version": "1.0.0",
   "description": "TT UI 2022",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "tailwind": "npx tailwindcss -i ./src/input.css -o ./src/dist/output.css --watch"
   },
   "keywords": [],
   "author": "Max Cazares",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^18.0.4"
+    "@tailwindcss/forms": "^0.5.0",
+    "electron": "^18.0.4",
+    "tailwindcss": "^3.0.24"
   }
 }

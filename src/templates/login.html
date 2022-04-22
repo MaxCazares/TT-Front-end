@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <title>¡Bienvenido! Ingresa tu E-mail y Contraseña</title>
+</head>
+
+<body class="bg-white h-screen font-Nunito">
+    <div class="w-full flex flex-wrap">
+        <div class="w-1/2 shadow-2xl">
+            <img class="object-cover w-full h-screen hidden md:block" 
+                src="../img/login.avif"
+            alt="Background" />
+        </div>
+
+        <div class="w-full md:w-1/2 flex flex-col">
+            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                <div class="flex-col">
+                    <div class="flex justify-center">
+                        <a href="index.html" class="p-4" alt="Logo">
+                            <img src="../img/logo.png" alt="logo" class="h-14" />
+                        </a>
+                    </div>
+                    <p class="text-center text-3xl">Ingresa tus datos</p>
+                </div>
+
+                <form class="flex flex-col pt-3 md:pt-8" onsubmit="event.preventDefault();">
+                    <div class="flex flex-col pt-4">
+                        <label for="email" class="text-lg">E-mail</label>
+                        <input type="email" id="email" placeholder=""
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                    </div>
+
+                    <div class="flex flex-col pt-4">
+                        <label for="password" class="text-lg">Contraseña</label>
+                        <input type="password" id="password"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                    </div>
+
+                    <button type="submit"
+                        class="bg-blue-500 text-white font-bold text-lg hover:bg-blue-400 p-2 mt-8">Ingresar</button>
+                </form>
+                <div class="text-center pt-12 pb-12">
+                    <p>¿Aún no tienes cuenta? <a href="joinUs.html" class="underline font-semibold">Registrate aquí</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
