@@ -29,3 +29,9 @@ https://colorhunt.co/palette/effffdb8fff985f4ff42c2ff
 # iconos
 https://icons8.com/
 https://heroicons.com/
+
+# perfil
+https://www.tailwindtoolbox.com/templates/profile-card
+https://tailwindui.com/components/application-ui/data-display/description-lists
+https://tailwindcomponents.com/component/basic-profile-card
+https://github.com/creativetimofficial/tailwind-starter-kit?ref=creativetim-tailwind-download
