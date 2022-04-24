@@ -9,7 +9,7 @@ https://www.tailwindtoolbox.com/starter-templates
 https://tailwindui.com/
 https://daisyui.com/
 https://tailwind-elements.com/#section-components
-https://flowbite.com/
+https://flowbite.com/ (este es de los chidos)
 https://mambaui.com/
 
 # otros recursos
@@ -17,21 +17,15 @@ https://unsplash.com/
 https://mdbgo.com/
 https://heropatterns.com/
 
-# Templates
-https://dev.to/narottam04/free-tailwind-components-for-your-next-project-2gka
-https://blog.logrocket.com/best-tailwind-css-templates-component-collections/
-https://themeselection.com/the-best-tailwind-css-components-collection/
-https://superdevresources.com/tailwind-ui-kits/
-
-# Paleta de colores
-https://colorhunt.co/palette/effffdb8fff985f4ff42c2ff
-
 # iconos
 https://icons8.com/
-https://heroicons.com/
+https://fontawesome.com/
 
 # perfil
 https://www.tailwindtoolbox.com/templates/profile-card
 https://tailwindui.com/components/application-ui/data-display/description-lists
 https://tailwindcomponents.com/component/basic-profile-card
 https://github.com/creativetimofficial/tailwind-starter-kit?ref=creativetim-tailwind-download
+
+# componentes chidas
+https://flowbite.com/docs/components/modal/
