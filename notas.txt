@@ -21,11 +21,5 @@ https://heropatterns.com/
 https://icons8.com/
 https://fontawesome.com/
 
-# perfil
-https://www.tailwindtoolbox.com/templates/profile-card
-https://tailwindui.com/components/application-ui/data-display/description-lists
-https://tailwindcomponents.com/component/basic-profile-card
-https://github.com/creativetimofficial/tailwind-starter-kit?ref=creativetim-tailwind-download
-
 # componentes chidas
 https://flowbite.com/docs/components/modal/
