@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Tailwind CSS -->
-	<link rel="stylesheet" href="../dist/output.css">
+	<link rel="stylesheet" href="../css/final.css">
 	<link rel="stylesheet" href="../css/fondo.css">
 
 	<!-- Iconos Font Awesome -->
@@ -17,16 +17,16 @@
 	<title>Perfil | Gustavo Ortíz Hernández</title>
 </head>
 
-<body class="font-Nunito ">
+<body class="font-sans ">
 
 	<nav class="flex p-3 space-x-4 bg-blue-400 shadow-xl">
-		<div class="flex items-center justify-center w-2/12 p-2 space-x-6 text-center bg-red-4000">
+		<div class="flex items-center justify-center w-2/12 p-2 space-x-6 text-center">
 			<a href="index.html" class="bg-green-5000">
 				<img src="../img/logo.svg" alt="logo" class="h-16" />
 			</a>
 		</div>
 
-		<!-- <div class="w-7/12 -bg-red-5000">
+		<!-- <div class="w-7/12">
 			<form class="relative py-5 mx-auto text-gray-600" onsubmit="event.preventDefault();"">
 				<input
 					class="w-full h-12 px-5 bg-white border-2 border-blue-500 rounded-lg pr-11"
@@ -36,23 +36,22 @@
 					<i class="text-gray-400 fa-solid fa-magnifying-glass "></i>
 				</button>
 			</form>
-		</div>
+		</div> -->
 
 		<div
-			class="flex flex-row items-center justify-center w-3/12 space-x-3 font-semibold text-center text-white bg-red-4000 text-md">
-			<a href="joinUs.html" class="flex-row p-2 px-3 bg-orange-500 rounded-md hover:bg-orange-400">
-				<i class="my-auto ml-1 mr-2 text-current fa-solid fa-robot fa-lg"></i>
-				Crea tu cuenta
+			class="flex flex-row items-center p-7 justify-end w-10/12 font-semibold text-center text-white bg-red-4000 text-md">
+			<a href="index.html" class="bg-blue-500 py-2 px-3 rounded-md hover:bg-blue-600">
+				<i class="fa-solid fa-arrow-right-from-bracket text-current fa-lg my-auto ml-1 mr-2"></i>
+				Cerrar sesión
 			</a>
-			<a href="login.html" class="px-3 py-2 bg-yellow-500 rounded-md hover:bg-yellow-400">
-				<i class="my-auto ml-1 mr-2 text-current fa-solid fa-arrow-right-to-bracket fa-lg"></i>
-				Ingresa
-			</a>
-
-		</div> -->
+		</div>
 	</nav>
 
-	<div class="w-11/12 py-6 mx-auto my-10 shadow-2xl rounded-2xl">
+	<div class="w-11/12 py-6 px-6 mx-auto my-10 shadow-2xl rounded-2xl">
+
+		<a class="text-3xl text-slate-200 hover:text-slate-300 w-full flex justify-end -mb-14">
+			<i class="fa-solid fa-pen-to-square mr-5 py-2"></i>
+		</a>
 
 		<div class="px-3 py-3 mx-auto w-72">
 			<img src="../img/profile.jpg" alt="profile_pincture" class="rounded-full shadow-2xl">
@@ -171,25 +170,17 @@
 
 	</div>
 
-	<footer class="text-gray-600 body-font">
-		<div class="container flex flex-col items-center px-5 py-8 mx-auto sm:flex-row">
-			<img src="../img/logo.svg" alt="logo" class="h-10" />
+	<footer class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col text-gray-500">
+		<img src="../img/logo.svg" alt="logo" class="h-10" />
 
-			<p class="mt-4 text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0">©
-				2022 People 2 People - people2people.io
-			</p>
-			<span class="inline-flex justify-center mt-4 sm:ml-auto sm:mt-0 sm:justify-start">
-				<a class="text-gray-500">
-					<i class="fa-brands fa-facebook fa-lg"></i>
-				</a>
-				<a class="ml-3 text-gray-500">
-					<i class="fa-brands fa-twitter fa-lg"></i>
-				</a>
-				<a class="ml-3 text-gray-500">
-					<i class="fa-brands fa-instagram fa-lg"></i>
-				</a>
-			</span>
-		</div>
+		<p class="text-sm sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">©
+			2022 Quick Shop - quickshop.io
+		</p>
+		<span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start space-x-3">
+			<a><i class="fa-brands fa-facebook fa-lg"></i></a>
+			<a><i class="fa-brands fa-twitter fa-lg"></i></a>
+			<a><i class="fa-brands fa-instagram fa-lg"></i></a>
+		</span>
 	</footer>
 </body>
 

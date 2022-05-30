@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Tailwind CSS -->
-	<link rel="stylesheet" href="../dist/output.css">
+	<link rel="stylesheet" href="../css/final.css">
 
 	<!-- Iconos Font Awesome -->
 	<script src="https://kit.fontawesome.com/1319b8eafb.js" crossorigin="anonymous"></script>
@@ -15,11 +15,11 @@
 	<title>Navbar y footer</title>
 </head>
 
-<body class="font-Nunito">
+<body class="font-sans">
 	<nav class="bg-blue-400 p-3 flex space-x-4 shadow-xl">
 		<div class="w-2/12 bg-red-4000 flex text-center justify-center items-center p-2 space-x-6">
 			<a href="index.html" class="bg-green-5000">
-				<img src="../img/logo.png" alt="logo" class="h-16" />
+				<img src="../img/logo.svg" alt="logo" class="h-16" />
 			</a>
 		</div>
 
@@ -49,25 +49,17 @@
 		</div>
 	</nav>
 
-	<footer class="text-gray-600 body-font">
-		<div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-			<img src="../img/logo.png" alt="logo" class="h-10" />
+	<footer class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col text-gray-500">
+		<img src="../img/logo.svg" alt="logo" class="h-10" />
 
-			<p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">©
-				2022 People 2 People - people2people.io
-			</p>
-			<span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-				<a class="text-gray-500">
-					<i class="fa-brands fa-facebook fa-lg"></i>
-				</a>
-				<a class="ml-3 text-gray-500">
-					<i class="fa-brands fa-twitter fa-lg"></i>
-				</a>
-				<a class="ml-3 text-gray-500">
-					<i class="fa-brands fa-instagram fa-lg"></i>
-				</a>
-			</span>
-		</div>
+		<p class="text-sm sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">©
+			2022 Quick Shop - quickshop.io
+		</p>
+		<span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start space-x-3">
+			<a><i class="fa-brands fa-facebook fa-lg"></i></a>
+			<a><i class="fa-brands fa-twitter fa-lg"></i></a>
+			<a><i class="fa-brands fa-instagram fa-lg"></i></a>
+		</span>
 	</footer>
 </body>
 
