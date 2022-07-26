@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "tailwind": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
-    "TWFinal" : "npx tailwindcss -o ./src/css/final.css --minify"
+    "tailwindMini" : "npx tailwindcss -o ./src/css/final.css --minify"
   },
   "keywords": [],
   "author": "Max Cazares",
