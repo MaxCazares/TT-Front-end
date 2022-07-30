@@ -1,11 +1,7 @@
-# Comandos
-Ejecutar Tailwind CSS => npx tailwindcss -i ./src/input.css -o ./src/dist/output.css --watch
-Ejecutar Electron => npm start
-
 # components
 https://tailwindcomponents.com/cheatsheet/
 https://tailblocks.cc/
-https://www.tailwindtoolbox.com/starter-templates
+https://www.tailwindtoolbox.com/starter-html
 https://tailwindui.com/
 https://daisyui.com/
 https://tailwind-elements.com/#section-components

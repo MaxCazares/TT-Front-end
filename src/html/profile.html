@@ -13,6 +13,9 @@
 	<!-- Iconos Font Awesome -->
 	<script src="https://kit.fontawesome.com/1319b8eafb.js" crossorigin="anonymous"></script>
 
+	<!-- daisyUI -->
+	<link href="https://cdn.jsdelivr.net/npm/daisyui@2.20.0/dist/full.css" rel="stylesheet" type="text/css" />
+	<script src="https://cdn.tailwindcss.com"></script>
 
 	<title>Perfil | Gustavo Ortíz Hernández</title>
 </head>
@@ -49,12 +52,21 @@
 
 	<div class="w-11/12 py-6 px-6 mx-auto my-10 shadow-2xl rounded-2xl">
 
-		<a class="text-3xl text-slate-200 hover:text-slate-300 w-full flex justify-end -mb-14">
+		<!-- <a class="text-3xl text-slate-200 hover:text-slate-300 w-full flex justify-end -mb-14">
 			<i class="fa-solid fa-pen-to-square mr-5 py-2"></i>
-		</a>
+		</a> -->
+
+		<div class="dropdown dropdown-hover flex justify-end">
+			<i tabindex="0" class="fa-solid fa-bars text-3xl text-slate-400"></i>
+			<ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100">
+				<li><a>Editar perfil</a></li>
+				<li><a href="product.html">Agregar producto</a></li>
+				<li><a>Editar publicaciones</a></li>
+			</ul>
+		</div>
 
 		<div class="px-3 py-3 mx-auto w-72">
-			<img src="../img/profile.jpg" alt="profile_pincture" class="rounded-full shadow-2xl">
+			<img src="../img/profile.jpg" class="rounded-full shadow-2xl select-none">
 		</div>
 
 		<div class="w-10/12 mx-auto my-5 text-lg shadow-lg">
@@ -81,8 +93,10 @@
 							<dt class="font-medium text-gray-500 ">Comentarios</dt>
 							<dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
 								Fugiat ipsum ipsum deserunt
-								culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum
-								aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure
+								culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui
+								ipsum
+								aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident.
+								Irure
 								nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
 							</dd>
 						</div>
@@ -112,7 +126,8 @@
 							</h2>
 							<p class="leading-relaxed">Glossier echo park pug, church-key sartorial biodiesel
 								vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf moon party messenger bag
-								selfies, poke vaporware kombucha lumbersexual pork belly polaroid hoodie portland craft
+								selfies, poke vaporware kombucha lumbersexual pork belly polaroid hoodie portland
+								craft
 								beer.
 							</p>
 						</div>
@@ -135,7 +150,8 @@
 							</h2>
 							<p class="leading-relaxed">Glossier echo park pug, church-key sartorial biodiesel
 								vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf moon party messenger bag
-								selfies, poke vaporware kombucha lumbersexual pork belly polaroid hoodie portland craft
+								selfies, poke vaporware kombucha lumbersexual pork belly polaroid hoodie portland
+								craft
 								beer.
 							</p>
 						</div>
@@ -158,12 +174,13 @@
 							</h2>
 							<p class="leading-relaxed">Glossier echo park pug, church-key sartorial biodiesel
 								vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf moon party messenger bag
-								selfies, poke vaporware kombucha lumbersexual pork belly polaroid hoodie portland craft
+								selfies, poke vaporware kombucha lumbersexual pork belly polaroid hoodie portland
+								craft
 								beer.
 							</p>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</section>
@@ -182,6 +199,7 @@
 			<a><i class="fa-brands fa-instagram fa-lg"></i></a>
 		</span>
 	</footer>
-</body>
+
+	</body>
 
 </html>
