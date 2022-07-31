@@ -22,53 +22,60 @@
     <nav class="flex bg-blue-400 p-3 shadow-xl flex-row space-x-4">
         <div class="flex text-center justify-center items-center p-2 space-x-6 w-2/12">
             <a href="inicio.html">
-                <img src="../img/logo.svg" alt="logo" class="h-14" />
+                <img src="../img/logo.svg" alt="logo" class="h-16" />
             </a>
         </div>
     </nav>
 
-    <div class="bg-blue-7000 mx-auto w-11/12 my-5 px-6 py-10">
-        
-        <label class="text-3xl font-semibold">Editar perfil</label>
-        
-        <form class="bg-red-3000 shadow-xl mx-auto rounded-md mt-8 p-5 grid grid-cols-2 gap-8">
-            <div class="bg-amber-2000 p-3 space-y-5">
-                <span class="flex flex-col">
-                    <label class="font-light text-md">Nombre</label>
-                    <input type="text" class="w-full rounded-md mt-1">
-                </span>
+    <form class="flex flex-col w-11/12 p-6 mx-auto my-10 shadow-2xl rounded-2xl" action=""
+        onsubmit="event.preventDefault()">
 
-                <span class="flex flex-col">
-                    <label class="font-light text-md">Email</label>
-                    <input type="email" class="w-full rounded-md mt-1">
-                </span>
+        <div class="px-3 py-3 mx-auto w-72">
+            <img src="../img/profile.jpg" id="imagenPerfil" class="rounded-full shadow-2xl select-none w-72 border-4 border-amber-400">
+            <input type="file" name="inputPerfil" id="inputPerfil" multiple="false" accept="image/*"
+                class="mt-6 opacity-30 rounded-md"
+                onchange="readSingleFile(files, document.querySelector('#imagenPerfil'))">
+        </div>
 
-                <span class="flex flex-col">
-                    <label class="font-light text-md">Zona de entrega</label>
-                    <input type="text" class="w-full rounded-md mt-1">
-                </span>
+        <div class="flex flex-col w-10/12 mx-auto my-5 text-lg shadow-xl rounded-lg border-gray-200 border-t-2">
+            <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
+                <label class="font-medium text-gray-500 my-auto">Nombre</label>
+                <input type="text" name="" id="" value="Gustavo Ortíz Hernández"
+                    class="rounded-md w-full col-span-2 border-gray-200">
             </div>
-            <div class="bg-lime-3000 p-3 space-y-5">
-                <span class="flex flex-col">
-                    <label class="font-light text-md">Apellido(s)</label>
-                    <input type="text" class="w-full rounded-md mt-1">
-                </span>
-
-                <span class="flex flex-col">
-                    <label class="font-light text-md">Número de teléfono</label>
-                    <input type="number" class="w-full rounded-md mt-1">
-                </span>
-
-                <span class="flex flex-col">
-                    <label class="font-light text-md">Comentarios</label>
-                    <textarea name="" id="" cols="10" rows="10" class="w-full rounded-md mt-1 h-28"></textarea>
-                </span> 
+            <div class="bg-white grid grid-cols-3 gap-4 px-6 py-5">
+                <label class="font-medium text-gray-500 my-auto">E-mail</label>
+                <input type="email" name="" id="" value="gustavo_ortiz@gmail.com"
+                    class="rounded-md w-full col-span-2 border-gray-200">
             </div>
-        </form>
+            <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
+                <label class="font-medium text-gray-500 my-auto">Número de teléfono</label>
+                <input type="tel" name="" id="" value="55 56987412"
+                    class="rounded-md w-full col-span-2 border-gray-200">
+            </div>
+            <div class="bg-white grid grid-cols-3 gap-4 px-6 py-5">
+                <label class="font-medium text-gray-500 my-auto">Zona de entrega</label>
+                <input type="text" name="" id="" value="Gustavo A Madero, CDMX"
+                    class="rounded-md w-full col-span-2 border-gray-200">
+            </div>
+            <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
+                <label class="font-medium text-gray-500 my-auto">Comentarios</label>
+                <textarea name="" id="" cols="30" rows="5" class="rounded-md w-full col-span-2 border-gray-200">
+                        Fugiat ipsum ipsum deserunt
+                        culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui
+                        ipsum
+                        aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident.
+                        Irure
+                        nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
+                </textarea>
+            </div>
+        </div>
 
-        <!-- <button type="submit" class="mx-auto bg-blue-700 text-white p-3 rounded-md font-semibold text-lg">Actualizar perfil</button> -->
+        <button type="submit"
+            class="bg-blue-700 text-white py-2 px-5 font-semibold text-lg mt-6 mx-auto rounded-md hover:bg-amber-400 hover:text-black">Actualizar
+            información</button>
 
-    </div>
+    </form>
 
     <footer class="bg-green-5000 w-11/12 px-5 py-8 mx-auto flex items-center flex-row text-gray-500">
         <img src="../img/logo.svg" alt="logo" class="h-10" />
@@ -82,6 +89,19 @@
             <a><i class="fa-brands fa-instagram fa-lg"></i></a>
         </span>
     </footer>
+
+    <script>
+        const readSingleFile = (files, imagen) => {
+            let file = files[0];
+            if (!file) return;
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                imagen.src = reader.result;
+                foto = reader.result.split(',')[1];
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
 
 </body>
 

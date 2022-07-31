@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../output.css">
+    <!-- <link rel="stylesheet" href="../css/final.css"> -->
+
+    <!-- Iconos Font Awesome -->
+    <script src="https://kit.fontawesome.com/1319b8eafb.js" crossorigin="anonymous"></script>
+
+    <title>Crear publicación</title>
+</head>
+
+<body class="font-sans">
+
+    <nav class="flex bg-blue-400 p-3 shadow-xl flex-row space-x-4">
+        <div class="flex text-center justify-center items-center p-2 space-x-6 w-2/12">
+            <a href="inicio.html">
+                <img src="../img/logo.svg" alt="logo" class="h-16" />
+            </a>
+        </div>
+    </nav>
+
+    <form class="flex flex-col w-11/12 p-6 mx-auto my-10 shadow-2xl rounded-2xl" action=""
+        onsubmit="event.preventDefault()">
+
+        <div class="px-3 py-3 mx-auto w-60">
+            <img src="../img/products/cuatro.png" id="imagenProducto" class="shadow-2xl select-none w-60">
+            <input type="file" name="inputPerfil" id="inputProducto" multiple="true" accept="image/*"
+                class="mt-6 opacity-30 rounded-md"
+                onchange="readSingleFile(files, document.querySelector('#imagenProducto'))">
+        </div>
+
+        <div class="flex flex-col w-10/12 mx-auto my-5 text-lg shadow-xl rounded-lg border-gray-200 border-t-2">
+            <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
+                <label class="font-medium text-gray-500 my-auto">Título</label>
+                <input type="text" name="" id="" value="Guitarra cort x"
+                    class="rounded-md w-full col-span-2 border-gray-200">
+            </div>
+            <div class="bg-white grid grid-cols-3 gap-4 px-6 py-5">
+                <label class="font-medium text-gray-500 my-auto">Descripción</label>
+                <textarea name="" id="" cols="30" rows="5" class="rounded-md w-full col-span-2 border-gray-200">
+                    Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY. 
+                    XOXO fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric. 
+                    Gastropub blue bottle austin listicle pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.
+            </textarea>
+            </div>
+            <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
+                <label class="font-medium text-gray-500 my-auto">Precio</label>
+                <input type="number" name="" id="" value="3500" min="1" class="rounded-md w-full col-span-2 border-gray-200">
+            </div>
+        </div>
+
+        <button type="submit"
+            class="bg-blue-700 text-white py-2 px-5 font-semibold text-lg mt-6 mx-auto rounded-md hover:bg-amber-400 hover:text-black">
+            Crear publicación
+        </button>
+
+    </form>
+
+    <footer class="w-11/12 px-5 py-8 mx-auto flex items-center flex-row text-gray-500">
+        <img src="../img/logo.svg" alt="logo" class="h-10" />
+
+        <p class="text-sm ml-4 pl-4 border-l-2 border-gray-300 py-2 mt-0">©
+            2022 Quick Shop - quickshop.io
+        </p>
+        <span class="inline-flex ml-auto mt-0 justify-center space-x-3">
+            <a><i class="fa-brands fa-facebook fa-lg"></i></a>
+            <a><i class="fa-brands fa-twitter fa-lg"></i></a>
+            <a><i class="fa-brands fa-instagram fa-lg"></i></a>
+        </span>
+    </footer>
+
+    <script>
+        const readSingleFile = (files, imagen) => {
+            let file = files[0];
+            if (!file) return;
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                imagen.src = reader.result;
+                foto = reader.result.split(',')[1];
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+
+</body>
+
+</html>
