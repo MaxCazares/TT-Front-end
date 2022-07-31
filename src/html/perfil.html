@@ -20,11 +20,11 @@
 	<title>Perfil | Gustavo Ortíz Hernández</title>
 </head>
 
-<body class="font-sans ">
+<body class="bg-white font-sans">
 
 	<nav class="flex p-3 space-x-4 bg-blue-400 shadow-xl">
 		<div class="flex items-center justify-center w-2/12 p-2 space-x-6 text-center">
-			<a href="index.html" class="bg-green-5000">
+			<a href="inicio.html" class="bg-green-5000">
 				<img src="../img/logo.svg" alt="logo" class="h-16" />
 			</a>
 		</div>
@@ -43,7 +43,7 @@
 
 		<div
 			class="flex flex-row items-center p-7 justify-end w-10/12 font-semibold text-center text-white bg-red-4000 text-md">
-			<a href="index.html" class="bg-blue-500 py-2 px-3 rounded-md hover:bg-blue-600">
+			<a href="inicio.html" class="bg-blue-700 py-2 px-3 rounded-md hover:bg-blue-600">
 				<i class="fa-solid fa-arrow-right-from-bracket text-current fa-lg my-auto ml-1 mr-2"></i>
 				Cerrar sesión
 			</a>
@@ -52,15 +52,11 @@
 
 	<div class="w-11/12 py-6 px-6 mx-auto my-10 shadow-2xl rounded-2xl">
 
-		<!-- <a class="text-3xl text-slate-200 hover:text-slate-300 w-full flex justify-end -mb-14">
-			<i class="fa-solid fa-pen-to-square mr-5 py-2"></i>
-		</a> -->
-
-		<div class="dropdown dropdown-hover flex justify-end">
+		<div class="dropdown dropdown-hover flex justify-end bg-white">
 			<i tabindex="0" class="fa-solid fa-bars text-3xl text-slate-400"></i>
-			<ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100">
-				<li><a>Editar perfil</a></li>
-				<li><a href="product.html">Agregar producto</a></li>
+			<ul tabindex="0" class="dropdown-content menu p-2 shadow text-gray-900 bg-white">
+				<li><a href="editarPerfil.html">Editar perfil</a></li>
+				<li><a href="crearPublicación.html">Crear publicación</a></li>
 				<li><a>Editar publicaciones</a></li>
 			</ul>
 		</div>
@@ -73,23 +69,23 @@
 			<div class="overflow-hidden bg-white shadow sm:rounded-lg">
 				<div class="border-t border-gray-200">
 					<dl>
-						<div class="px-4 py-5 bg-slate-100 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+						<div class="py-5 bg-slate-100 grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500">Nombre </dt>
 							<dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">Gustavo Ortíz Hernández</dd>
 						</div>
-						<div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+						<div class="py-5 bg-white grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500">E-mail</dt>
 							<dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">gustavo_ortiz@gmail.com</dd>
 						</div>
-						<div class="px-4 py-5 bg-slate-100 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+						<div class="py-5 bg-slate-100 grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500 ">Número de teléfono</dt>
 							<dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">55 56987412</dd>
 						</div>
-						<div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+						<div class="py-5 bg-white grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500 ">Zona de entrega</dt>
 							<dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">Gustavo A Madero, CDMX</dd>
 						</div>
-						<div class="px-4 py-5 bg-slate-100 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+						<div class="py-5 bg-slate-100 grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500 ">Comentarios</dt>
 							<dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
 								Fugiat ipsum ipsum deserunt
@@ -109,8 +105,8 @@
 			<div class="container px-5 mx-auto">
 				<div class="divide-y-2 divide-slate-100">
 
-					<div class="py-8 flex flex-wrap flex-col md:flex-nowrap">
-						<div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-row space-x-3">
+					<div class="py-8 flex flex-wrap flex-col">
+						<div class="w-64 mb-0 flex flex-row space-x-3">
 							<span class="font-semibold title-font text-blue-700 mt-0.5">
 								<i class="fa-solid fa-star"></i>
 								<i class="fa-solid fa-star"></i>
@@ -120,11 +116,11 @@
 							</span>
 							<span class="text-gray-500 text-md">12 Mayo 2022</span>
 						</div>
-						<div class="md:flex-grow mt-2">
+						<div class="flex-grow mt-2">
 							<h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
 								Entrega a tiempo
 							</h2>
-							<p class="leading-relaxed">Glossier echo park pug, church-key sartorial biodiesel
+							<p class="text-justify">Glossier echo park pug, church-key sartorial biodiesel
 								vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf moon party messenger bag
 								selfies, poke vaporware kombucha lumbersexual pork belly polaroid hoodie portland
 								craft
@@ -133,8 +129,8 @@
 						</div>
 					</div>
 
-					<div class="py-8 flex flex-wrap flex-col md:flex-nowrap">
-						<div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-row space-x-3">
+					<div class="py-8 flex flex-wrap flex-col">
+						<div class="w-64 mb-0 flex flex-row space-x-3">
 							<span class="font-semibold title-font text-blue-700 mt-0.5">
 								<i class="fa-solid fa-star"></i>
 								<i class="fa-solid fa-star"></i>
@@ -144,11 +140,11 @@
 							</span>
 							<span class="text-gray-500 text-md">23 Abril 2022</span>
 						</div>
-						<div class="md:flex-grow mt-2">
+						<div class="flex-grow mt-2">
 							<h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
 								Impuntual
 							</h2>
-							<p class="leading-relaxed">Glossier echo park pug, church-key sartorial biodiesel
+							<p class="text-justify">Glossier echo park pug, church-key sartorial biodiesel
 								vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf moon party messenger bag
 								selfies, poke vaporware kombucha lumbersexual pork belly polaroid hoodie portland
 								craft
@@ -157,8 +153,8 @@
 						</div>
 					</div>
 
-					<div class="py-8 flex flex-wrap flex-col md:flex-nowrap">
-						<div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-row space-x-3">
+					<div class="py-8 flex flex-wrap flex-col">
+						<div class="w-64 mb-0 flex flex-row space-x-3">
 							<span class="font-semibold title-font text-blue-700 mt-0.5">
 								<i class="fa-solid fa-star"></i>
 								<i class="fa-solid fa-star"></i>
@@ -168,11 +164,11 @@
 							</span>
 							<span class="text-gray-500 text-md">20 Abril 2022</span>
 						</div>
-						<div class="md:flex-grow mt-2">
+						<div class="flex-grow mt-2">
 							<h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
 								Producto diferente
 							</h2>
-							<p class="leading-relaxed">Glossier echo park pug, church-key sartorial biodiesel
+							<p class="text-justify">Glossier echo park pug, church-key sartorial biodiesel
 								vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf moon party messenger bag
 								selfies, poke vaporware kombucha lumbersexual pork belly polaroid hoodie portland
 								craft
@@ -187,13 +183,13 @@
 
 	</div>
 
-	<footer class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col text-gray-500">
+	<footer class="w-11/12 px-5 py-8 mx-auto flex items-center flex-row text-gray-500">
 		<img src="../img/logo.svg" alt="logo" class="h-10" />
 
-		<p class="text-sm sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">©
+		<p class="text-sm ml-4 pl-4 border-l-2 border-gray-300 py-2 mt-0">©
 			2022 Quick Shop - quickshop.io
 		</p>
-		<span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start space-x-3">
+		<span class="inline-flex ml-auto mt-0 justify-center space-x-3">
 			<a><i class="fa-brands fa-facebook fa-lg"></i></a>
 			<a><i class="fa-brands fa-twitter fa-lg"></i></a>
 			<a><i class="fa-brands fa-instagram fa-lg"></i></a>

@@ -19,3 +19,7 @@ https://fontawesome.com/
 
 # componentes chidas
 https://flowbite.com/docs/components/modal/
+
+# colores del logo
+azul: #174e9d
+amarillo: #fdca3b

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../output.css">
+    <!-- <link rel="stylesheet" href="../css/final.css"> -->
+
+    <!-- Iconos Font Awesome -->
+    <script src="https://kit.fontawesome.com/1319b8eafb.js" crossorigin="anonymous"></script>
+
+    <title>Editar perfil</title>
+
+</head>
+
+<body class="bg-white">
+
+    <nav class="flex bg-blue-400 p-3 shadow-xl flex-row space-x-4">
+        <div class="flex text-center justify-center items-center p-2 space-x-6 w-2/12">
+            <a href="inicio.html">
+                <img src="../img/logo.svg" alt="logo" class="h-14" />
+            </a>
+        </div>
+    </nav>
+
+    <div class="bg-blue-7000 mx-auto w-11/12 my-5 px-6 py-10">
+        
+        <label class="text-3xl font-semibold">Editar perfil</label>
+        
+        <form class="bg-red-3000 shadow-xl mx-auto rounded-md mt-8 p-5 grid grid-cols-2 gap-8">
+            <div class="bg-amber-2000 p-3 space-y-5">
+                <span class="flex flex-col">
+                    <label class="font-light text-md">Nombre</label>
+                    <input type="text" class="w-full rounded-md mt-1">
+                </span>
+
+                <span class="flex flex-col">
+                    <label class="font-light text-md">Email</label>
+                    <input type="email" class="w-full rounded-md mt-1">
+                </span>
+
+                <span class="flex flex-col">
+                    <label class="font-light text-md">Zona de entrega</label>
+                    <input type="text" class="w-full rounded-md mt-1">
+                </span>
+            </div>
+            <div class="bg-lime-3000 p-3 space-y-5">
+                <span class="flex flex-col">
+                    <label class="font-light text-md">Apellido(s)</label>
+                    <input type="text" class="w-full rounded-md mt-1">
+                </span>
+
+                <span class="flex flex-col">
+                    <label class="font-light text-md">Número de teléfono</label>
+                    <input type="number" class="w-full rounded-md mt-1">
+                </span>
+
+                <span class="flex flex-col">
+                    <label class="font-light text-md">Comentarios</label>
+                    <textarea name="" id="" cols="10" rows="10" class="w-full rounded-md mt-1 h-28"></textarea>
+                </span> 
+            </div>
+        </form>
+
+        <!-- <button type="submit" class="mx-auto bg-blue-700 text-white p-3 rounded-md font-semibold text-lg">Actualizar perfil</button> -->
+
+    </div>
+
+    <footer class="bg-green-5000 w-11/12 px-5 py-8 mx-auto flex items-center flex-row text-gray-500">
+        <img src="../img/logo.svg" alt="logo" class="h-10" />
+
+        <p class="text-sm ml-4 pl-4 border-l-2 border-gray-300 py-2 mt-0">©
+            2022 Quick Shop - quickshop.io
+        </p>
+        <span class="inline-flex ml-auto mt-0 justify-center space-x-3">
+            <a><i class="fa-brands fa-facebook fa-lg"></i></a>
+            <a><i class="fa-brands fa-twitter fa-lg"></i></a>
+            <a><i class="fa-brands fa-instagram fa-lg"></i></a>
+        </span>
+    </footer>
+
+</body>
+
+</html>
