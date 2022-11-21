@@ -27,22 +27,22 @@
                     <p class="text-center text-2xl mt-7">Completa tus datos</p>
                 </div>
 
-				<form class="flex flex-col pt-4" onsubmit="event.preventDefault();">
+				<form class="flex flex-col pt-4" id="formularioRegistro">
 					<div class="flex flex-col pt-4">
-						<label for="name" class="text-md">Nombre</label>
-						<input type="text" id="name"
+						<label for="nombreNuevoUsuario" class="text-md">Nombre</label>
+						<input type="text" id="nombreNuevoUsuario"
 							class="shadow border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
 					</div>
 
 					<div class="flex flex-col pt-4">
-						<label for="email" class="text-md">E-mail</label>
-						<input type="email" id="email" placeholder=""
+						<label for="emailNuevoUsuario" class="text-md">E-mail</label>
+						<input type="email" id="emailNuevoUsuario" placeholder=""
 							class="shadow border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
 					</div>
 
 					<div class="flex flex-col pt-4">
-						<label for="password" class="text-md">Contraseña</label>
-						<input type="password" id="password"
+						<label for="passwordNuevoUsuario" class="text-md">Contraseña</label>
+						<input type="password" id="passwordNuevoUsuario"
 							class="shadow border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
 					</div>
 
@@ -58,6 +58,10 @@
 			<img class="object-cover w-full h-screen block" src="../img/joinUs.avif"/>
 		</div>
 	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="../js/crearCuenta.js" type="module"></script>
+
 </body>
 
 </html>

@@ -1,6 +1,6 @@
-# Interfaz de usuario de TT: Quick Shop
+# Interfaz de usuario de TT 2021-B026: Quick Shop
 
-Este repositorio contiene el diseño de la interfaz de usuario del TT
+Este repositorio contiene el diseño de la interfaz de usuario del TT titulado Prototipo de una red distribuida de comercio electrónico entre iguales (P2P) con un modelo de negocios de cliente a cliente (C2C)
 
 ## Comandos
 `npm start`: ejecuta Electron  

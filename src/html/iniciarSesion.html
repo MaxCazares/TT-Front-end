@@ -32,16 +32,16 @@
                     <p class="text-center text-2xl mt-7">Ingresa tus datos</p>
                 </div>
 
-                <form class="flex flex-col pt-3 md:pt-8" onsubmit="event.preventDefault();">
+                <form class="flex flex-col pt-3 md:pt-8" id="formularioInicioSesion">
                     <div class="flex flex-col pt-4">
-                        <label for="email" class="text-md">E-mail</label>
-                        <input type="email" id="email" placeholder=""
+                        <label for="emailUsuarioRegistrado" class="text-md">E-mail</label>
+                        <input type="email" id="emailUsuarioRegistrado" placeholder=""
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                     </div>
 
                     <div class="flex flex-col pt-4">
-                        <label for="password" class="text-md">Contraseña</label>
-                        <input type="password" id="password"
+                        <label for="passwordUsuarioRegistrado" class="text-md">Contraseña</label>
+                        <input type="password" id="passwordUsuarioRegistrado"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                     </div>
 
@@ -54,6 +54,9 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="../js/iniciarSesion.js" type="module"></script>
 
 </body>
 

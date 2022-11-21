@@ -33,6 +33,7 @@
 
 ## videos importantes
 - https://www.youtube.com/watch?v=AbJ-y2vZgBs (Subir imagenes a mongoDB)
+- https://youtu.be/aNYX2F1RX-s
 - https://www.youtube.com/watch?v=diMTXNWiN8Y (DDB MySQL)
 
 ## recursos de python
