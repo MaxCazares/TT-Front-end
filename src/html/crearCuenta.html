@@ -10,6 +10,9 @@
 	<link rel="stylesheet" href="../output.css">
 	<!-- <link rel="stylesheet" href="../css/final.css"> -->
 
+	<!-- Iconos Font Awesome -->
+    <script src="https://kit.fontawesome.com/1319b8eafb.js" crossorigin="anonymous"></script>
+
 	<title>Regístrate en Quick Shop</title>
 </head>
 
@@ -41,7 +44,11 @@
 					</div>
 
 					<div class="flex flex-col pt-4">
-						<label for="passwordNuevoUsuario" class="text-md">Contraseña</label>
+						<span>
+							<label for="passwordNuevoUsuario" class="text-md">Contraseña</label>
+							<i class="fa-sharp fa-solid fa-circle-info text-gray-400 text-xs" id="infoPassword"></i>
+						</span>
+
 						<input type="password" id="passwordNuevoUsuario"
 							class="shadow border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
 					</div>

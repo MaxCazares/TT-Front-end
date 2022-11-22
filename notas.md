@@ -9,7 +9,7 @@
 - https://tailwind-elements.com/#section-components
 - https://mambaui.com/
 
-### componentes chidas
+### componentes chidos
 - https://flowbite.com/docs/components/modal/
 
 ## otros recursos
