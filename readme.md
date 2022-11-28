@@ -6,3 +6,6 @@ Este repositorio contiene el diseño de la interfaz de usuario del TT titulado P
 `npm start`: ejecuta Electron  
 `npm run tailwind`: ejecuta Tailwind  
 `npm run tailwindMini`: crea una versión de producción de los estilos de Tailwind utilizados
+
+## API
+La API que se consulta se encuentra [aquí](https://github.com/MaxCazares/TT-Back-end)
