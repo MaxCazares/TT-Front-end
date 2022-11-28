@@ -1,4 +1,5 @@
 import { alertSuccess, alertFail } from "./alerts.js";
+import { url } from "./url.js";
 
 const formulario = document.querySelector('#formularioInicioSesion');
 const email = document.querySelector('#emailUsuarioRegistrado');
@@ -7,7 +8,7 @@ const esconderPassword = document.querySelector('#esconderPassword');
 
 window.onload = () => {
     formulario.addEventListener('submit', validarUsuario);
-}
+};
 
 const validarUsuario = e => {
     e.preventDefault();
@@ -15,9 +16,10 @@ const validarUsuario = e => {
         alertFail('Ambos campos son requeridos');
         return
     }
-    else
-        alertSuccess('Bienvenido de nuevo');
-}
+    else {
+        obtenerUsuarios();
+    }
+};
 
 esconderPassword.onclick = () => {
     if (password.type == 'password') {
@@ -32,4 +34,17 @@ esconderPassword.onclick = () => {
         esconderPassword.classList.add('fa-sharp');
         esconderPassword.classList.add('fa-eye-slash');
     }
-}
+};
+
+const obtenerUsuarios = async (name = 'Pedro') => {
+    try {
+        const respuesta = await fetch(`http://20.172.176.195:5000/usuarios/getbyname/${name}`, { mode: "no-cors"});
+        console.log(respuesta);
+        const resultado = await respuesta.json();
+        console.log(resultado);
+
+        alertSuccess('Bienvenido de nuevo');
+    } catch (e) {
+        console.error(e);
+    }
+};
