@@ -1,10 +1,10 @@
 const formularioBusqueda = document.querySelector('#formularioBusqueda');
 
 window.onload = () => {
-    formularioBusqueda.addEventListener('submit', prueba);
+    formularioBusqueda.addEventListener('submit', cargarPublicaciones);
 }
 
-function prueba(e){
+const cargarPublicaciones = e => {
     e.preventDefault();
 
     const busqueda = document.querySelector('#search').value;
@@ -16,3 +16,4 @@ function prueba(e){
 
     alert(busqueda);
 }
+

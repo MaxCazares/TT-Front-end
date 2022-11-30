@@ -2,49 +2,60 @@ import { alertSuccess, alertFail } from "./alerts.js";
 import { url } from "./url.js";
 
 const formulario = document.querySelector('#formularioInicioSesion');
-const email = document.querySelector('#emailUsuarioRegistrado');
-const password = document.querySelector('#passwordUsuarioRegistrado');
+const emailFormulario = document.querySelector('#emailUsuarioRegistrado');
+const passwordFormulario = document.querySelector('#passwordUsuarioRegistrado');
 const esconderPassword = document.querySelector('#esconderPassword');
 
 window.onload = () => {
-    formulario.addEventListener('submit', validarUsuario);
+    formulario.addEventListener('submit', validarCampos);
 };
 
-const validarUsuario = e => {
+const validarCampos = e => {
     e.preventDefault();
-    if (email.value === '' || password.value === '') {
+    if (emailFormulario.value === '' || passwordFormulario.value === '') {
         alertFail('Ambos campos son requeridos');
         return
     }
     else {
-        obtenerUsuarios();
+        validarUsuario(emailFormulario.value, passwordFormulario.value);
+    }
+};
+
+const validarUsuario = async (email, password) => {
+    try {
+        const respuesta = await fetch(url + `usuarios/getbyname/${email}`);
+
+        const usuarioJSON = await respuesta.json();
+        const usuario = usuarioJSON.response[0];
+        console.log(usuario);
+
+        if(email === usuario.nombre_usuario && password === usuario.contraseña_usuario){
+            alertSuccess(`Bienvenido de nuevo \n${usuario.nombre_usuario}`);
+            
+            setTimeout(() => {
+                window.location.href = 'perfil.html';                
+            }, 2000);
+
+        }else{
+            alertFail('Algunos de los campos es incorrecto')
+        }
+
+    } catch (e) {
+        console.error(e);
     }
 };
 
 esconderPassword.onclick = () => {
-    if (password.type == 'password') {
-        password.type = 'text';
+    if (passwordFormulario.type == 'password') {
+        passwordFormulario.type = 'text';
         esconderPassword.classList.add('fa-eye');
         esconderPassword.classList.remove('fa-sharp');
         esconderPassword.classList.remove('fa-eye-slash');
 
     } else {
-        password.type = 'password';
+        passwordFormulario.type = 'password';
         esconderPassword.classList.remove('fa-eye');
         esconderPassword.classList.add('fa-sharp');
         esconderPassword.classList.add('fa-eye-slash');
-    }
-};
-
-const obtenerUsuarios = async (name = 'Pedro') => {
-    try {
-        const respuesta = await fetch(`http://20.172.176.195:5000/usuarios/getbyname/${name}`, { mode: "no-cors"});
-        console.log(respuesta);
-        const resultado = await respuesta.json();
-        console.log(resultado);
-
-        alertSuccess('Bienvenido de nuevo');
-    } catch (e) {
-        console.error(e);
     }
 };
