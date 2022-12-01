@@ -23,21 +23,25 @@ const validarCampos = e => {
 
 const validarUsuario = async (email, password) => {
     try {
-        const respuesta = await fetch(url + `usuarios/getbyname/${email}`);
+        const respuesta = await fetch(url + `usuarios/getbyemail/${email}`);
 
         const usuarioJSON = await respuesta.json();
         const usuario = usuarioJSON.response[0];
-        console.log(usuario);
 
-        if(email === usuario.nombre_usuario && password === usuario.contraseña_usuario){
+        if(email === usuario.correo_usuario && password === usuario.contraseña_usuario){
             alertSuccess(`Bienvenido de nuevo \n${usuario.nombre_usuario}`);
             
             setTimeout(() => {
-                window.location.href = 'perfil.html';                
+                window.location.href = 'inicio.html';                
             }, 2000);
 
         }else{
             alertFail('Algunos de los campos es incorrecto')
+
+            setTimeout(() => {
+                emailFormulario.value = '';
+                passwordFormulario.value = '';
+            }, 1000);
         }
 
     } catch (e) {

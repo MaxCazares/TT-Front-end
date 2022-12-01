@@ -6,6 +6,7 @@ const nombreFormulario = document.querySelector('#nombreNuevoUsuario');
 const emailFormulario = document.querySelector('#emailNuevoUsuario');
 const passwordFormulario = document.querySelector('#passwordNuevoUsuario');
 const infoPassword = document.querySelector('#infoPassword');
+const esconderPassword = document.querySelector('#esconderPassword');
 
 window.onload = () => {
     formulario.addEventListener('submit', validarCampos);
@@ -41,7 +42,7 @@ const registrarUsuario = async (nombre, email, password) => {
         alertSuccess('Usuario registrado correctamente');
 
         setTimeout(() => {
-            window.location.href = 'iniciarSesion.html';
+            window.location.href = 'inicio.html';
         }, 2000);
 
     } catch (error) {
@@ -52,3 +53,18 @@ const registrarUsuario = async (nombre, email, password) => {
 infoPassword.onclick = () => {
     info()
 }
+
+esconderPassword.onclick = () => {
+    if (passwordFormulario.type == 'password') {
+        passwordFormulario.type = 'text';
+        esconderPassword.classList.add('fa-eye');
+        esconderPassword.classList.remove('fa-sharp');
+        esconderPassword.classList.remove('fa-eye-slash');
+
+    } else {
+        passwordFormulario.type = 'password';
+        esconderPassword.classList.remove('fa-eye');
+        esconderPassword.classList.add('fa-sharp');
+        esconderPassword.classList.add('fa-eye-slash');
+    }
+};
