@@ -1,5 +1,5 @@
 import { alertSuccess, alertFail, infoPassword as info } from "./alerts.js";
-import { url } from "./url.js";
+import { localhost, urlAPI } from "./urls.js";
 
 const formulario = document.querySelector('#formularioRegistro');
 const nombreFormulario = document.querySelector('#nombreNuevoUsuario');
@@ -9,7 +9,8 @@ const infoPassword = document.querySelector('#infoPassword');
 const esconderPassword = document.querySelector('#esconderPassword');
 
 window.onload = () => {
-    formulario.addEventListener('submit', validarCampos);
+    // formulario.addEventListener('submit', validarCampos);
+    alert('k pedo')
 }
 
 const validarCampos = e => {
@@ -33,7 +34,7 @@ const registrarUsuario = async (nombre, email, password) => {
     }
 
     try {
-        const respuesta = await fetch(url + 'usuarios', {
+        const respuesta = await fetch(urlAPI + 'usuarios', {
             method: "POST",
             body: JSON.stringify(nuevoUsuario),
             headers: { "Content-type": "application/json; charset=UTF-8" }

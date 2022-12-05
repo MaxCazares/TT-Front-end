@@ -31,9 +31,9 @@
 
 		<div
 			class="flex flex-row items-center p-7 justify-end w-10/12 font-semibold text-center text-white bg-red-4000 text-md">
-			<a href="inicio.html" class="bg-blue-700 py-2 px-3 rounded-md hover:bg-blue-600">
-				<i class="fa-solid fa-arrow-right-from-bracket text-current fa-lg my-auto ml-1 mr-2"></i>
+			<a href="inicio.html" class="bg-blue-700 px-3 py-2 rounded-md hover:bg-blue-600">
 				Cerrar sesión
+				<i class="fa-solid fa-arrow-right-from-bracket text-current fa-lg my-auto m-1"></i>
 			</a>
 		</div>
 	</nav>
@@ -59,30 +59,29 @@
 					<dl>
 						<div class="py-5 bg-slate-100 grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500">Nombre </dt>
-							<dd class="text-gray-900 mt-0 col-span-2">Gustavo Ortíz Hernández</dd>
+							<input class="text-gray-900 mt-0 col-span-2 border-0 bg-slate-100" id="nombreUsuario"
+								disabled />
 						</div>
 						<div class="py-5 bg-white grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500">E-mail</dt>
-							<dd class="text-gray-900 mt-0 col-span-2">gustavo_ortiz@gmail.com</dd>
+							<input class="text-gray-900 mt-0 col-span-2 border-0 bg-white" id="emailUsuario"
+								disabled />
 						</div>
 						<div class="py-5 bg-slate-100 grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500 ">Número de teléfono</dt>
-							<dd class="text-gray-900 mt-0 col-span-2">55 56987412</dd>
+							<input class="text-gray-900 mt-0 col-span-2 border-0 bg-slate-100" id="telefonoUsuario"
+								value="" disabled />
 						</div>
 						<div class="py-5 bg-white grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500 ">Zona de entrega</dt>
-							<dd class="text-gray-900 mt-0 col-span-2">Gustavo A Madero, CDMX</dd>
+							<input class="text-gray-900 mt-0 col-span-2 border-0 bg-white" id="zonaUsuario" 
+								disabled />
 						</div>
 						<div class="py-5 bg-slate-100 grid grid-cols-3 gap-4 px-6">
-							<dt class="font-medium text-gray-500 ">Comentarios</dt>
-							<dd class="text-gray-900 mt-0 col-span-2">
-								Fugiat ipsum ipsum deserunt
-								culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui
-								ipsum
-								aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident.
-								Irure
-								nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
-							</dd>
+							<dt class="font-medium text-gray-500">Comentarios</dt>
+							<textarea rows="6" class="text-gray-900 mt-0 col-span-2 border-0 p-3 bg-slate-100" id="comentarioUsuario" disabled>
+
+							</textarea>
 						</div>
 					</dl>
 				</div>
@@ -184,6 +183,9 @@
 		</span>
 	</footer>
 
-	</body>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="../js/perfil.js" type="module"></script>
+
+</body>
 
 </html>

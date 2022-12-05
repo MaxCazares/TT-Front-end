@@ -18,7 +18,7 @@
 
 <body class="font-sans">
 
-	<nav class="flex bg-blue-400 p-3 shadow-xl flex-row space-x-4">
+	<nav class="flex bg-blue-400 p-3 shadow-xl space-x-4">
 		<div class="flex text-center justify-center items-center p-2 space-x-6 w-2/12">
 			<a href="inicio.html">
 				<img src="../img/logo.svg" alt="logo" class="h-16" />
@@ -26,9 +26,9 @@
 		</div>
 
 		<div class="mx-auto md:w-7/12">
-			<form class="py-5 relative mx-auto " id="formularioBusqueda">
+			<form class="py-5 relative mx-auto " onsubmit="event.preventDefault();"">
 				<input
-					class="bg-white w-full h-12 pr-11 px-5 rounded-lg text-sm"
+					class="bg-white w-full h-12 pr-11 px-5 rounded-lg text-base"
 				type="search" name="search" id="search" placeholder="Escribe lo que estas buscando">
 
 				<button type="submit" class="absolute right-0 top-3 mr-5 mt-5">
@@ -38,20 +38,14 @@
 		</div>
 
 		<div
-			class="flex flex-row justify-center space-x-6 text-center font-semibold text-white text-md w-3/12 items-center">
-			<a href="crearCuenta.html" class="flex flex-row bg-blue-700 rounded-md hover:bg-blue-600">
-				<span class="py-2 px-3">
-					<i class="fa-solid fa-robot mb-3 fa-lg"></i>
-					<label>Crea tu cuenta</label>
-				</span>				
+		class="flex flex-row justify-center space-x-6 text-center font-semibold text-md w-3/12 items-center">
+			<a href="inicio.html" class="bg-blue-700 px-3 py-2 rounded-md hover:bg-blue-600 text-white">
+				Crea tu cuenta
 			</a>
-			<a href="iniciarSesion.html" class="flex flex-row bg-amber-400 rounded-md hover:bg-amber-300 text-slate-500">
-				<span class="py-2 px-3">
-					<label>Ingresa</label>
-					<i class="fa-solid fa-arrow-right-to-bracket fa-lg mb-3"></i>
-				</span>
+			<a href="inicio.html" class="bg-amber-400 px-3 py-2 rounded-md hover:bg-amber-300 text-black">
+				Ingresa
+				<i class="fa-solid fa-arrow-right-to-bracket text-current fa-lg my-auto ml-1"></i>
 			</a>
-
 		</div>
 	</nav>
 

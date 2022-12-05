@@ -51,3 +51,6 @@
 - https://learn.microsoft.com/es-es/windows-server-essentials/get-started/azure-virtual-network-integration
 - https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering?tabs=peering-portal
 - https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-connect-virtual-networks-portal
+
+## recursos js
+- https://es.javascript.info/url

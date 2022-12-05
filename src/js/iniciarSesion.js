@@ -1,5 +1,5 @@
 import { alertSuccess, alertFail } from "./alerts.js";
-import { url } from "./url.js";
+import { urlAPI, localhost } from "./urls.js";
 
 const formulario = document.querySelector('#formularioInicioSesion');
 const emailFormulario = document.querySelector('#emailUsuarioRegistrado');
@@ -23,7 +23,7 @@ const validarCampos = e => {
 
 const validarUsuario = async (email, password) => {
     try {
-        const respuesta = await fetch(url + `usuarios/getbyemail/${email}`);
+        const respuesta = await fetch(urlAPI + `usuarios/getbyemail/${email}`);
 
         const usuarioJSON = await respuesta.json();
         const usuario = usuarioJSON.response[0];
@@ -31,8 +31,11 @@ const validarUsuario = async (email, password) => {
         if(email === usuario.correo_usuario && password === usuario.contraseña_usuario){
             alertSuccess(`Bienvenido de nuevo \n${usuario.nombre_usuario}`);
             
+            let perfil = new URL(localhost + 'perfil.html');
+            perfil.searchParams.set('iduser', usuario.id_usuario) 
+
             setTimeout(() => {
-                window.location.href = 'inicio.html';                
+                window.location.href = perfil;                
             }, 2000);
 
         }else{
