@@ -13,7 +13,7 @@ export const alertFail = message => {
         title: 'Oops...',
         text: message,
         showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
     });
 }
 

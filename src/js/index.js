@@ -1,3 +1,5 @@
+import { alertFail, alertSuccess } from "./alerts.js";
+
 const formularioBusqueda = document.querySelector('#formularioBusqueda');
 
 window.onload = () => {
@@ -10,10 +12,9 @@ const cargarPublicaciones = e => {
     const busqueda = document.querySelector('#search').value;
 
     if(busqueda === ''){
-        alert('busqueda vacia');
+        alertFail('Tu busqueda parece vacia');
         return;
     }
 
-    alert(busqueda);
+    alertSuccess(busqueda);
 }
-

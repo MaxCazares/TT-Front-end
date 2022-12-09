@@ -43,7 +43,7 @@ const registrarUsuario = async (nombre, email, password) => {
         alertSuccess('Usuario registrado correctamente');
 
         setTimeout(() => {
-            window.location.href = 'inicio.html';
+            window.location.href = 'index.html';
         }, 2000);
 
     } catch (error) {

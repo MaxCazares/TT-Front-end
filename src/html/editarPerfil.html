@@ -21,18 +21,17 @@
 
     <nav class="flex bg-blue-400 p-3 shadow-xl flex-row space-x-4">
         <div class="flex text-center justify-center items-center p-2 space-x-6 w-2/12">
-            <a href="inicio.html">
+            <a href="index.html">
                 <img src="../img/logo.svg" alt="logo" class="h-16" />
             </a>
         </div>
     </nav>
 
-    <form class="flex flex-col w-11/12 p-6 mx-auto my-10 shadow-2xl rounded-2xl" action=""
-        onsubmit="event.preventDefault()">
+    <form id="formularioActualizacion" class="flex flex-col w-11/12 p-6 mx-auto my-10 shadow-2xl rounded-2xl">
 
         <div class="px-3 py-3 mx-auto w-72">
             <img src="../img/profile.jpg" id="imagenPerfil" class="rounded-full shadow-2xl select-none w-72 border-4 border-amber-400">
-            <input type="file" name="inputPerfil" id="inputPerfil" multiple="false" accept="image/*"
+            <input type="file" name="inputPerfil" id="fotoUsuario" multiple="false" accept="image/*"
                 class="mt-6 opacity-30 rounded-md"
                 onchange="readSingleFile(files, document.querySelector('#imagenPerfil'))">
         </div>
@@ -40,40 +39,34 @@
         <div class="flex flex-col w-10/12 mx-auto my-5 text-lg shadow-xl rounded-lg border-gray-200 border-t-2">
             <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
                 <label class="font-medium text-gray-500 my-auto">Nombre</label>
-                <input type="text" name="" id="" value="Gustavo Ortíz Hernández"
+                <input type="text" name="nombreUsuario" id="nombreUsuario" 
                     class="rounded-md w-full col-span-2 border-gray-200">
             </div>
             <div class="bg-white grid grid-cols-3 gap-4 px-6 py-5">
                 <label class="font-medium text-gray-500 my-auto">E-mail</label>
-                <input type="email" name="" id="" value="gustavo_ortiz@gmail.com"
+                <input type="email" name="" id="emailUsuario" 
                     class="rounded-md w-full col-span-2 border-gray-200">
             </div>
             <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
                 <label class="font-medium text-gray-500 my-auto">Número de teléfono</label>
-                <input type="tel" name="" id="" value="55 56987412"
+                <input type="tel" name="" id="telefonoUsuario" 
                     class="rounded-md w-full col-span-2 border-gray-200">
             </div>
             <div class="bg-white grid grid-cols-3 gap-4 px-6 py-5">
                 <label class="font-medium text-gray-500 my-auto">Zona de entrega</label>
-                <input type="text" name="" id="" value="Gustavo A Madero, CDMX"
+                <input type="text" name="" id="zonaUsuario" 
                     class="rounded-md w-full col-span-2 border-gray-200">
             </div>
             <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
                 <label class="font-medium text-gray-500 my-auto">Comentarios</label>
-                <textarea name="" id="" cols="30" rows="5" class="rounded-md w-full col-span-2 border-gray-200">
-                        Fugiat ipsum ipsum deserunt
-                        culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui
-                        ipsum
-                        aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident.
-                        Irure
-                        nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
+                <textarea id="comentarioUsuario" cols="30" rows="5" class="rounded-md w-full col-span-2 border-gray-200">
                 </textarea>
             </div>
         </div>
 
-        <button type="submit"
+        <a id="actualizarInformacionUsuario"
             class="bg-blue-700 text-white py-2 px-5 font-semibold text-lg mt-6 mx-auto rounded-md hover:bg-amber-400 hover:text-black">Actualizar
-            información</button>
+            información</a>
 
     </form>
 
@@ -102,6 +95,9 @@
             reader.readAsDataURL(file);
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="../js/editarPerfil.js" type="module"></script>
 
 </body>
 

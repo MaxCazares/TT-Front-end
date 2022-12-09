@@ -31,12 +31,12 @@ const validarUsuario = async (email, password) => {
         if(email === usuario.correo_usuario && password === usuario.contraseña_usuario){
             alertSuccess(`Bienvenido de nuevo \n${usuario.nombre_usuario}`);
             
-            let perfil = new URL(localhost + 'perfil.html');
-            perfil.searchParams.set('iduser', usuario.id_usuario) 
+            let inicio = new URL(localhost + 'perfil.html');
+            inicio.searchParams.set('iduser', usuario.id_usuario) 
 
             setTimeout(() => {
-                window.location.href = perfil;                
-            }, 2000);
+                window.location.href = inicio;                
+            }, 1500);
 
         }else{
             alertFail('Algunos de los campos es incorrecto')

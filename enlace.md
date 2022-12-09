@@ -9,5 +9,5 @@
     `source quickshopenv/bin/activate`  
     `gunicorn --bind 0.0.0.0:5000 wsgi:app`
 
-db: quickshop  
-user: user
+## comandos importantes
+- matar un proceso: `kill -kill pid_proceso`

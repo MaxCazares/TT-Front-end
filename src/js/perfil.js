@@ -6,19 +6,24 @@ const telefonoUsuario = document.querySelector('#telefonoUsuario');
 const zonaUsuario = document.querySelector('#zonaUsuario');
 const comentarioUsuario = document.querySelector('#comentarioUsuario');
 
-window.onload = () => {
-    obtenerParametrosURL();
+const menuOpciones = document.querySelector('#menuOpciones');
+const dropdown = document.querySelector('#dropdown');
+const editarPerfil = document.querySelector('#editarPerfil');
+
+window.onload = async () => {
+    // obtenerDatosUsuario();    
 }
 
-const obtenerParametrosURL = () =>{
+const obtenerParametrosURL = () => {
     const URLactual = new URL(window.location);
     const idUsuario = URLactual.searchParams.get('iduser');
-    obtenerDatosUsuario(idUsuario);
+    return idUsuario;
 }
 
-const obtenerDatosUsuario = async (idUsuario) => {
+const obtenerDatosUsuario = async () => {
+    const idUsuario = obtenerParametrosURL();
     try {
-        const respuesta = await fetch(urlAPI + `usuarios/getbyid/${idUsuario}`); //cambiar el correo por el id
+        const respuesta = await fetch(urlAPI + `usuarios/getbyid/${idUsuario}`);
         const usuarioJSON = await respuesta.json();
         const usuario = usuarioJSON.response[0];
         imprimirDatos(usuario);
@@ -34,4 +39,18 @@ const imprimirDatos = (usuario) => {
     telefonoUsuario.value = usuario.telefono_usuario;
     zonaUsuario.value = usuario.zona_entrega_usuario;
     comentarioUsuario.value = '';
+}
+
+// editarPerfil.onclick = () => {
+//     const idUsuario = obtenerParametrosURL();
+
+//     const paginaEditarPerfil = new URL(localhost + 'editarPerfil.html');
+//     paginaEditarPerfil.searchParams.set('iduser', idUsuario);
+
+//     window.location.href = paginaEditarPerfil;
+// }
+
+menuOpciones.onclick = () => {
+    dropdown.classList.toggle('hidden');
+    dropdown.classList.toggle('flex');
 }

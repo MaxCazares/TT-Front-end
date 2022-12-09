@@ -11,7 +11,7 @@ const createWindow = () => {
         icon: __dirname + './src/img/logo.ico'
     });
 
-    win.loadFile('./src/html/inicio.html');
+    win.loadFile('./src/html/index.html');
 }
 
 app.whenReady().then(() => {
