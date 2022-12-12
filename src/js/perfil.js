@@ -6,8 +6,6 @@ const telefonoUsuario = document.querySelector('#telefonoUsuario');
 const zonaUsuario = document.querySelector('#zonaUsuario');
 const comentarioUsuario = document.querySelector('#comentarioUsuario');
 
-const menuOpciones = document.querySelector('#menuOpciones');
-const dropdown = document.querySelector('#dropdown');
 const editarPerfil = document.querySelector('#editarPerfil');
 
 window.onload = async () => {
@@ -41,16 +39,22 @@ const imprimirDatos = (usuario) => {
     comentarioUsuario.value = '';
 }
 
-// editarPerfil.onclick = () => {
-//     const idUsuario = obtenerParametrosURL();
+editarPerfil.onclick = () => {
+    // const idUsuario = obtenerParametrosURL();
 
-//     const paginaEditarPerfil = new URL(localhost + 'editarPerfil.html');
-//     paginaEditarPerfil.searchParams.set('iduser', idUsuario);
+    // const paginaEditarPerfil = new URL(localhost + 'editarPerfil.html');
+    // paginaEditarPerfil.searchParams.set('iduser', idUsuario);
 
-//     window.location.href = paginaEditarPerfil;
-// }
+    // window.location.href = paginaEditarPerfil;
+    window.location.href = "editarPerfil.html"
+}
 
-menuOpciones.onclick = () => {
-    dropdown.classList.toggle('hidden');
-    dropdown.classList.toggle('flex');
+publicaciones.onclick = () => {
+    // const idUsuario = obtenerParametrosURL();
+
+    // const paginaEditarPerfil = new URL(localhost + 'editarPerfil.html');
+    // paginaEditarPerfil.searchParams.set('iduser', idUsuario);
+
+    // window.location.href = paginaEditarPerfil;
+    window.location.href = "publicaciones.html"
 }

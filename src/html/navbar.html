@@ -26,10 +26,10 @@
 		</div>
 
 		<div class="mx-auto md:w-7/12">
-			<form class="py-5 relative mx-auto " onsubmit="event.preventDefault();"">
+			<form class="py-5 relative mx-auto" id="formularioBusqueda">
 				<input
-					class="bg-white w-full h-12 pr-11 px-5 rounded-lg text-base"
-				type="search" name="search" id="search" placeholder="Escribe lo que estas buscando">
+					class="bg-white w-full h-12 pr-11 px-5 rounded-lg text-base placeholder:text-slate-400 placeholder:italic"
+					type="search" id="search" placeholder="Escribe lo que estas buscando">
 
 				<button type="submit" class="absolute right-0 top-3 mr-5 mt-5">
 					<i class="fa-solid fa-magnifying-glass text-gray-400 "></i>
@@ -37,10 +37,13 @@
 			</form>
 		</div>
 
-		<div
-		class="flex flex-row justify-center space-x-6 text-center font-semibold text-md w-3/12 items-center">
+		<div class="flex flex-row justify-center space-x-6 text-center font-semibold text-md w-3/12 items-center">
 			<a href="index.html" class="bg-blue-700 px-3 py-2 rounded-md hover:bg-blue-600 text-white">
 				Crea tu cuenta
+			</a>
+			<a href="index.html" class="bg-blue-700 px-3 py-2 rounded-md hover:bg-blue-600 text-white hidden">
+				<i class="fa-solid fa-user-astronaut mr-1 my-auto text-current"></i>
+				Maximiliano
 			</a>
 			<a href="index.html" class="bg-amber-400 px-3 py-2 rounded-md hover:bg-amber-300 text-black">
 				Ingresa

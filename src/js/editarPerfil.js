@@ -3,9 +3,9 @@ import { urlAPI, localhost } from './urls.js'
 
 const nombreUsuario = document.querySelector('#nombreUsuario');
 const emailUsuario = document.querySelector('#emailUsuario');
+const passwordUsuario = document.querySelector('#passwordUsuario');
 const telefonoUsuario = document.querySelector('#telefonoUsuario');
 const zonaUsuario = document.querySelector('#zonaUsuario');
-const comentarioUsuario = document.querySelector('#comentarioUsuario');
 
 const actualizarInformacion = document.querySelector('#actualizarInformacionUsuario');
 
@@ -35,9 +35,9 @@ const obtenerDatosUsuario = async () => {
 const imprimirDatos = (usuario) => {  
     nombreUsuario.value = usuario.nombre_usuario;
     emailUsuario.value = usuario.correo_usuario;
+    passwordUsuario.value = usuario.contraseña_usuario;
     telefonoUsuario.value = usuario.telefono_usuario;
     zonaUsuario.value = usuario.zona_entrega_usuario;
-    comentarioUsuario.value = '';
 }
 
 actualizarInformacion.onclick = async () => {
@@ -47,7 +47,7 @@ actualizarInformacion.onclick = async () => {
         "id": idUsuario,
         "campos": {
             "nombre_usuario": nombreUsuario.value,
-            "contraseña_usuario": "1234566",
+            "contraseña_usuario": passwordUsuario.value,
             "telefono_usuario": telefonoUsuario.value,
             "correo_usuario": emailUsuario.value,
             "zona_entrega_usuario": zonaUsuario.value
