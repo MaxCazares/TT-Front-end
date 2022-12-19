@@ -9,8 +9,7 @@ const infoPassword = document.querySelector('#infoPassword');
 const esconderPassword = document.querySelector('#esconderPassword');
 
 window.onload = () => {
-    // formulario.addEventListener('submit', validarCampos);
-    alert('k pedo')
+    formulario.addEventListener('submit', validarCampos);
 }
 
 const validarCampos = e => {
@@ -30,7 +29,10 @@ const registrarUsuario = async (nombre, email, password) => {
         "contraseña_usuario": `${password}`,
         "telefono_usuario": "",
         "correo_usuario": `${email}`,
-        "zona_entrega_usuario": ""
+        "zona_entrega_usuario": "",
+        "img_usuario": {
+            "": ""
+        }
     }
 
     try {
@@ -68,4 +70,4 @@ esconderPassword.onclick = () => {
         esconderPassword.classList.add('fa-sharp');
         esconderPassword.classList.add('fa-eye-slash');
     }
-};
+}

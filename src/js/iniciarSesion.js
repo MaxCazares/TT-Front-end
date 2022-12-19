@@ -31,8 +31,9 @@ const validarUsuario = async (email, password) => {
         if(email === usuario.correo_usuario && password === usuario.contraseña_usuario){
             alertSuccess(`Bienvenido de nuevo \n${usuario.nombre_usuario}`);
             
-            let inicio = new URL(localhost + 'perfil.html');
-            inicio.searchParams.set('iduser', usuario.id_usuario) 
+            const inicio = new URL(localhost + 'index.html');
+            inicio.searchParams.set('iduser', usuario.id_usuario);
+            inicio.searchParams.set('nameuser', usuario.nombre_usuario);
 
             setTimeout(() => {
                 window.location.href = inicio;                

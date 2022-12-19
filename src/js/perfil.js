@@ -1,15 +1,16 @@
 import { urlAPI, localhost } from './urls.js'
 
+const fotoUsuario = document.querySelector('#fotoUsuario');
 const nombreUsuario = document.querySelector('#nombreUsuario');
 const emailUsuario = document.querySelector('#emailUsuario');
 const telefonoUsuario = document.querySelector('#telefonoUsuario');
 const zonaUsuario = document.querySelector('#zonaUsuario');
-const comentarioUsuario = document.querySelector('#comentarioUsuario');
 
 const editarPerfil = document.querySelector('#editarPerfil');
+const publicaciones = document.querySelector('#publicaciones');
 
 window.onload = async () => {
-    // obtenerDatosUsuario();    
+    obtenerDatosUsuario();    
 }
 
 const obtenerParametrosURL = () => {
@@ -24,8 +25,8 @@ const obtenerDatosUsuario = async () => {
         const respuesta = await fetch(urlAPI + `usuarios/getbyid/${idUsuario}`);
         const usuarioJSON = await respuesta.json();
         const usuario = usuarioJSON.response[0];
-        imprimirDatos(usuario);
-
+        imprimirDatos(usuario);     
+        
     } catch (error) {
         console.error(error);
     }
@@ -36,25 +37,23 @@ const imprimirDatos = (usuario) => {
     emailUsuario.value = usuario.correo_usuario;
     telefonoUsuario.value = usuario.telefono_usuario;
     zonaUsuario.value = usuario.zona_entrega_usuario;
-    comentarioUsuario.value = '';
+    fotoUsuario.src = usuario.img_usuario.file;
 }
 
 editarPerfil.onclick = () => {
-    // const idUsuario = obtenerParametrosURL();
+    const idUsuario = obtenerParametrosURL();
 
-    // const paginaEditarPerfil = new URL(localhost + 'editarPerfil.html');
-    // paginaEditarPerfil.searchParams.set('iduser', idUsuario);
+    const paginaEditarPerfil = new URL(localhost + 'editarPerfil.html');
+    paginaEditarPerfil.searchParams.set('iduser', idUsuario);
 
-    // window.location.href = paginaEditarPerfil;
-    window.location.href = "editarPerfil.html"
+    window.location.href = paginaEditarPerfil;
 }
 
 publicaciones.onclick = () => {
-    // const idUsuario = obtenerParametrosURL();
+    const idUsuario = obtenerParametrosURL();
 
-    // const paginaEditarPerfil = new URL(localhost + 'editarPerfil.html');
-    // paginaEditarPerfil.searchParams.set('iduser', idUsuario);
+    const paginaEditarPerfil = new URL(localhost + 'publicaciones.html');
+    paginaEditarPerfil.searchParams.set('iduser', idUsuario);
 
-    // window.location.href = paginaEditarPerfil;
-    window.location.href = "publicaciones.html"
+    window.location.href = paginaEditarPerfil;
 }

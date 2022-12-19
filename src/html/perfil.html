@@ -45,17 +45,17 @@
 			</div>
 		</div> -->
 
-		<div class="bg-white flex flex-row justify-end p-3 space-x-2"  id="editarPerfil">
+		<div class="bg-white flex flex-row justify-end p-3 space-x-2">
 			<label class="text-white hover:text-slate-400 my-auto">Editar perfil</label>
-			<i class="fa-solid fa-user-pen text-3xl text-slate-300"></i>
+			<i class="fa-solid fa-user-pen text-3xl text-slate-300" id="editarPerfil"></i>
 		</div>
-		<div class="bg-white flex flex-row justify-end p-3 space-x-2" id="publicaciones">
+		<div class="bg-white flex flex-row justify-end p-3 space-x-2">
 			<label class="text-white hover:text-slate-400 my-auto">Publicaciones</label>
-			<i class="fa-solid fa-file-pen text-3xl text-slate-300"></i>
+			<i class="fa-solid fa-file-pen text-3xl text-slate-300" id="publicaciones"></i>
 		</div>
 
 		<div class="bg-blue-4000 px-3 py-3 mx-auto w-72 -mt-24">
-			<img src="../img/profile.jpg" class="rounded-full overflow-hidden shadow-2xl select-none w-72 h-72 border-4 border-blue-400">
+			<img src="../img/defaulUser.jpeg" class="rounded-full overflow-hidden shadow-2xl select-none w-72 h-72 border-4 border-blue-400" id="fotoUsuario">
 		</div>
 
 		<div class="w-10/12 mx-auto my-5 text-lg shadow-lg">
@@ -184,27 +184,6 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script src="../js/perfil.js" type="module"></script>
-
-	<script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const menuBtn = document.querySelector('#menu-btn')
-            const dropdown = document.querySelector('#dropdown')
-            
-            menuBtn.addEventListener('click', () => {
-                /* if(dropdown.classList.contains('hidden')){
-                    dropdown.classList.remove('hidden');
-                    dropdown.classList.add('flex');
-                }else{
-                    dropdown.classList.remove('flex')
-                    dropdown.classList.add('hidden')
-                } */
-
-                dropdown.classList.toggle('hidden')
-                dropdown.classList.toggle('flex')
-            })
-
-        })
-    </script>
 
 </body>
 

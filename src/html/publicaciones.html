@@ -27,10 +27,10 @@
     </nav>
 
     <div class="grid grid-cols-3 w-11/12 p-3 mx-auto mb-10 mt-6 shadow-2xl rounded-2xl bg-blue-4000">
-        
-        <div class="bg-red-5000 col-span-1 p-3 shadow-xl rounded-lg overflow-y-scroll h-auto space-y-4">
-            
-            <div class="bg-amber-4000 p-3 grid grid-cols-3 shadow-xl text-xl">
+
+        <div class="bg-red-5000 col-span-1 p-3 shadow-xl rounded-lg overflow-y-scroll h-auto space-y-4"
+            id="listaPublicaciones">
+            <!-- <div class="bg-amber-4000 p-3 grid grid-cols-3 shadow-xl text-xl">
                 <img src="../img/products/uno.png" class="w-24 col-span-1 rounded-md">
                 <div class="col-span-2 flex flex-col p-3 bg-purple-5000">
                     <label class="bg-blue-3000">Huawei P20 Lite</label>
@@ -40,104 +40,53 @@
                         <i class="fa-solid fa-trash-can justify-end text-red-500 my-auto"></i>
                     </div>
                 </div>
-            </div>            
-            <div class="bg-amber-4000 p-3 grid grid-cols-3 shadow-xl text-xl">
-                <img src="../img/products/dos.jpg" class="w-24 col-span-1 rounded-md">
-                <div class="col-span-2 flex flex-col p-3 bg-purple-5000">
-                    <label class="bg-blue-3000">Huawei P20 Lite</label>
-                    <div class="flex flex-row mt-8 justify-end space-x-5 px-3">
-                        <label class="my-auto">$1,600</label>
-                        <i class="fa-solid fa-pen text-blue-400 my-auto"></i>
-                        <i class="fa-solid fa-trash-can justify-end text-red-500 my-auto"></i>
-                    </div>
-                </div>
-            </div>            
-            <div class="bg-amber-4000 p-3 grid grid-cols-3 shadow-xl text-xl">
-                <img src="../img/products/tres.jpg" class="w-24 col-span-1 rounded-md">
-                <div class="col-span-2 flex flex-col p-3 bg-purple-5000">
-                    <label class="bg-blue-3000">Huawei P20 Lite</label>
-                    <div class="flex flex-row mt-8 justify-end space-x-5 px-3">
-                        <label class="my-auto">$1,600</label>
-                        <i class="fa-solid fa-pen text-blue-400 my-auto"></i>
-                        <i class="fa-solid fa-trash-can justify-end text-red-500 my-auto"></i>
-                    </div>
-                </div>
-            </div>            
-            <div class="bg-amber-4000 p-3 grid grid-cols-3 shadow-xl text-xl">
-                <img src="../img/products/cuatro.png" class="w-24 col-span-1 rounded-md">
-                <div class="col-span-2 flex flex-col p-3 bg-purple-5000">
-                    <label class="bg-blue-3000">Huawei P20 Lite</label>
-                    <div class="flex flex-row mt-8 justify-end space-x-5 px-3">
-                        <label class="my-auto">$1,600</label>
-                        <i class="fa-solid fa-pen text-blue-400 my-auto"></i>
-                        <i class="fa-solid fa-trash-can justify-end text-red-500 my-auto"></i>
-                    </div>
-                </div>
-            </div>            
-            <div class="bg-amber-4000 p-3 grid grid-cols-3 shadow-xl text-xl">
-                <img src="../img/products/cuatro.png" class="w-24 col-span-1 rounded-md">
-                <div class="col-span-2 flex flex-col p-3 bg-purple-5000">
-                    <label class="bg-blue-3000">Huawei P20 Lite</label>
-                    <div class="flex flex-row mt-8 justify-end space-x-5 px-3">
-                        <label class="my-auto">$1,600</label>
-                        <i class="fa-solid fa-pen text-blue-400 my-auto"></i>
-                        <i class="fa-solid fa-trash-can justify-end text-red-500 my-auto"></i>
-                    </div>
-                </div>
-            </div>            
-            <div class="bg-amber-4000 p-3 grid grid-cols-3 shadow-xl text-xl">
-                <img src="../img/products/cuatro.png" class="w-24 col-span-1 rounded-md">
-                <div class="col-span-2 flex flex-col p-3 bg-purple-5000">
-                    <label class="bg-blue-3000">Huawei P20 Lite</label>
-                    <div class="flex flex-row mt-8 justify-end space-x-5 px-3">
-                        <label class="my-auto">$1,600</label>
-                        <i class="fa-solid fa-pen text-blue-400 my-auto"></i>
-                        <i class="fa-solid fa-trash-can justify-end text-red-500 my-auto"></i>
-                    </div>
-                </div>
-            </div>            
-
+            </div>    -->
         </div>
 
-        <div class="col-span-2 h-auto p-6 flex flex-col mx-auto">
+        <div class="col-span-2 h-auto flex flex-col mx-auto w-full p-6">
 
-                <div class="px-3 py-3 mx-auto">
-                    <img src="../img/products/cuatro.png" id="imagenPublicacion"
-                        class="shadow-2xl select-none w-60 mx-auto">
-                    <input type="file" name="inputPerfil" id="inputPublicacion" multiple="true" accept="image/*"
-                        class="mt-6 opacity-30 rounded-md mx-auto"
-                        onchange="readSingleFile(files, document.querySelector('#imagenPublicacion'))">
+            <div class="px-3 py-3 mx-auto">
+                <img src="../img/products/cuatro.png" id="fotoPublicacion"
+                    class="shadow-2xl select-none w-60 mx-auto">
+                <input type="file" id="inputFotoPublicacion" accept="image/*"
+                    class="mt-6 opacity-30 rounded-md mx-auto">
+                <!-- onchange="readSingleFile(files, document.querySelector('#imagenPublicacion'))" -->
+            </div>
+
+            <div class="flex flex-col mx-auto w-full my-5 text-lg shadow-xl rounded-lg border-gray-200 border-t-2">
+                <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
+                    <label class="font-medium text-gray-500 my-auto">Título</label>
+                    <input type="text" id="tituloPublicacion" class="rounded-md w-full col-span-2 border-gray-200">
                 </div>
-
-                <div class="flex flex-col mx-auto w-full my-5 text-lg shadow-xl rounded-lg border-gray-200 border-t-2">
-                    <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
-                        <label class="font-medium text-gray-500 my-auto">Título</label>
-                        <input type="text" id="tituloPublicacion"
-                            class="rounded-md w-full col-span-2 border-gray-200">
-                    </div>
-                    <div class="bg-white grid grid-cols-3 gap-4 px-6">
-                        <label class="font-medium text-gray-500 my-auto">Descripción</label>
-                        <textarea id="descripcionPublicacion" cols="30" rows="5" class="rounded-md w-full col-span-2 border-gray-200">
-
-                        </textarea>
-                    </div>
-                    <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
-                        <label class="font-medium text-gray-500 my-auto">Precio</label>
-                        <input type="number" id="precioPublicacion" min="1"
-                            class="rounded-md w-full col-span-2 border-gray-200">
-                    </div>
+                <div class="bg-white grid grid-cols-3 gap-4 px-6 py-5">
+                    <label class="font-medium text-gray-500 my-auto">Precio</label>
+                    <input type="number" id="precioPublicacion" min="1"
+                        class="rounded-md w-full col-span-2 border-gray-200">
                 </div>
+                <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
+                    <label class="font-medium text-gray-500 my-auto">Categoria</label>
+                    <select id="categoriaPublicacion" class="rounded-md w-full col-span-2 border-gray-200">
+                        <option>Elige una categoria</option>
+                        <option value="tecnologia">Tecnología</option>
+                    </select>
+                </div>
+                <div class="bg-white grid grid-cols-3 gap-4 px-6 py-5">
+                    <label class="font-medium text-gray-500 my-auto">Descripción</label>
+                    <textarea id="descripcionPublicacion" cols="30" rows="5"
+                        class="rounded-md w-full col-span-2 border-gray-200"></textarea>
+                </div>
+            </div>
 
-                <div class="flex flex-row mx-auto space-x-16">
-                    <button id="crearPublicacion"
-                        class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg mt-6 rounded-md hover:bg-amber-400 hover:text-black">
-                        Crear publicación
-                    </button>
-                    <button id="volverPerfil"
+            <div class="flex flex-row mx-auto space-x-16">
+                <button id="crearPublicacion"
                     class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg mt-6 rounded-md hover:bg-amber-400 hover:text-black">
-                        Volver al perfil
-                    </button>
-                </div>
+                    Crear publicación
+                </button>
+                <button id="volverPerfil"
+                    class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg mt-6 rounded-md hover:bg-amber-400 hover:text-black">
+                    Volver al perfil
+                </button>
+            </div>
         </div>
     </div>
 
@@ -154,6 +103,7 @@
         </span>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="../js/publicaciones.js" type="module"></script>
 
 </body>
