@@ -63,7 +63,7 @@ actualizarInformacion.onclick = async () => {
     }
 
     try {
-        const respuesta = await fetch(urlAPI + 'usuarios/update', {
+        await fetch(urlAPI + 'usuarios/update', {
             method: "PUT",
             body: JSON.stringify(usuarioModificado),
             headers: { "Content-type": "application/json; charset=UTF-8" }

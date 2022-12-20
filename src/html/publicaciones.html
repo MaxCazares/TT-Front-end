@@ -46,7 +46,7 @@
         <div class="col-span-2 h-auto flex flex-col mx-auto w-full p-6">
 
             <div class="px-3 py-3 mx-auto">
-                <img src="../img/products/cuatro.png" id="fotoPublicacion"
+                <img src="../img/defaultProduct.png" id="fotoPublicacion"
                     class="shadow-2xl select-none w-60 mx-auto">
                 <input type="file" id="inputFotoPublicacion" accept="image/*"
                     class="mt-6 opacity-30 rounded-md mx-auto">
@@ -66,7 +66,7 @@
                 <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
                     <label class="font-medium text-gray-500 my-auto">Categoria</label>
                     <select id="categoriaPublicacion" class="rounded-md w-full col-span-2 border-gray-200">
-                        <option>Elige una categoria</option>
+                        <option value="">Elige una categoria</option>
                         <option value="tecnologia">Tecnología</option>
                     </select>
                 </div>
@@ -81,6 +81,10 @@
                 <button id="crearPublicacion"
                     class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg mt-6 rounded-md hover:bg-amber-400 hover:text-black">
                     Crear publicación
+                </button>
+                <button id="actualizarPublicacion"
+                    class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg mt-6 rounded-md hover:bg-amber-400 hover:text-black hidden">
+                    Actualizar publicación
                 </button>
                 <button id="volverPerfil"
                     class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg mt-6 rounded-md hover:bg-amber-400 hover:text-black">
