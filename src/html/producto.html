@@ -40,7 +40,7 @@
 			</form>
 		</div>
 
-		<div class="flex flex-row justify-center space-x-6 text-center font-semibold text-md w-3/12 items-center">
+		<div class="flex flex-row justify-center space-x-6 text-center font-semibold text-md w-3/12 items-center hidden">
 			<a href="index.html" class="bg-blue-700 px-3 py-2 rounded-md hover:bg-blue-600 text-white">
 				Crea tu cuenta
 			</a>
@@ -60,9 +60,9 @@
 		<div class="w-1/2 p-5">
 			<div class="carousel w-10/12 mx-auto">
 				<div id="item1" class="carousel-item w-full">
-					<img src="../img/products/uno.png" class="h-96 mx-auto" />
+					<img src="../img/defaultProduct.png" class="h-96 mx-auto" id="fotoPublicacion"/>
 				</div>
-				<div id="item2" class="carousel-item w-full">
+				<!-- <div id="item2" class="carousel-item w-full">
 					<img src="../img/products/dos.jpg" class="h-96 mx-auto" />
 				</div>
 				<div id="item3" class="carousel-item w-full">
@@ -70,56 +70,51 @@
 				</div>
 				<div id="item4" class="carousel-item w-full">
 					<img src="../img/products/cuatro.png" class="h-96 mx-auto" />
-				</div>
+				</div> -->
 			</div>
-			<div class="flex justify-center w-full space-x-3 text-white font-semibold mt-5">
+			<!-- <div class="flex justify-center w-full space-x-3 text-white font-semibold mt-5">
 				<a href="#item1" class="rounded bg-blue-500 px-2 py-0.5">1</a>
 				<a href="#item2" class="rounded bg-blue-500 px-2 py-0.5">2</a>
 				<a href="#item3" class="rounded bg-blue-500 px-2 py-0.5">3</a>
 				<a href="#item4" class="rounded bg-blue-500 px-2 py-0.5">4</a>
-			</div>
+			</div> -->
 		</div>
 
 		<div class="flex flex-col w-1/2 p-7">
-			<h1 class="text-gray-900 text-3xl title-font font-medium mb-1">Guitarra cort x</h1>
+			<h1 class="text-gray-900 text-3xl title-font font-medium mb-1" id="nombrePublicacion"></h1>
 
-			<a class="mt-3  space-x-2 text-orange-500 text-sm">
+			<a class="mt-3  space-x-2 text-orange-500 text-base">
 				<i class="fa-solid fa-location-dot mt-0.5"></i>
-				<label>Gustavo A Madero, CDMX</label>
+				<label id="zonaEntregaPublicacion"></label>
 			</a>
 
-			<a class="mt-3 space-x-2 text-blue-500 text-sm" href="perfil.html">
+			<a class="mt-3 space-x-2 text-blue-500 text-base" id="perfilVendedor">
 				<i class="fa-solid fa-robot mt-0.5"></i>
-				<label>Gustavo Ortíz Hernández</label>
+				<label id="nombreVendedor"></label>
 			</a>
 
-			<p class="text-justify mt-5">
-				Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha
-				taximy chia microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw denim forage
-				brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle
-				pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.
-			</p>
+			<p class="text-right text-xl mt-5" id="descripcionPublicacion"></p>
 
-			<span class="mt-3 space-x-2 text-yellow-500 text-sm">
+			<span class="mt-3 space-x-2 text-yellow-500 text-base">
 				<i class="fa-solid fa-envelope mt-0.5"></i>
-				<label>gustavo_ortiz@gmail.com</label>
+				<label id="correoVendedor"></label>
 			</span>
 
-			<span class="mt-3 space-x-2 text-emerald-500 text-sm">
+			<span class="mt-3 space-x-2 text-emerald-500 text-base">
 				<i class="fa-solid fa-phone mt-0.5"></i>
-				<label>55 56987412</label>
+				<label id="telefonoVendedor"></label>
 			</span>
 
 			<div class="mt-5 border-b-2 border-gray-200"></div>
 
-			<span class="flex justify-end mt-5 font-medium text-2xl text-gray-900">$3,500.00</span>
+			<label class="flex justify-end mt-5 font-medium text-2xl text-gray-900" id="precioPublicacion"></label>
 
 		</div>
 
 	</div>
 
-	<div class="flex flex-wrap w-11/12 mx-auto p-2 my-5 bg-cyan-5000">
-		<div class="w-1/4 p-2 ">
+	<div class="flex flex-wrap w-11/12 mx-auto p-2 my-5 bg-cyan-5000" id="publicacionesRecomendadas">
+		<!-- <div class="w-1/4 p-2 ">
 			<div class="bg-gray-100 p-4 rounded-lg shadow-lg">
 				<a href="producto.html">
 					<img class="w-full rounded-lg mx-auto object-cover object-center mb-6 h-52"
@@ -165,13 +160,13 @@
 					<p class="leading-relaxed text-base">$18,500</p>
 				</a>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 	<footer class="w-11/12 px-5 py-8 mx-auto flex items-center flex-row text-gray-500">
 		<img src="../img/logo.svg" alt="logo" class="h-10" />
 
-		<p class="text-sm ml-4 pl-4 border-l-2 border-gray-300 py-2 mt-0">©
+		<p class="text-base ml-4 pl-4 border-l-2 border-gray-300 py-2 mt-0">©
 			2022 Quick Shop - quickshop.io
 		</p>
 		<span class="inline-flex ml-auto mt-0 justify-center space-x-3">
@@ -180,6 +175,8 @@
 			<a><i class="fa-brands fa-instagram fa-lg"></i></a>
 		</span>
 	</footer>
+
+	<script src="../js/producto.js" type="module"></script>
 
 </body>
 

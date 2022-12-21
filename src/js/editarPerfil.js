@@ -43,6 +43,7 @@ const imprimirDatos = (usuario) => {
     telefonoUsuario.value = usuario.telefono_usuario;
     zonaUsuario.value = usuario.zona_entrega_usuario;
     fotoUsuario.src = usuario.img_usuario.file;
+    fotoUsuarioBytes = usuario.img_usuario.file;
 }
 
 actualizarInformacion.onclick = async () => {
@@ -96,7 +97,6 @@ inputFotoUsuario.addEventListener('change', e => {
 
     reader.addEventListener('load', () => {
         fotoUsuario.src = reader.result;
-        // console.log(reader.result);
         fotoUsuarioBytes = reader.result;
     });
 

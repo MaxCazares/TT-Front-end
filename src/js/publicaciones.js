@@ -32,15 +32,12 @@ const consultarPublicaciones = async () => {
         const respuesta = await fetch(urlAPI + `publicaciones/getbyuserid/${idUsuario}`);
         const publicacionesJSON = await respuesta.json();
         const publicaciones = publicacionesJSON.response;
-        mostrarListaPublicaciones(publicaciones);
+        
+        publicaciones.forEach(publicacion => crearPublicacionHTML(publicacion));
 
     } catch (error) {
         console.error(error);
     }
-}
-
-const mostrarListaPublicaciones = publicaciones => {
-    publicaciones.forEach(publicacion => crearPublicacionHTML(publicacion));
 }
 
 const crearPublicacionHTML = (publicacion) => {
@@ -92,7 +89,7 @@ const editarPublicacion = publicacion => {
     const imagen = publicacion.img_list[0].file;
     const nombre = publicacion.nombre;
     const precio = publicacion.precio;
-    const categoria = publicacion.categorias[0];
+    const categoria = publicacion.categoria;
     const descripcion = publicacion.descripcion;
 
     fotoPublicacionBytes = imagen;
@@ -126,7 +123,7 @@ const modificarPublicacion = async (idPublicacion) => {
             "id_usuario": idUsuario,
             "precio": precioPublicacion.value,
             "descripcion": descripcionPublicacion.value,
-            "categorias": [categoriaPublicacion.value],
+            "categoria": categoriaPublicacion.value,
             "img_list": [{
                 "file": fotoPublicacionBytes
             }]
@@ -197,7 +194,7 @@ crearPublicacion.onclick = async () => {
         "id_usuario": idUsuario,
         "precio": precioPublicacion.value,
         "descripcion": descripcionPublicacion.value,
-        "categorias": [categoriaPublicacion.value],
+        "categoria": categoriaPublicacion.value,
         "img_list": [{
             "file": fotoPublicacionBytes
         }]

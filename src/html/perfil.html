@@ -20,14 +20,15 @@
 
 	<nav class="flex p-3 space-x-4 bg-blue-400 shadow-xl">
 		<div class="flex items-center justify-center w-2/12 p-2 space-x-6 text-center">
-			<a href="index.html" class="bg-green-5000">
+			<a id="logoInicio" class="bg-green-5000">
 				<img src="../img/logo.svg" alt="logo" class="h-16" />
 			</a>
 		</div>
 
 		<div
 			class="flex flex-row items-center p-7 justify-end w-10/12 font-semibold text-center text-white bg-red-4000 text-md">
-			<a href="index.html" class="bg-amber-400 px-3 py-2 rounded-md hover:bg-amber-300 text-black" id="cerrarSesionBoton">
+			<a href="index.html" class="bg-amber-400 px-3 py-2 rounded-md hover:bg-amber-300 text-black"
+				id="cerrarSesionBoton">
 				Cerrar sesión
 				<i class="fa-solid fa-arrow-right-from-bracket text-current fa-lg my-auto ml-1"></i>
 			</a>
@@ -35,17 +36,12 @@
 	</nav>
 
 	<div class="w-11/12 py-6 px-6 mx-auto my-10 shadow-2xl rounded-2xl">
-
-		<!-- <div class="flex justify-start bg-white">
-			<i class="fa-solid fa-bars text-3xl text-slate-400" id="menuOpciones"></i>
-			<div class="p-2 shadow text-gray-900 rounded bg-white flex-col hidden w-48 text-base" id="dropdown">
-				<a href="editarPerfil.html" class="px-2 py-1 hover:bg-slate-100">Editar perfil</a>
-				<a href="editarPublicaciones.html" class="px-2 py-1 hover:bg-slate-100">Editar publicaciones</a>
-				<a href="crearPublicacion.html" class="px-2 py-1 hover:bg-slate-100">Crear publicación</a>
-			</div>
-		</div> -->
-
-		<div class="bg-white flex flex-row justify-end p-3 space-x-2">
+		
+		<div class="bg-red-5000 flex flex-row justify-start p-3 space-x-4 -mb-16">
+			<i class="fa-solid fa-left-long text-3xl text-slate-300" id="flechaInicio"></i>
+			<label class="text-white hover:text-slate-400 my-auto">Regresar al inicio</label>
+		</div>
+		<div class="bg-green-5000 flex flex-row justify-end p-3 space-x-2">
 			<label class="text-white hover:text-slate-400 my-auto">Editar perfil</label>
 			<i class="fa-solid fa-user-pen text-3xl text-slate-300" id="editarPerfil"></i>
 		</div>
@@ -55,7 +51,9 @@
 		</div>
 
 		<div class="bg-blue-4000 px-3 py-3 mx-auto w-72 -mt-24">
-			<img src="../img/defaulUser.jpeg" class="rounded-full overflow-hidden shadow-2xl select-none w-72 h-72 border-4 border-blue-400" id="fotoUsuario">
+			<img src="../img/defaulUser.jpeg"
+				class="rounded-full overflow-hidden shadow-2xl select-none w-72 h-72 border-4 border-blue-400"
+				id="fotoUsuario">
 		</div>
 
 		<div class="w-10/12 mx-auto my-5 text-lg shadow-lg">
@@ -69,8 +67,7 @@
 						</div>
 						<div class="py-5 bg-white grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500">E-mail</dt>
-							<input class="text-gray-900 mt-0 col-span-2 border-0 bg-white" id="emailUsuario"
-								disabled />
+							<input class="text-gray-900 mt-0 col-span-2 border-0 bg-white" id="emailUsuario" disabled />
 						</div>
 						<div class="py-5 bg-slate-100 grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500 ">Número de teléfono</dt>
@@ -79,8 +76,7 @@
 						</div>
 						<div class="py-5 bg-white grid grid-cols-3 gap-4 px-6">
 							<dt class="font-medium text-gray-500 ">Zona de entrega</dt>
-							<input class="text-gray-900 mt-0 col-span-2 border-0 bg-white" id="zonaUsuario" 
-								disabled />
+							<input class="text-gray-900 mt-0 col-span-2 border-0 bg-white" id="zonaUsuario" disabled />
 						</div>
 					</dl>
 				</div>

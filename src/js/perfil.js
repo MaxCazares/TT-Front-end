@@ -6,6 +6,8 @@ const emailUsuario = document.querySelector('#emailUsuario');
 const telefonoUsuario = document.querySelector('#telefonoUsuario');
 const zonaUsuario = document.querySelector('#zonaUsuario');
 
+const logoInicio = document.querySelector('#logoInicio');
+const flechaInicio = document.querySelector('#flechaInicio');
 const editarPerfil = document.querySelector('#editarPerfil');
 const publicaciones = document.querySelector('#publicaciones');
 
@@ -56,4 +58,17 @@ publicaciones.onclick = () => {
     paginaEditarPerfil.searchParams.set('iduser', idUsuario);
 
     window.location.href = paginaEditarPerfil;
+}
+
+flechaInicio.onclick = () => regresarInicio()
+logoInicio.onclick = () => regresarInicio()
+
+const regresarInicio = () => {
+    const idUsuario = obtenerParametrosURL();
+    
+    const regresarInicioPagina = new URL(localhost + 'index.html');
+    regresarInicioPagina.searchParams.set('iduser', idUsuario);    
+    regresarInicioPagina.searchParams.set('nameuser', nombreUsuario.value);
+
+    window.location.href = regresarInicioPagina;
 }

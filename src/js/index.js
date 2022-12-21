@@ -14,6 +14,7 @@ const cerrarSesionBoton = document.querySelector('#cerrarSesionBoton');
 window.onload = () => {
     formularioBusqueda.addEventListener('submit', buscarProductos);
     mostrarBotonPerfil();
+    consultarPublicaciones('tecnologia');
 }
 
 const obtenerParametrosURL = () => {
@@ -93,10 +94,11 @@ const crearPublicacionesHTML = (publicacion) => {
     const h2 = document.createElement('h2');
     const etiquetaP = document.createElement('p');
 
-    imagen.src = '../img/products/uno.png'
+    etiquetaA.onclick = () => irAlProducto(publicacion.id_publicacion);
+    imagen.src = publicacion.img_list[0].file;
     h3.innerHTML = 'Tlalnepantla';
-    h2.innerHTML = 'Naranja';
-    etiquetaP.innerHTML = '$' + '15';
+    h2.innerHTML = publicacion.nombre;
+    etiquetaP.innerHTML = '$' + publicacion.precio;
 
     divExterior.classList.add('md:w-1/3', 'xl:w-1/4', 'p-2');
     divInterior.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'shadow-lg');
@@ -114,4 +116,11 @@ const crearPublicacionesHTML = (publicacion) => {
     divExterior.appendChild(divInterior);
 
     contenidoInicio.appendChild(divExterior);
+}
+
+const irAlProducto = (idPublicacion) => {
+    const publicacion = new URL(localhost + 'producto.html');
+    publicacion.searchParams.set('idpublicacion', idPublicacion);
+
+    window.location.href = publicacion;
 }
