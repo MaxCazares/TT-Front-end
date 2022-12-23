@@ -1,9 +1,10 @@
-import { alertFail, alertSuccess } from "./alerts.js";
+import { alertFail } from "./alerts.js";
 import { urlAPI, localhost } from "./urls.js";
 
+const logoInicio = document.querySelector('#logoInicio');
 const formularioBusqueda = document.querySelector('#formularioBusqueda');
 
-const mosaicoTecnologia = document.querySelector('#mosaicoTecnologia');
+const mosaicos = document.querySelector('#mosaicos');
 const contenidoInicio = document.querySelector('#contenidoInicio');
 
 const crearCuentaBoton = document.querySelector('#crearCuentaBoton');
@@ -11,81 +12,88 @@ const iniciarSesionBoton = document.querySelector('#iniciarSesionBoton');
 const perfilUsuarioBoton = document.querySelector('#perfilUsuarioBoton');
 const cerrarSesionBoton = document.querySelector('#cerrarSesionBoton');
 
-window.onload = () => {
+window.onload = async () => {
     formularioBusqueda.addEventListener('submit', buscarProductos);
     mostrarBotonPerfil();
-    consultarPublicaciones('tecnologia');
+
+    const publicaciones = await obtenerDatos('publicaciones/getbycategory/', 'tecnologia', true);
+    publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
 }
 
 const obtenerParametrosURL = () => {
     const URLactual = new URL(window.location);
     const idUsuario = URLactual.searchParams.get('iduser');
-    const nombreUsuario = URLactual.searchParams.get('nameuser');
-    return {idUsuario, nombreUsuario};
+    return idUsuario;
 }
 
-const mostrarBotonPerfil = () => {
-    const {nombreUsuario} = obtenerParametrosURL();
-    if(nombreUsuario){
-        const icon = '<i class="fa-solid fa-user-astronaut mr-1 my-auto text-current"></i>';
-
-        const usuario = nombreUsuario.split(' ');
-        const usuarioConApellido = usuario[0] + ' ' + usuario[1];
-
-        crearCuentaBoton.classList.add('hidden');
-        iniciarSesionBoton.classList.add('hidden');
-
-        perfilUsuarioBoton.innerHTML = icon + usuarioConApellido;
-        
-        perfilUsuarioBoton.classList.remove('hidden');
-        cerrarSesionBoton.classList.remove('hidden');
-    }    
-}
-
-perfilUsuarioBoton.onclick = () => {
-    const {idUsuario} = obtenerParametrosURL();
-    const perfil = new URL(localhost + 'perfil.html');
-    perfil.searchParams.set('iduser', idUsuario);
-
-    setTimeout(() => {
-        window.location.href = perfil;                
-    }, 500);
-}
-
-const buscarProductos = e => {
-    e.preventDefault();
-
-    const busqueda = document.querySelector('#search').value;
-
-    if(busqueda === ''){
-        alertFail('Tu busqueda parece vacia');
-        return;
-    }
-
-    alertSuccess(busqueda);
-}
-
-mosaicoTecnologia.onclick = () => {
-    const categoria = mosaicoTecnologia.children[0].children[2].innerHTML;
-    consultarPublicaciones(categoria);
-};
-
-const consultarPublicaciones = async (categoria) => {
+const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     try {
-        const respuesta = await fetch(urlAPI + `publicaciones/getbycategory/${categoria}`)
-        const publicacionesJSON = await respuesta.json();
-        const publicaciones = publicacionesJSON.response;
-        mostrarPublicaciones(publicaciones);
+        const respuesta = await fetch(urlAPI + urlConsulta + datoConsulta);
+        const datosJSON = await respuesta.json();
+        const datos = multiple ? datosJSON.response : datosJSON.response[0];
+        return datos;
     } catch (error) {
         console.error(error);
     }
 }
 
-const mostrarPublicaciones = publicaciones => {
-    publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
+const mostrarBotonPerfil = async () => {
+    const idUsuario = obtenerParametrosURL();
+    const usuario = await obtenerDatos('usuarios/getbyid/', idUsuario);
+
+    if (usuario) {
+        const nombreUsuario = usuario.nombre_usuario.split(' ');
+        const nombreUsuarioApellido = nombreUsuario[0] + ' ' + nombreUsuario[1];
+
+        crearCuentaBoton.classList.add('hidden');
+        iniciarSesionBoton.classList.add('hidden');
+
+        perfilUsuarioBoton.innerHTML = nombreUsuarioApellido;
+
+        perfilUsuarioBoton.classList.remove('hidden');
+        cerrarSesionBoton.classList.remove('hidden');
+    }
 }
 
-const crearPublicacionesHTML = (publicacion) => {
+perfilUsuarioBoton.onclick = () => {
+    const idUsuario = obtenerParametrosURL();
+    const perfil = new URL(localhost + 'perfil.html');
+    perfil.searchParams.set('iduser', idUsuario);
+    perfil.searchParams.set('origin', 'inicio');
+
+    window.location.href = perfil;
+}
+
+const buscarProductos = async (e) => {
+    e.preventDefault();
+
+    const busqueda = document.querySelector('#search').value;
+
+    if (busqueda === '') {
+        alertFail('Tu busqueda parece vacia');
+        return;
+    } else {
+        contenidoInicio.innerHTML = '';
+        const publicaciones = await obtenerDatos('publicaciones/getbyname/', busqueda, true);
+        if (publicaciones.length > 0) {
+            publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
+        } else {
+            alertFail('No se encontro lo que buscabas');
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
+        }
+    }
+}
+
+mosaicos.onclick = async (e) => {
+    const categoria = e.target.dataset.categoria;
+    contenidoInicio.innerHTML = '';
+    const publicaciones = await obtenerDatos('publicaciones/getbycategory/', categoria, true);
+    publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
+};
+
+const crearPublicacionesHTML = async (publicacion) => {
     const divExterior = document.createElement('div');
     const divInterior = document.createElement('div');
     const etiquetaA = document.createElement('a');
@@ -94,9 +102,11 @@ const crearPublicacionesHTML = (publicacion) => {
     const h2 = document.createElement('h2');
     const etiquetaP = document.createElement('p');
 
+    const usuario = await obtenerDatos('usuarios/getbyid/', publicacion.id_usuario);
+
     etiquetaA.onclick = () => irAlProducto(publicacion.id_publicacion);
     imagen.src = publicacion.img_list[0].file;
-    h3.innerHTML = 'Tlalnepantla';
+    h3.innerHTML = usuario.zona_entrega_usuario;
     h2.innerHTML = publicacion.nombre;
     etiquetaP.innerHTML = '$' + publicacion.precio;
 
@@ -119,8 +129,23 @@ const crearPublicacionesHTML = (publicacion) => {
 }
 
 const irAlProducto = (idPublicacion) => {
+    const idUsuario = obtenerParametrosURL();
+
     const publicacion = new URL(localhost + 'producto.html');
-    publicacion.searchParams.set('idpublicacion', idPublicacion);
+    publicacion.searchParams.set('idpublication', idPublicacion);
+
+    if(idUsuario !== null)
+        publicacion.searchParams.set('iduser', idUsuario);
 
     window.location.href = publicacion;
+}
+
+logoInicio.onclick = () => {
+    const idUsuario = obtenerParametrosURL();
+    const inicio = new URL(localhost + 'index.html');
+
+    if(idUsuario)
+        inicio.searchParams.set('iduser', idUsuario);
+    
+        window.location.href = inicio;
 }

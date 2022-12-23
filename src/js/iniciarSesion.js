@@ -33,7 +33,6 @@ const validarUsuario = async (email, password) => {
             
             const inicio = new URL(localhost + 'index.html');
             inicio.searchParams.set('iduser', usuario.id_usuario);
-            inicio.searchParams.set('nameuser', usuario.nombre_usuario);
 
             setTimeout(() => {
                 window.location.href = inicio;                
@@ -41,11 +40,7 @@ const validarUsuario = async (email, password) => {
 
         }else{
             alertFail('Algunos de los campos es incorrecto')
-
-            setTimeout(() => {
-                emailFormulario.value = '';
-                passwordFormulario.value = '';
-            }, 1000);
+            setTimeout(() => formulario.reset(), 1000);
         }
 
     } catch (e) {

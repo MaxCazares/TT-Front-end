@@ -19,14 +19,16 @@ window.onload = async () => {
 
 const obtenerParametrosURL = () => {
     const URLactual = new URL(window.location);
-    const idUsuario = URLactual.searchParams.get('iduser');
-    return idUsuario;
+    const idSeller = URLactual.searchParams.get('idseller');
+    const idUser = URLactual.searchParams.get('iduser');
+    const origin = URLactual.searchParams.get('origin');
+    return { idSeller, idUser, origin };
 }
 
 const obtenerDatosUsuario = async () => {
-    const idUsuario = obtenerParametrosURL();
+    const {idUser} = obtenerParametrosURL();
     try {
-        const respuesta = await fetch(urlAPI + `usuarios/getbyid/${idUsuario}`);
+        const respuesta = await fetch(urlAPI + `usuarios/getbyid/${idUser}`);
         const usuarioJSON = await respuesta.json();
         const usuario = usuarioJSON.response[0];
         imprimirDatos(usuario);
@@ -47,10 +49,10 @@ const imprimirDatos = (usuario) => {
 }
 
 actualizarInformacion.onclick = async () => {
-    const idUsuario = obtenerParametrosURL();
+    const {idUser} = obtenerParametrosURL();
 
     const usuarioModificado = {
-        "id": idUsuario,
+        "id": {idUser},
         "campos": {
             "nombre_usuario": nombreUsuario.value,
             "contraseña_usuario": passwordUsuario.value,
@@ -82,11 +84,12 @@ actualizarInformacion.onclick = async () => {
 }
 
 const regresoPerfil = () => {
-    const URLactual = new URL(window.location);
-    const idUsuario = URLactual.searchParams.get('iduser');
+    const { idSeller, idUser, origin } = obtenerParametrosURL();
 
     const paginaPerfil = new URL(localhost + 'perfil.html');
-    paginaPerfil.searchParams.set('iduser', idUsuario);
+    paginaPerfil.searchParams.set('idseller', idSeller);
+    paginaPerfil.searchParams.set('iduser', idUser);
+    paginaPerfil.searchParams.set('origin', origin);
 
     window.location.href = paginaPerfil;
 }

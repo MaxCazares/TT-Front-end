@@ -1,40 +1,59 @@
 import { urlAPI, localhost } from './urls.js'
 
+const logoInicio = document.querySelector('#logoInicio');
+
 const fotoUsuario = document.querySelector('#fotoUsuario');
 const nombreUsuario = document.querySelector('#nombreUsuario');
 const emailUsuario = document.querySelector('#emailUsuario');
 const telefonoUsuario = document.querySelector('#telefonoUsuario');
 const zonaUsuario = document.querySelector('#zonaUsuario');
 
-const logoInicio = document.querySelector('#logoInicio');
-const flechaInicio = document.querySelector('#flechaInicio');
+const opcionPerfil = document.querySelector('#opcionPerfil');
 const editarPerfil = document.querySelector('#editarPerfil');
+
+const opcionPublicaciones = document.querySelector('#opcionPublicaciones');
 const publicaciones = document.querySelector('#publicaciones');
 
+const divImagen = document.querySelector('#divImagen');
+
 window.onload = async () => {
-    obtenerDatosUsuario();    
+    imprimirDatos();
+    ocultarOpcionesPerfil();
 }
 
 const obtenerParametrosURL = () => {
     const URLactual = new URL(window.location);
-    const idUsuario = URLactual.searchParams.get('iduser');
-    return idUsuario;
+    const idSeller = URLactual.searchParams.get('idseller');
+    const idUser = URLactual.searchParams.get('iduser');
+    const origin = URLactual.searchParams.get('origin');
+    return { idSeller, idUser, origin };
 }
 
-const obtenerDatosUsuario = async () => {
-    const idUsuario = obtenerParametrosURL();
+const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     try {
-        const respuesta = await fetch(urlAPI + `usuarios/getbyid/${idUsuario}`);
-        const usuarioJSON = await respuesta.json();
-        const usuario = usuarioJSON.response[0];
-        imprimirDatos(usuario);     
-        
+        const respuesta = await fetch(urlAPI + urlConsulta + datoConsulta);
+        const datosJSON = await respuesta.json();
+        const datos = multiple ? datosJSON.response : datosJSON.response[0];
+        return datos;
     } catch (error) {
         console.error(error);
     }
 }
 
-const imprimirDatos = (usuario) => {
+const imprimirDatos = async () => {
+    const { idSeller, idUser, origin } = obtenerParametrosURL();
+    let usuario;
+
+    if(origin === 'inicio'){
+        const usuarioPerfil = await obtenerDatos('usuarios/getbyid/', idUser);
+        usuario = usuarioPerfil;
+        console.log('Perfil');
+    }else{
+        const usuarioVendedor = await obtenerDatos('usuarios/getbyid/', idSeller);
+        usuario = usuarioVendedor;
+        console.log('Vendedor');
+    }
+
     nombreUsuario.value = usuario.nombre_usuario;
     emailUsuario.value = usuario.correo_usuario;
     telefonoUsuario.value = usuario.telefono_usuario;
@@ -43,32 +62,44 @@ const imprimirDatos = (usuario) => {
 }
 
 editarPerfil.onclick = () => {
-    const idUsuario = obtenerParametrosURL();
+    const { idSeller, idUser, origin } = obtenerParametrosURL();
 
     const paginaEditarPerfil = new URL(localhost + 'editarPerfil.html');
-    paginaEditarPerfil.searchParams.set('iduser', idUsuario);
+    paginaEditarPerfil.searchParams.set('idseller', idSeller);
+    paginaEditarPerfil.searchParams.set('iduser', idUser);
+    paginaEditarPerfil.searchParams.set('origin', origin);
 
     window.location.href = paginaEditarPerfil;
 }
 
 publicaciones.onclick = () => {
-    const idUsuario = obtenerParametrosURL();
+    const { idSeller, idUser, origin } = obtenerParametrosURL();
 
-    const paginaEditarPerfil = new URL(localhost + 'publicaciones.html');
-    paginaEditarPerfil.searchParams.set('iduser', idUsuario);
+    const paginaPublicaciones = new URL(localhost + 'publicaciones.html');
+    paginaPublicaciones.searchParams.set('idseller', idSeller);
+    paginaPublicaciones.searchParams.set('iduser', idUser);
+    paginaPublicaciones.searchParams.set('origin', origin);
 
-    window.location.href = paginaEditarPerfil;
+    window.location.href = paginaPublicaciones;
 }
 
-flechaInicio.onclick = () => regresarInicio()
-logoInicio.onclick = () => regresarInicio()
+logoInicio.onclick = () => {
+    const { idUser } = obtenerParametrosURL();
+    const inicio = new URL(localhost + 'index.html');
 
-const regresarInicio = () => {
-    const idUsuario = obtenerParametrosURL();
-    
-    const regresarInicioPagina = new URL(localhost + 'index.html');
-    regresarInicioPagina.searchParams.set('iduser', idUsuario);    
-    regresarInicioPagina.searchParams.set('nameuser', nombreUsuario.value);
+    if (idUser !== null) {
+        inicio.searchParams.set('iduser', idUser);
+    }
 
-    window.location.href = regresarInicioPagina;
+    window.location.href = inicio;
+}
+
+const ocultarOpcionesPerfil = () => {
+    const {origin} = obtenerParametrosURL();
+
+    if(origin === 'publicacion'){
+        opcionPerfil.classList.add('hidden');
+        opcionPublicaciones.classList.add('hidden');
+        divImagen.classList.remove('-mt-24');
+    }
 }

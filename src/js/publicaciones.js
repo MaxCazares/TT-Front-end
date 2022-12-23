@@ -22,14 +22,16 @@ window.onload = async () => {
 
 const obtenerParametrosURL = () => {
     const URLactual = new URL(window.location);
-    const idUsuario = URLactual.searchParams.get('iduser');
-    return idUsuario;
+    const idSeller = URLactual.searchParams.get('idseller');
+    const idUser = URLactual.searchParams.get('iduser');
+    const origin = URLactual.searchParams.get('origin');
+    return { idSeller, idUser, origin };
 }
 
 const consultarPublicaciones = async () => {
-    const idUsuario = obtenerParametrosURL();
+    const {idUser} = obtenerParametrosURL();
     try {
-        const respuesta = await fetch(urlAPI + `publicaciones/getbyuserid/${idUsuario}`);
+        const respuesta = await fetch(urlAPI + `publicaciones/getbyuserid/${idUser}`);
         const publicacionesJSON = await respuesta.json();
         const publicaciones = publicacionesJSON.response;
         
@@ -106,7 +108,7 @@ const editarPublicacion = publicacion => {
 }
 
 const modificarPublicacion = async (idPublicacion) => {
-    const idUsuario = obtenerParametrosURL();
+    const {idUser} = obtenerParametrosURL();
 
     if (tituloPublicacion.value === '' || precioPublicacion.value === ''
         || categoriaPublicacion.value === '' || descripcionPublicacion.value === ''
@@ -120,7 +122,7 @@ const modificarPublicacion = async (idPublicacion) => {
         "id": idPublicacion,
         "campos": {
             "nombre": tituloPublicacion.value,
-            "id_usuario": idUsuario,
+            "id_usuario": idUser,
             "precio": precioPublicacion.value,
             "descripcion": descripcionPublicacion.value,
             "categoria": categoriaPublicacion.value,
@@ -179,7 +181,7 @@ const eliminarPublicacion = (idPublicacion) => {
 }
 
 crearPublicacion.onclick = async () => {
-    const idUsuario = obtenerParametrosURL();
+    const {idUser} = obtenerParametrosURL();
 
     if (tituloPublicacion.value === '' || precioPublicacion.value === ''
         || categoriaPublicacion.value === '' || descripcionPublicacion.value === ''
@@ -191,7 +193,7 @@ crearPublicacion.onclick = async () => {
 
     const nuevaPublicacion = {
         "nombre": tituloPublicacion.value,
-        "id_usuario": idUsuario,
+        "id_usuario": idUser,
         "precio": precioPublicacion.value,
         "descripcion": descripcionPublicacion.value,
         "categoria": categoriaPublicacion.value,
@@ -219,10 +221,12 @@ crearPublicacion.onclick = async () => {
 }
 
 volverPerfil.onclick = () => {
-    const idUsuario = obtenerParametrosURL();
+    const { idSeller, idUser, origin } = obtenerParametrosURL();
 
     const volverPerfil = new URL(localhost + 'perfil.html');
-    volverPerfil.searchParams.set('iduser', idUsuario);
+    volverPerfil.searchParams.set('idseller', idSeller);
+    volverPerfil.searchParams.set('iduser', idUser);
+    volverPerfil.searchParams.set('origin', origin);
 
     window.location.href = volverPerfil;
 }
