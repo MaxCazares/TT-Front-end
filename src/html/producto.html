@@ -19,60 +19,60 @@
 	<title>Quick Shop | Tecnología</title>
 </head>
 
-<body class="bg-white font-sans">
+<body class="font-sans bg-white">
 
-	<nav class="flex bg-blue-400 p-3 shadow-xl space-x-4">
-		<div class="flex text-center justify-center items-center p-2 space-x-6 w-2/12">
+	<nav class="flex p-3 space-x-4 bg-blue-400 shadow-xl">
+		<div class="flex items-center justify-center w-2/12 p-2 space-x-6 text-center">
 			<a id="logoInicio">
 				<img src="../img/logo.svg" alt="logo" class="h-16" />
 			</a>
 		</div>
 
 		<div class="mx-auto md:w-7/12">
-			<form class="py-5 relative mx-auto" id="formularioBusqueda"> 
+			<form class="relative py-5 mx-auto" id="formularioBusqueda"> 
 				<input
-					class="bg-white w-full h-12 pr-11 px-5 rounded-lg text-base placeholder:text-slate-400 placeholder:italic"
+					class="w-full h-12 px-5 text-base bg-white rounded-lg pr-11 placeholder:text-slate-400 placeholder:italic"
 				type="search" id="search" placeholder="Escribe lo que estas buscando">
 
-				<button type="submit" class="absolute right-0 top-3 mr-5 mt-5">
-					<i class="fa-solid fa-magnifying-glass text-gray-400 "></i>
+				<button type="submit" class="absolute right-0 mt-5 mr-5 top-3">
+					<i class="text-gray-400 fa-solid fa-magnifying-glass "></i>
 				</button>
 			</form>
 		</div>
 
-		<div class="flex-row justify-center space-x-6 text-center font-semibold text-md w-3/12 items-center hidden">
-			<a href="index.html" class="bg-blue-700 px-3 py-2 rounded-md hover:bg-blue-600 text-white">
+		<div class="flex-row items-center justify-center hidden w-3/12 space-x-6 font-semibold text-center text-md">
+			<a href="index.html" class="px-3 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-600">
 				Crea tu cuenta
 			</a>
-			<a href="index.html" class="bg-blue-700 px-3 py-2 rounded-md hover:bg-blue-600 text-white hidden">
-				<i class="fa-solid fa-user-astronaut mr-1 my-auto text-current"></i>
+			<a href="index.html" class="hidden px-3 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-600">
+				<i class="my-auto mr-1 text-current fa-solid fa-user-astronaut"></i>
 				Maximiliano
 			</a>
-			<a href="index.html" class="bg-amber-400 px-3 py-2 rounded-md hover:bg-amber-300 text-black">
+			<a href="index.html" class="px-3 py-2 text-black rounded-md bg-amber-400 hover:bg-amber-300">
 				Ingresa
-				<i class="fa-solid fa-arrow-right-to-bracket text-current fa-lg my-auto ml-1"></i>
+				<i class="my-auto ml-1 text-current fa-solid fa-arrow-right-to-bracket fa-lg"></i>
 			</a>
 		</div>
 	</nav>
 
-	<div class="flex flex-row w-10/12 mx-auto p-5 m-5 space-x-5">
+	<div class="flex flex-row w-10/12 p-5 m-5 mx-auto space-x-5">
 
 		<div class="w-1/2 p-5">
-			<div class="carousel w-10/12 mx-auto">
-				<div id="item1" class="carousel-item w-full">
-					<img src="../img/defaultProduct.png" class="h-96 mx-auto" id="fotoPublicacion"/>
+			<div class="w-10/12 mx-auto carousel">
+				<div id="item1" class="w-full carousel-item">
+					<img src="../img/defaultProduct.png" class="mx-auto h-96" id="fotoPublicacion"/>
 				</div>
-				<!-- <div id="item2" class="carousel-item w-full">
-					<img src="../img/products/dos.jpg" class="h-96 mx-auto" />
+				<!-- <div id="item2" class="w-full carousel-item">
+					<img src="../img/products/dos.jpg" class="mx-auto h-96" />
 				</div>
-				<div id="item3" class="carousel-item w-full">
-					<img src="../img/products/tres.jpg" class="h-96 mx-auto" />
+				<div id="item3" class="w-full carousel-item">
+					<img src="../img/products/tres.jpg" class="mx-auto h-96" />
 				</div>
-				<div id="item4" class="carousel-item w-full">
-					<img src="../img/products/cuatro.png" class="h-96 mx-auto" />
+				<div id="item4" class="w-full carousel-item">
+					<img src="../img/products/cuatro.png" class="mx-auto h-96" />
 				</div> -->
 			</div>
-			<!-- <div class="flex justify-center w-full space-x-3 text-white font-semibold mt-5">
+			<!-- <div class="flex justify-center w-full mt-5 space-x-3 font-semibold text-white">
 				<a href="#item1" class="rounded bg-blue-500 px-2 py-0.5">1</a>
 				<a href="#item2" class="rounded bg-blue-500 px-2 py-0.5">2</a>
 				<a href="#item3" class="rounded bg-blue-500 px-2 py-0.5">3</a>
@@ -81,101 +81,102 @@
 		</div>
 
 		<div class="flex flex-col w-1/2 p-7">
-			<h1 class="text-gray-900 text-3xl title-font font-medium mb-1" id="nombrePublicacion"></h1>
+			<h1 class="mb-1 text-3xl font-medium text-gray-900 title-font" id="nombrePublicacion"></h1>
 
-			<a class="mt-3  space-x-2 text-orange-500 text-base">
+			<a class="mt-3 space-x-2 text-base text-orange-500">
 				<i class="fa-solid fa-location-dot mt-0.5"></i>
 				<label id="zonaEntregaPublicacion"></label>
 			</a>
 
-			<a class="mt-3 space-x-2 text-blue-500 text-base" id="perfilVendedor">
+			<a class="mt-3 space-x-2 text-base text-blue-500" id="perfilVendedor">
 				<i class="fa-solid fa-robot mt-0.5"></i>
 				<label id="nombreVendedor"></label>
 			</a>
 
-			<p class="text-right text-xl mt-5" id="descripcionPublicacion"></p>
+			<p class="mt-5 text-xl text-justify" id="descripcionPublicacion"></p>
 
-			<span class="mt-3 space-x-2 text-yellow-500 text-base">
+			<span class="mt-3 space-x-2 text-base text-yellow-500">
 				<i class="fa-solid fa-envelope mt-0.5"></i>
 				<label id="correoVendedor"></label>
 			</span>
 
-			<span class="mt-3 space-x-2 text-emerald-500 text-base">
+			<span class="mt-3 space-x-2 text-base text-emerald-500">
 				<i class="fa-solid fa-phone mt-0.5"></i>
 				<label id="telefonoVendedor"></label>
 			</span>
 
 			<div class="mt-5 border-b-2 border-gray-200"></div>
 
-			<label class="flex justify-end mt-5 font-medium text-2xl text-gray-900" id="precioPublicacion"></label>
+			<label class="flex justify-end mt-5 text-2xl font-medium text-gray-900" id="precioPublicacion"></label>
 
 		</div>
 
 	</div>
 
-	<div class="flex flex-wrap w-11/12 mx-auto p-2 my-5 bg-cyan-5000" id="publicacionesRecomendadas">
+	<div class="flex flex-wrap w-11/12 p-2 mx-auto my-5 bg-cyan-5000" id="publicacionesRecomendadas">
 		<!-- <div class="w-1/4 p-2 ">
-			<div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+			<div class="p-4 bg-gray-100 rounded-lg shadow-lg">
 				<a href="producto.html">
-					<img class="w-full rounded-lg mx-auto object-cover object-center mb-6 h-52"
+					<img class="object-cover object-center w-full mx-auto mb-6 rounded-lg h-52"
 						src="../img/products/uno.png" alt="content">
-					<h3 class="tracking-widest text-orange-500 text-xs font-bold ">Gustavo A Madero, CDMX</h3>
-					<h2 class="text-md text-gray-900 font-semibold mb-0">Huawei P20 Lite</h2>
-					<p class="leading-relaxed text-base">$1,600</p>
+					<h3 class="text-xs font-bold tracking-widest text-orange-500 ">Gustavo A Madero, CDMX</h3>
+					<h2 class="mb-0 font-semibold text-gray-900 text-md">Huawei P20 Lite</h2>
+					<p class="text-base leading-relaxed">$1,600</p>
 				</a>
 			</div>
 		</div>
 
 		<div class="w-1/4 p-2">
-			<div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+			<div class="p-4 bg-gray-100 rounded-lg shadow-lg">
 				<a href="producto.html">
-					<img class="w-full rounded-lg mx-auto object-cover object-center mb-6 h-52"
+					<img class="object-cover object-center w-full mx-auto mb-6 rounded-lg h-52"
 						src="../img/products/dos.jpg" alt="content">
-					<h3 class="tracking-widest text-orange-500 text-xs font-bold ">Gustavo A Madero, CDMX</h3>
-					<h2 class="text-md text-gray-900 font-semibold mb-0">Lenovo ThinkPad X1Carbon</h2>
-					<p class="leading-relaxed text-base">$5,499</p>
+					<h3 class="text-xs font-bold tracking-widest text-orange-500 ">Gustavo A Madero, CDMX</h3>
+					<h2 class="mb-0 font-semibold text-gray-900 text-md">Lenovo ThinkPad X1Carbon</h2>
+					<p class="text-base leading-relaxed">$5,499</p>
 				</a>
 			</div>
 		</div>
 
 		<div class="w-1/4 p-2">
-			<div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+			<div class="p-4 bg-gray-100 rounded-lg shadow-lg">
 				<a href="producto.html">
-					<img class="w-full rounded-lg mx-auto object-cover object-center mb-6 h-52"
+					<img class="object-cover object-center w-full mx-auto mb-6 rounded-lg h-52"
 						src="../img/products/cuatro.png" alt="content">
-					<h3 class="tracking-widest text-orange-500 text-xs font-bold ">Tlalnepantla, EDOMEX</h3>
-					<h2 class="text-md text-gray-900 font-semibold mb-0">Guitarra cort x</h2>
-					<p class="leading-relaxed text-base">$3,500</p>
+					<h3 class="text-xs font-bold tracking-widest text-orange-500 ">Tlalnepantla, EDOMEX</h3>
+					<h2 class="mb-0 font-semibold text-gray-900 text-md">Guitarra cort x</h2>
+					<p class="text-base leading-relaxed">$3,500</p>
 				</a>
 			</div>
 		</div>
 
 		<div class="w-1/4 p-2">
-			<div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+			<div class="p-4 bg-gray-100 rounded-lg shadow-lg">
 				<a href="producto.html">
-					<img class="w-full rounded-lg mx-auto object-cover object-center mb-6 h-52"
+					<img class="object-cover object-center w-full mx-auto mb-6 rounded-lg h-52"
 						src="../img/products/tres.jpg" alt="content">
-					<h3 class="tracking-widest text-orange-500 text-xs font-bold ">Iztacalco, CDMX</h3>
-					<h2 class="text-md text-gray-900 font-semibold mb-0">MacBook Pro 2018 15”</h2>
-					<p class="leading-relaxed text-base">$18,500</p>
+					<h3 class="text-xs font-bold tracking-widest text-orange-500 ">Iztacalco, CDMX</h3>
+					<h2 class="mb-0 font-semibold text-gray-900 text-md">MacBook Pro 2018 15”</h2>
+					<p class="text-base leading-relaxed">$18,500</p>
 				</a>
 			</div>
 		</div> -->
 	</div>
 
-	<footer class="w-11/12 px-5 py-8 mx-auto flex items-center flex-row text-gray-500">
+	<footer class="flex flex-row items-center w-11/12 px-5 py-8 mx-auto text-gray-500">
 		<img src="../img/logo.svg" alt="logo" class="h-10" />
 
-		<p class="text-base ml-4 pl-4 border-l-2 border-gray-300 py-2 mt-0">©
+		<p class="py-2 pl-4 mt-0 ml-4 text-base border-l-2 border-gray-300">©
 			2022 Quick Shop - quickshop.io
 		</p>
-		<span class="inline-flex ml-auto mt-0 justify-center space-x-3">
+		<span class="inline-flex justify-center mt-0 ml-auto space-x-3">
 			<a><i class="fa-brands fa-facebook fa-lg"></i></a>
 			<a><i class="fa-brands fa-twitter fa-lg"></i></a>
 			<a><i class="fa-brands fa-instagram fa-lg"></i></a>
 		</span>
 	</footer>
 
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script src="../js/producto.js" type="module"></script>
 
 </body>

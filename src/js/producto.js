@@ -1,6 +1,8 @@
+import { alertFail, alertSuccess } from "./alerts.js";
 import { localhost, urlAPI } from "./urls.js";
 
 const logoInicio = document.querySelector('#logoInicio');
+const formularioBusqueda = document.querySelector('#formularioBusqueda');
 
 const fotoPublicacion = document.querySelector('#fotoPublicacion');
 const nombrePublicacion = document.querySelector('#nombrePublicacion');
@@ -15,10 +17,14 @@ const perfilVendedor = document.querySelector('#perfilVendedor');
 const publicacionesRecomendadas = document.querySelector('#publicacionesRecomendadas');
 
 window.onload = async () => {
+    formularioBusqueda.addEventListener('submit', buscarProductos);
+
     const {idPublicacion} = obtenerParametrosURL();
     
     const datosPublicacion = await obtenerDatos('publicaciones/getbyid/', idPublicacion);
     const datosUsuario = await obtenerDatos('usuarios/getbyid/', datosPublicacion.id_usuario);
+    // console.log(datosPublicacion);
+    // console.log(datosUsuario);
     
     imprimirDatos(datosPublicacion, datosUsuario);
     mostrarPublicacionesRecomendadas(datosPublicacion.categoria);
@@ -35,7 +41,7 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     try {
         const respuesta = await fetch(urlAPI + urlConsulta + datoConsulta);
         const datosJSON = await respuesta.json();
-        const datos = multiple ? datosJSON.response: datosJSON.response[0];      
+        const datos = multiple ? datosJSON.response : datosJSON.response[0];      
         return datos;        
     } catch (error) {
         console.error(error);
@@ -69,7 +75,7 @@ const verPerfilVendedor = idSeller => {
 const mostrarPublicacionesRecomendadas = async (categoria) => {
     const publicaciones = await obtenerDatos('publicaciones/getbycategory/', categoria, true);
     
-    for (let i = 1; i < 5; i++) 
+    for (let i = 0; i < 4; i++) 
         crearPublicacionRecomendadaHTML(publicaciones[i]);
 }
 
@@ -83,6 +89,7 @@ const crearPublicacionRecomendadaHTML = async (publicacion) => {
     const etiquetaP = document.createElement('p');
 
     const usuario = await obtenerDatos('usuarios/getbyid/', publicacion.id_usuario);
+    console.log(publicacion.id_usuario);
 
     etiquetaA.onclick = () => irAlProducto(publicacion.id_publicacion);
     imagen.src = publicacion.img_list[0].file;
@@ -128,4 +135,26 @@ logoInicio.onclick = () =>{
         inicio.searchParams.set('iduser', idUser);
 
     window.location.href = inicio;
+}
+
+const buscarProductos = async (e) => {
+    e.preventDefault();
+
+    const busqueda = document.querySelector('#search').value;
+    if (busqueda === '') {
+        alertFail('Tu busqueda parece vacia');
+        return;
+    } else {
+        alertSuccess(busqueda);
+        // contenidoInicio.innerHTML = '';
+        // const publicaciones = await obtenerDatos('publicaciones/getbyname/', busqueda, true);
+        // if (publicaciones.length > 0) {
+        //     publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
+        // } else {
+        //     alertFail('No se encontro lo que buscabas');
+        //     setTimeout(() => {
+        //         location.reload();
+        //     }, 2000);
+        // }
+    }
 }

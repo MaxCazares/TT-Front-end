@@ -16,7 +16,7 @@ window.onload = async () => {
     formularioBusqueda.addEventListener('submit', buscarProductos);
     mostrarBotonPerfil();
 
-    const publicaciones = await obtenerDatos('publicaciones/getbycategory/', 'tecnologia', true);
+    const publicaciones = await obtenerDatos('publicaciones/getbycategory/', 'electronica', true);
     publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
 }
 
@@ -89,6 +89,7 @@ const buscarProductos = async (e) => {
 mosaicos.onclick = async (e) => {
     const categoria = e.target.dataset.categoria;
     contenidoInicio.innerHTML = '';
+    // console.log(categoria);
     const publicaciones = await obtenerDatos('publicaciones/getbycategory/', categoria, true);
     publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
 };
@@ -108,7 +109,7 @@ const crearPublicacionesHTML = async (publicacion) => {
     imagen.src = publicacion.img_list[0].file;
     h3.innerHTML = usuario.zona_entrega_usuario;
     h2.innerHTML = publicacion.nombre;
-    etiquetaP.innerHTML = '$' + publicacion.precio;
+    etiquetaP.innerHTML = '$' + Number(publicacion.precio).toLocaleString('mx');
 
     divExterior.classList.add('md:w-1/3', 'xl:w-1/4', 'p-2');
     divInterior.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'shadow-lg');
