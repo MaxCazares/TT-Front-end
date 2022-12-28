@@ -1,4 +1,4 @@
-import { alertFail } from './alerts.js';
+import { alertFail, alertSuccess } from './alerts.js';
 import { urlAPI, localhost } from './urls.js'
 
 const logoInicio = document.querySelector('#logoInicio');
@@ -18,6 +18,7 @@ const publicaciones = document.querySelector('#publicaciones');
 const divImagen = document.querySelector('#divImagen');
 const estrellasPuntuacion = document.querySelector('#estrellasPuntuacion');
 
+const seccionFormularioComentarios = document.querySelector('#seccionFormularioComentarios');
 const formularioComentario = document.querySelector('#formularioComentario');
 const fechaComentario = document.querySelector('#fechaComentario');
 const encabezadoComentario = document.querySelector('#encabezadoComentario');
@@ -29,8 +30,8 @@ let puntuacionComentario = 0;
 window.onload = async () => {
     imprimirDatos();
     ocultarOpcionesPerfil();
+    mostarComentarios();
     formularioComentario.addEventListener('submit', enviarComentario);
-    // mostarComentarios();
 }
 
 const obtenerParametrosURL = () => {
@@ -63,7 +64,7 @@ const imprimirDatos = async () => {
     } else {
         const usuarioVendedor = await obtenerDatos('usuarios/getbyid/', idSeller);
         usuario = usuarioVendedor;
-        console.log('Vendedor');
+        // console.log('Vendedor');
     }
 
     nombreUsuario.value = usuario.nombre_usuario;
@@ -113,6 +114,7 @@ const ocultarOpcionesPerfil = () => {
         opcionPerfil.classList.add('hidden');
         opcionPublicaciones.classList.add('hidden');
         divImagen.classList.remove('-mt-24');
+        seccionFormularioComentarios.classList.remove('hidden');
     }
 }
 
@@ -133,6 +135,7 @@ estrellasPuntuacion.onclick = (e) => {
 
 const enviarComentario = async (e) => {
     e.preventDefault();
+    const {idSeller} = obtenerParametrosURL();
 
     if (puntuacionComentario === 0 || fechaComentario.value === ''
         || encabezadoComentario.value === '' || contenidoComentario.value === '') {
@@ -142,32 +145,31 @@ const enviarComentario = async (e) => {
     }
 
     let nuevoComentario = {
-        "id_usuario": "",
+        "id_usuario": idSeller,
         "encabezado": encabezadoComentario.value,
         "fecha_comentario": new Date(fechaComentario.value).toLocaleString('es-MX'),
         "puntuacion": puntuacionComentario,
         "descripcion": contenidoComentario.value
     }
 
-    // try {
-    //     await fetch(urlAPI + 'usercomment', {
-    //         method: "POST",
-    //         body: JSON.stringify(nuevoComentario),
-    //         headers: { "Content-type": "application/json; charset=UTF-8" }
-    //     });
+    try {
+        await fetch(urlAPI + 'usercomment', {
+            method: "POST",
+            body: JSON.stringify(nuevoComentario),
+            headers: { "Content-type": "application/json; charset=UTF-8" }
+        });
         
-    //     alertSuccess('Comentario registrado correctamente');
-    //     setTimeout(() =>window.location.reload(), 1500);
+        alertSuccess('Comentario registrado correctamente');
+        setTimeout(() =>window.location.reload(), 1500);
 
-    // } catch (error) {
-    //     console.error(error);
-    // }
-
-    crearComentario(nuevoComentario);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-const mostarComentarios = async (idUsuario) => {
-    const comentarios = await obtenerDatos('usercomment/getbyuserid/', idUsuario, true);
+const mostarComentarios = async () => {
+    const {idSeller} = obtenerParametrosURL();
+    const comentarios = await obtenerDatos('usercomment/getbyuserid/', idSeller, true);
     comentarios.forEach(comentario => crearComentario(comentario));
 }
 
@@ -191,8 +193,6 @@ const crearComentario = (comentario) => {
     divInferior.classList.add('space-y-3');
     etiquetaEncabezado.classList.add('text-2xl', 'font-medium', 'text-gray-900');
     parrafoDescripcion.classList.add('text-justify');
-
-    console.log(comentario.puntuacion);
 
     for (let i = 0; i < comentario.puntuacion; i++) {
         const iconoEstrella = document.createElement('i');

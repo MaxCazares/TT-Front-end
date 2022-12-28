@@ -80,34 +80,34 @@
 			</div>
 		</div>
 
-		<div class="w-10/12 py-4 my-10 bg-red-3000 mx-auto text-gray-900 border-2 shadow-xl border-slate-100"
+		<div class="w-10/12 py-4 my-10 bg-red-3000 mx-auto text-gray-900 border-2 shadow-xl border-slate-100 hidden"
 			id="seccionFormularioComentarios">
 
 			<form id="formularioComentario" class="flex flex-col">
 
 				<h2 class="text-lg py-2 px-10 w-11/12 mx-auto select-none bg-green-3000">Escribe tus comentarios sobre
-					este usuario</h2>
+					este vendedor</h2>
 
 				<span class="flex flex-row bg-amber-3000 space-x-5 py-2 px-10 w-11/12 mx-auto mt-4">
 					<div class="bg-red-5000 flex space-x-2 text-lg px-2 bg-orange-3000" id="estrellasPuntuacion">
-						<i class="fa-solid fa-star cursor-pointer text-slate-300 my-auto" id="1estrella"></i>
-						<i class="fa-solid fa-star cursor-pointer text-slate-300 my-auto" id="2estrella"></i>
-						<i class="fa-solid fa-star cursor-pointer text-slate-300 my-auto" id="3estrella"></i>
-						<i class="fa-solid fa-star cursor-pointer text-slate-300 my-auto" id="4estrella"></i>
-						<i class="fa-solid fa-star cursor-pointer text-slate-300 my-auto" id="5estrella"></i>
+						<i class="fa-solid fa-star cursor-pointer text-gray-400 my-auto" id="1estrella"></i>
+						<i class="fa-solid fa-star cursor-pointer text-gray-400 my-auto" id="2estrella"></i>
+						<i class="fa-solid fa-star cursor-pointer text-gray-400 my-auto" id="3estrella"></i>
+						<i class="fa-solid fa-star cursor-pointer text-gray-400 my-auto" id="4estrella"></i>
+						<i class="fa-solid fa-star cursor-pointer text-gray-400 my-auto" id="5estrella"></i>
 					</div>
 					<input type="datetime-local" id="fechaComentario" class="border-0">
 				</span>
 				<div class="w-10/12 bg-green-3000 mx-auto mt-4">
 					<input type="text"
-						class="border-gray-300 bg-white w-10/12 placeholder:text-slate-400 placeholder:italic"
-						placeholder="Me generó confianza" id="encabezadoComentario">
+						class="border-gray-400 bg-white w-10/12 placeholder:text-slate-500 placeholder:italic"
+						placeholder="Escribe una frase que resuma tu experiencia con el vendedor" id="encabezadoComentario">
 				</div>
 
 				<div class="bg-indigo-3000 w-11/12 mx-auto py-2 px-10 flex flex-row justify-between mt-1">
 					<textarea id="contenidoComentario" cols="62" rows="4"
-						class="my-auto border-gray-300 placeholder:text-slate-400 placeholder:italic"
-						placeholder="El producto era tal cual como en la foto"></textarea>
+						class="my-auto border-gray-400 placeholder:text-slate-500 placeholder:italic"
+						placeholder="Detalla tu experiencia con el vendedor"></textarea>
 					<button type="submit"
 						class="my-auto bg-blue-800 text-white font-bold text-lg px-4 py-2 hover:bg-amber-400 hover:text-black">Enviar</button>
 				</div>

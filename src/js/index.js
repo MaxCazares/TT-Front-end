@@ -1,4 +1,5 @@
 import { alertFail } from "./alerts.js";
+import { mosaicos as M } from "./mosaicos.js";
 import { urlAPI, localhost } from "./urls.js";
 
 const logoInicio = document.querySelector('#logoInicio');
@@ -14,9 +15,9 @@ const cerrarSesionBoton = document.querySelector('#cerrarSesionBoton');
 
 window.onload = async () => {
     formularioBusqueda.addEventListener('submit', buscarProductos);
+    agregarImagenesMosaicos();
     mostrarBotonPerfil();
-
-    const publicaciones = await obtenerDatos('publicaciones/getbycategory/', 'electronica', true);
+    const publicaciones = await obtenerDatos('publicaciones/getbycategory/', 'intrumentos musicales', true);
     publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
 }
 
@@ -149,4 +150,13 @@ logoInicio.onclick = () => {
         inicio.searchParams.set('iduser', idUsuario);
     
         window.location.href = inicio;
+}
+
+const agregarImagenesMosaicos = () => {
+    M.mosaicoElectronica.style.cssText = `background-image: url(${M.electronica})`;
+    M.mosaicoDeportes.style.cssText = `background-image: url(${M.deportes})`;
+    M.mosaicoRopa.style.cssText = `background-image: url(${M.ropa})`;
+    M.mosaicoJuguetes.style.cssText = `background-image: url(${M.juguetes})`;
+    M.mosaicoAutomoviles.style.cssText = `background-image: url(${M.automoviles})`;
+    M.mosaicoInstrumentos.style.cssText = `background-image: url(${M.instrumentosMusicales})`;
 }
