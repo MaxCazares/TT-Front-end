@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../output.css">
+    <!-- <link rel="stylesheet" href="../css/final.css"> -->
+
+    <!-- Iconos Font Awesome -->
+    <script src="https://kit.fontawesome.com/1319b8eafb.js" crossorigin="anonymous"></script>
+
+    <title>Mensajes</title>
+
+</head>
+
+<body>
+    <nav class="flex p-3 space-x-4 bg-blue-400 shadow-xl">
+        <div class="flex items-center justify-center w-2/12 p-2 space-x-6 text-center">
+            <a id="logoInicio">
+                <img src="../img/logo.svg" alt="logo" class="h-16" />
+            </a>
+        </div>
+    </nav>
+
+    <div class="grid grid-cols-3 w-11/12 mx-auto shadow-2xl my-6 p-3 space-x-3">
+        
+        <div class="bg-rose-4000 cols-span-1 shadow-lg overflow-y-auto space-y-4 p-5">
+            
+            <div class="bg-lime-4000 flex flex-row px-4 py-3 space-x-3 shadow-slate-200 shadow-xl rounded-lg">
+                <img src="../img/products/cuatro.png" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none">
+                <label class="bg-orange-5000 my-auto text-base">¿Es lo menos por la bicicleta?</label>
+            </div>
+            <div class="bg-lime-4000 flex flex-row px-4 py-3 space-x-3 shadow-slate-200 shadow-xl rounded-lg">
+                <img src="../img/products/cuatro.png" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none">
+                <label class="bg-orange-5000 my-auto text-base">¿Es lo menos por la bicicleta?</label>
+            </div>
+            <div class="bg-lime-4000 flex flex-row px-4 py-3 space-x-3 shadow-slate-200 shadow-xl rounded-lg">
+                <img src="../img/products/cuatro.png" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none">
+                <label class="bg-orange-5000 my-auto text-base">¿Es lo menos por la bicicleta?</label>
+            </div>
+            <div class="bg-lime-4000 flex flex-row px-4 py-3 space-x-3 shadow-slate-200 shadow-xl rounded-lg">
+                <img src="../img/products/cuatro.png" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none">
+                <label class="bg-orange-5000 my-auto text-base">¿Es lo menos por la bicicleta?</label>
+            </div>
+
+        </div>
+
+        <div class="bg-orange-4000 flex flex-col mx-auto py-7 col-span-2 space-y-10">
+            <div class="flex flex-row space-x-0 mx-auto">
+                <textarea id="mensajeIzquierda" cols="31" rows="12" class="border-l-1 border-r-0 border-slate-400 resize-none" disabled></textarea>
+                <textarea id="mensajeDerecha" cols="31" rows="12" class="border-r-1 border-l-0 border-slate-400 resize-none" disabled></textarea>
+            </div>
+
+            <input type="text" id="mensajeUsuario" class="w-11/12 mx-auto border-slate-400 placeholder:text-slate-400 placeholder:italic" autofocus placeholder="Escribe tu mensaje aquí">
+
+            <div class="flex mx-auto space-x-20 font-base">
+                <a id="enviarMensajeBoton"
+                    class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg rounded-md hover:bg-amber-400 hover:text-black">
+                    Enviar mensaje
+                </a>
+                <a id="regresarBoton"
+                    class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg rounded-md hover:bg-amber-400 hover:text-black">
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="flex flex-row items-center w-11/12 px-5 py-8 mx-auto text-gray-500">
+        <img src="../img/logo.svg" alt="logo" class="h-10" />
+
+        <p class="py-2 pl-4 mt-0 ml-4 text-base border-l-2 border-gray-300">©
+            2022 Quick Shop - quickshop.io
+        </p>
+        <span class="inline-flex justify-center mt-0 ml-auto space-x-3">
+            <a><i class="fa-brands fa-facebook fa-lg"></i></a>
+            <a><i class="fa-brands fa-twitter fa-lg"></i></a>
+            <a><i class="fa-brands fa-instagram fa-lg"></i></a>
+        </span>
+    </footer>
+</body>
+
+</html>

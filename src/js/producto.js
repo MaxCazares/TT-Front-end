@@ -15,6 +15,8 @@ const precioPublicacion = document.querySelector('#precioPublicacion');
 const perfilVendedor = document.querySelector('#perfilVendedor');
 const publicacionesRecomendadas = document.querySelector('#publicacionesRecomendadas');
 
+const mandarMensaje = document.querySelector('#mandarMensaje');
+
 window.onload = async () => {
     const {idPublicacion} = obtenerParametrosURL();
     
@@ -84,7 +86,6 @@ const crearPublicacionRecomendadaHTML = async (publicacion) => {
     const etiquetaP = document.createElement('p');
 
     const usuario = await obtenerDatos('usuarios/getbyid/', publicacion.id_usuario);
-    // console.log(publicacion.id_usuario);
 
     etiquetaA.onclick = () => irAlProducto(publicacion.id_publicacion);
     imagen.src = publicacion.img_list[0].file;
@@ -130,4 +131,14 @@ logoInicio.onclick = () =>{
         inicio.searchParams.set('iduser', idUser);
 
     window.location.href = inicio;
+}
+
+mandarMensaje.onclick = async () => {
+    const {idPublicacion} = obtenerParametrosURL();
+    const publicacion = await obtenerDatos('publicaciones/getbyid/', idPublicacion);
+
+    const mensajes = new URL(localhost + 'mensajes.html');
+    mensajes.searchParams.set('idpublication', idPublicacion);
+    mensajes.searchParams.set('idseller', publicacion.id_usuario);
+    window.location.href = publicacion;
 }

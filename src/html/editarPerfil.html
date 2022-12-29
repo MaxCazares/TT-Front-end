@@ -21,7 +21,7 @@
 
     <nav class="flex bg-blue-400 p-3 shadow-xl flex-row space-x-4">
         <div class="flex text-center justify-center items-center p-2 space-x-6 w-2/12">
-            <a href="index.html">
+            <a>
                 <img src="../img/logo.svg" alt="logo" class="h-16" />
             </a>
         </div>
@@ -30,7 +30,8 @@
     <form id="formularioActualizacion" class="flex flex-col w-11/12 p-6 mx-auto my-10 shadow-2xl rounded-2xl">
 
         <div class="px-3 py-3 mx-auto w-72 mb-5">
-            <img src="../img/defaulUser.jpeg" id="fotoUsuario" class="rounded-full shadow-2xl select-none w-72 h-72 border-4 border-amber-400">
+            <img src="../img/defaulUser.jpeg" id="fotoUsuario"
+                class="rounded-full shadow-2xl select-none w-72 h-72 border-4 border-amber-400">
             <input type="file" id="inputFotoUsuario" multiple="false" accept="image/*"
                 class="mt-6 opacity-30 rounded-md">
         </div>
@@ -38,28 +39,30 @@
         <div class="flex flex-col w-10/12 mx-auto text-lg shadow-xl rounded-lg border-gray-200 border-t-2">
             <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
                 <label class="font-medium text-gray-500 my-auto">Nombre</label>
-                <input type="text" name="nombreUsuario" id="nombreUsuario" 
-                    class="rounded-md w-full col-span-2 border-gray-200">
+                <input type="text" id="nombreUsuario" class="rounded-md w-full col-span-2 border-gray-200">
             </div>
             <div class="bg-white grid grid-cols-3 gap-4 px-6 py-5">
                 <label class="font-medium text-gray-500 my-auto">E-mail</label>
-                <input type="email" name="" id="emailUsuario" 
-                    class="rounded-md w-full col-span-2 border-gray-200">
+                <input type="email" id="emailUsuario" class="rounded-md w-full col-span-2 border-gray-200">
             </div>
             <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
                 <label class="font-medium text-gray-500 my-auto">Contraseña</label>
-                <input type="tel" name="" id="passwordUsuario" 
-                    class="rounded-md w-full col-span-2 border-gray-200">
+                <div class="flex flex-row relative col-span-2">
+                    <input type="password" id="passwordUsuario"
+                        class="rounded-md w-full border-gray-200 "/>
+
+                    <span class="right-4 mt-1.5 absolute my-auto">
+                        <i class="fa-sharp fa-solid fa-eye-slash text-xl text-gray-400 my-auto" id="esconderPassword"></i>
+                    </span>
+                </div>
             </div>
             <div class="bg-white grid grid-cols-3 gap-4 px-6 py-5">
                 <label class="font-medium text-gray-500 my-auto">Número de teléfono</label>
-                <input type="text" name="" id="telefonoUsuario" 
-                    class="rounded-md w-full col-span-2 border-gray-200">
+                <input type="tel" id="telefonoUsuario" class="rounded-md w-full col-span-2 border-gray-200">
             </div>
             <div class="bg-slate-100 grid grid-cols-3 gap-4 px-6 py-5">
                 <label class="font-medium text-gray-500 my-auto">Zona de entrega</label>
-                <input type="text" name="" id="zonaUsuario" 
-                    class="rounded-md w-full col-span-2 border-gray-200">
+                <input type="text" id="zonaUsuario" class="rounded-md w-full col-span-2 border-gray-200">
             </div>
         </div>
 

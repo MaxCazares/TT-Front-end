@@ -59,7 +59,7 @@ const crearPublicacionHTML = (publicacion) => {
 
     imagen.src = imagenPublicacion;
     titulo.innerHTML = nombrePublicacion;
-    precio.textContent = '$' + precioPublicacion;
+    precio.textContent = '$' + Number(precioPublicacion).toLocaleString('mx');;
 
     iconoEdicion.onclick = () => editarPublicacion(publicacion);
     iconoEliminar.onclick = () => eliminarPublicacion(idPublicacion);

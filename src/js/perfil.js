@@ -60,7 +60,7 @@ const imprimirDatos = async () => {
     if (origin === 'inicio') {
         const usuarioPerfil = await obtenerDatos('usuarios/getbyid/', idUser);
         usuario = usuarioPerfil;
-        console.log('Perfil');
+        // console.log('Perfil');
     } else {
         const usuarioVendedor = await obtenerDatos('usuarios/getbyid/', idSeller);
         usuario = usuarioVendedor;
@@ -71,7 +71,8 @@ const imprimirDatos = async () => {
     emailUsuario.value = usuario.correo_usuario;
     telefonoUsuario.value = usuario.telefono_usuario;
     zonaUsuario.value = usuario.zona_entrega_usuario;
-    fotoUsuario.src = usuario.img_usuario.file;
+    fotoUsuario.src = usuario.img_usuario.file === '' ? 
+        "../img/defaulUser.jpeg" : usuario.img_usuario.file;
 }
 
 editarPerfil.onclick = () => {
@@ -135,7 +136,7 @@ estrellasPuntuacion.onclick = (e) => {
 
 const enviarComentario = async (e) => {
     e.preventDefault();
-    const {idSeller} = obtenerParametrosURL();
+    const { idSeller } = obtenerParametrosURL();
 
     if (puntuacionComentario === 0 || fechaComentario.value === ''
         || encabezadoComentario.value === '' || contenidoComentario.value === '') {
@@ -158,9 +159,9 @@ const enviarComentario = async (e) => {
             body: JSON.stringify(nuevoComentario),
             headers: { "Content-type": "application/json; charset=UTF-8" }
         });
-        
+
         alertSuccess('Comentario registrado correctamente');
-        setTimeout(() =>window.location.reload(), 1500);
+        setTimeout(() => window.location.reload(), 1500);
 
     } catch (error) {
         console.error(error);
@@ -168,7 +169,7 @@ const enviarComentario = async (e) => {
 }
 
 const mostarComentarios = async () => {
-    const {idSeller} = obtenerParametrosURL();
+    const { idSeller } = obtenerParametrosURL();
     const comentarios = await obtenerDatos('usercomment/getbyuserid/', idSeller, true);
     comentarios.forEach(comentario => crearComentario(comentario));
 }

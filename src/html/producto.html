@@ -27,80 +27,45 @@
 				<img src="../img/logo.svg" alt="logo" class="h-16" />
 			</a>
 		</div>
-
-		<!-- <div class="mx-auto md:w-7/12">
-			<form class="relative py-5 mx-auto" id="formularioBusqueda"> 
-				<input
-					class="w-full h-12 px-5 text-base bg-white rounded-lg pr-11 placeholder:text-slate-400 placeholder:italic"
-				type="search" id="search" placeholder="Escribe lo que estas buscando">
-
-				<button type="submit" class="absolute right-0 mt-5 mr-5 top-3">
-					<i class="text-gray-400 fa-solid fa-magnifying-glass "></i>
-				</button>
-			</form>
-		</div> -->
-
-		<!-- <div class="flex-row items-center justify-center hidden w-3/12 space-x-6 font-semibold text-center text-md">
-			<a href="index.html" class="px-3 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-600">
-				Crea tu cuenta
-			</a>
-			<a href="index.html" class="hidden px-3 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-600">
-				<i class="my-auto mr-1 text-current fa-solid fa-user-astronaut"></i>
-				Maximiliano
-			</a>
-			<a href="index.html" class="px-3 py-2 text-black rounded-md bg-amber-400 hover:bg-amber-300">
-				Ingresa
-				<i class="my-auto ml-1 text-current fa-solid fa-arrow-right-to-bracket fa-lg"></i>
-			</a>
-		</div> -->
 	</nav>
 
-	<div class="flex flex-row w-10/12 p-5 m-5 mx-auto space-x-5">
+	<div class="flex flex-row w-10/12 p-5 m-5 mx-auto space-x-5 text-lg">
 
 		<div class="w-1/2 p-5">
 			<div class="w-10/12 mx-auto carousel">
 				<div id="item1" class="w-full carousel-item">
 					<img src="../img/defaultProduct.png" class="mx-auto h-96" id="fotoPublicacion"/>
 				</div>
-				<!-- <div id="item2" class="w-full carousel-item">
-					<img src="../img/products/dos.jpg" class="mx-auto h-96" />
-				</div>
-				<div id="item3" class="w-full carousel-item">
-					<img src="../img/products/tres.jpg" class="mx-auto h-96" />
-				</div>
-				<div id="item4" class="w-full carousel-item">
-					<img src="../img/products/cuatro.png" class="mx-auto h-96" />
-				</div> -->
 			</div>
-			<!-- <div class="flex justify-center w-full mt-5 space-x-3 font-semibold text-white">
-				<a href="#item1" class="rounded bg-blue-500 px-2 py-0.5">1</a>
-				<a href="#item2" class="rounded bg-blue-500 px-2 py-0.5">2</a>
-				<a href="#item3" class="rounded bg-blue-500 px-2 py-0.5">3</a>
-				<a href="#item4" class="rounded bg-blue-500 px-2 py-0.5">4</a>
-			</div> -->
 		</div>
 
 		<div class="flex flex-col w-1/2 p-7">
 			<h1 class="mb-1 text-3xl font-medium text-gray-900 title-font" id="nombrePublicacion"></h1>
 
-			<a class="mt-3 space-x-2 text-base text-orange-500">
+			<a class="mt-3 space-x-2 text-orange-500">
 				<i class="fa-solid fa-location-dot mt-0.5"></i>
 				<label id="zonaEntregaPublicacion"></label>
 			</a>
 
-			<a class="mt-3 space-x-2 text-base text-blue-500" id="perfilVendedor">
-				<i class="fa-solid fa-robot mt-0.5"></i>
-				<label id="nombreVendedor"></label>
-			</a>
+			<div class="flex justify-between mt-3">
+				<a class="space-x-2 text-blue-500 my-auto" id="perfilVendedor">
+					<i class="fa-solid fa-robot mt-0.5"></i>
+					<label id="nombreVendedor"></label>
+				</a>
+				<a class="space-x-2 bg-blue-800 text-white hover:bg-amber-400 hover:text-black p-2 rounded-lg text-base select-none" id="mandarMensaje">
+					<i class="fa-solid fa-comments my-auto"></i>
+					<label class="font-semibold">Mandar mensaje</label>
+				</a>
+			</div>
 
-			<p class="mt-5 text-xl text-justify" id="descripcionPublicacion"></p>
+			<p class="mt-7 text-xl text-justify" id="descripcionPublicacion"></p>
 
-			<span class="mt-3 space-x-2 text-base text-yellow-500">
+			<span class="mt-3 space-x-2 text-amber-500">
 				<i class="fa-solid fa-envelope mt-0.5"></i>
 				<label id="correoVendedor"></label>
 			</span>
 
-			<span class="mt-3 space-x-2 text-base text-emerald-500">
+			<span class="mt-3 space-x-2 text-emerald-600">
 				<i class="fa-solid fa-phone mt-0.5"></i>
 				<label id="telefonoVendedor"></label>
 			</span>
@@ -114,53 +79,6 @@
 	</div>
 
 	<div class="flex flex-wrap w-11/12 p-2 mx-auto my-5 bg-cyan-5000" id="publicacionesRecomendadas">
-		<!-- <div class="w-1/4 p-2 ">
-			<div class="p-4 bg-gray-100 rounded-lg shadow-lg">
-				<a href="producto.html">
-					<img class="object-cover object-center w-full mx-auto mb-6 rounded-lg h-52"
-						src="../img/products/uno.png" alt="content">
-					<h3 class="text-xs font-bold tracking-widest text-orange-500 ">Gustavo A Madero, CDMX</h3>
-					<h2 class="mb-0 font-semibold text-gray-900 text-md">Huawei P20 Lite</h2>
-					<p class="text-base leading-relaxed">$1,600</p>
-				</a>
-			</div>
-		</div>
-
-		<div class="w-1/4 p-2">
-			<div class="p-4 bg-gray-100 rounded-lg shadow-lg">
-				<a href="producto.html">
-					<img class="object-cover object-center w-full mx-auto mb-6 rounded-lg h-52"
-						src="../img/products/dos.jpg" alt="content">
-					<h3 class="text-xs font-bold tracking-widest text-orange-500 ">Gustavo A Madero, CDMX</h3>
-					<h2 class="mb-0 font-semibold text-gray-900 text-md">Lenovo ThinkPad X1Carbon</h2>
-					<p class="text-base leading-relaxed">$5,499</p>
-				</a>
-			</div>
-		</div>
-
-		<div class="w-1/4 p-2">
-			<div class="p-4 bg-gray-100 rounded-lg shadow-lg">
-				<a href="producto.html">
-					<img class="object-cover object-center w-full mx-auto mb-6 rounded-lg h-52"
-						src="../img/products/cuatro.png" alt="content">
-					<h3 class="text-xs font-bold tracking-widest text-orange-500 ">Tlalnepantla, EDOMEX</h3>
-					<h2 class="mb-0 font-semibold text-gray-900 text-md">Guitarra cort x</h2>
-					<p class="text-base leading-relaxed">$3,500</p>
-				</a>
-			</div>
-		</div>
-
-		<div class="w-1/4 p-2">
-			<div class="p-4 bg-gray-100 rounded-lg shadow-lg">
-				<a href="producto.html">
-					<img class="object-cover object-center w-full mx-auto mb-6 rounded-lg h-52"
-						src="../img/products/tres.jpg" alt="content">
-					<h3 class="text-xs font-bold tracking-widest text-orange-500 ">Iztacalco, CDMX</h3>
-					<h2 class="mb-0 font-semibold text-gray-900 text-md">MacBook Pro 2018 15”</h2>
-					<p class="text-base leading-relaxed">$18,500</p>
-				</a>
-			</div>
-		</div> -->
 	</div>
 
 	<footer class="flex flex-row items-center w-11/12 px-5 py-8 mx-auto text-gray-500">

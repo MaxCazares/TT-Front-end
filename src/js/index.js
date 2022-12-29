@@ -4,6 +4,7 @@ import { urlAPI, localhost } from "./urls.js";
 
 const logoInicio = document.querySelector('#logoInicio');
 const formularioBusqueda = document.querySelector('#formularioBusqueda');
+const botones = document.querySelector('#botones');
 
 const mosaicos = document.querySelector('#mosaicos');
 const contenidoInicio = document.querySelector('#contenidoInicio');
@@ -17,8 +18,9 @@ window.onload = async () => {
     formularioBusqueda.addEventListener('submit', buscarProductos);
     agregarImagenesMosaicos();
     mostrarBotonPerfil();
-    const publicaciones = await obtenerDatos('publicaciones/getbycategory/', 'intrumentos musicales', true);
-    publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
+    const publicaciones = await obtenerDatos('publicaciones/getrandom', '', true);
+    publicaciones.response.forEach(publicacion => crearPublicacionesHTML(publicacion));
+    // publicaciones.response.forEach(publicacion => console.log(publicacion));
 }
 
 const obtenerParametrosURL = () => {
@@ -45,6 +47,10 @@ const mostrarBotonPerfil = async () => {
     if (usuario) {
         const nombreUsuario = usuario.nombre_usuario.split(' ');
         const nombreUsuarioApellido = nombreUsuario[0] + ' ' + nombreUsuario[1];
+
+        botones.classList.remove('justify-center');
+        botones.classList.remove('space-x-8');
+        botones.classList.add('justify-between');
 
         crearCuentaBoton.classList.add('hidden');
         iniciarSesionBoton.classList.add('hidden');
@@ -136,7 +142,7 @@ const irAlProducto = (idPublicacion) => {
     const publicacion = new URL(localhost + 'producto.html');
     publicacion.searchParams.set('idpublication', idPublicacion);
 
-    if(idUsuario !== null)
+    if (idUsuario !== null)
         publicacion.searchParams.set('iduser', idUsuario);
 
     window.location.href = publicacion;
@@ -146,10 +152,10 @@ logoInicio.onclick = () => {
     const idUsuario = obtenerParametrosURL();
     const inicio = new URL(localhost + 'index.html');
 
-    if(idUsuario)
+    if (idUsuario)
         inicio.searchParams.set('iduser', idUsuario);
-    
-        window.location.href = inicio;
+
+    window.location.href = inicio;
 }
 
 const agregarImagenesMosaicos = () => {

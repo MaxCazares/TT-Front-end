@@ -6,6 +6,7 @@ const inputFotoUsuario = document.querySelector('#inputFotoUsuario');
 const nombreUsuario = document.querySelector('#nombreUsuario');
 const emailUsuario = document.querySelector('#emailUsuario');
 const passwordUsuario = document.querySelector('#passwordUsuario');
+const esconderPassword = document.querySelector('#esconderPassword');
 const telefonoUsuario = document.querySelector('#telefonoUsuario');
 const zonaUsuario = document.querySelector('#zonaUsuario');
 
@@ -44,15 +45,16 @@ const imprimirDatos = (usuario) => {
     passwordUsuario.value = usuario.contraseña_usuario;
     telefonoUsuario.value = usuario.telefono_usuario;
     zonaUsuario.value = usuario.zona_entrega_usuario;
-    fotoUsuario.src = usuario.img_usuario.file;
     fotoUsuarioBytes = usuario.img_usuario.file;
+    fotoUsuario.src = usuario.img_usuario.file === '' ? 
+        "../img/defaulUser.jpeg" : usuario.img_usuario.file;
 }
 
 actualizarInformacion.onclick = async () => {
     const {idUser} = obtenerParametrosURL();
 
     const usuarioModificado = {
-        "id": {idUser},
+        "id": idUser,
         "campos": {
             "nombre_usuario": nombreUsuario.value,
             "contraseña_usuario": passwordUsuario.value,
@@ -105,3 +107,18 @@ inputFotoUsuario.addEventListener('change', e => {
 
     reader.readAsDataURL(foto);
 });
+
+esconderPassword.onclick = () => {
+    if (passwordUsuario.type == 'password') {
+        passwordUsuario.type = 'text';
+        esconderPassword.classList.add('fa-eye');
+        esconderPassword.classList.remove('fa-sharp');
+        esconderPassword.classList.remove('fa-eye-slash');
+
+    } else {
+        passwordUsuario.type = 'password';
+        esconderPassword.classList.remove('fa-eye');
+        esconderPassword.classList.add('fa-sharp');
+        esconderPassword.classList.add('fa-eye-slash');
+    }
+};
