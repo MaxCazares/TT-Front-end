@@ -1,4 +1,4 @@
-import { alertFail, alertSuccess } from "./alerts.js";
+import { infoMensaje as info } from "./alerts.js";
 import { localhost, urlAPI } from "./urls.js";
 
 const logoInicio = document.querySelector('#logoInicio');
@@ -16,30 +16,32 @@ const perfilVendedor = document.querySelector('#perfilVendedor');
 const publicacionesRecomendadas = document.querySelector('#publicacionesRecomendadas');
 
 const mandarMensaje = document.querySelector('#mandarMensaje');
+const infoMensaje = document.querySelector('#infoMensaje');
 
 window.onload = async () => {
-    const {idPublicacion} = obtenerParametrosURL();
-    
+    const { idPublicacion } = obtenerParametrosURL();
+
     const datosPublicacion = await obtenerDatos('publicaciones/getbyid/', idPublicacion);
     const datosUsuario = await obtenerDatos('usuarios/getbyid/', datosPublicacion.id_usuario);
-    
+
     imprimirDatos(datosPublicacion, datosUsuario);
     mostrarPublicacionesRecomendadas(datosPublicacion.categoria);
+    botonMensaje(datosUsuario);
 }
 
 const obtenerParametrosURL = () => {
     const URLactual = new URL(window.location);
     const idPublicacion = URLactual.searchParams.get('idpublication');
     const idUser = URLactual.searchParams.get('iduser');
-    return {idPublicacion, idUser};
+    return { idPublicacion, idUser };
 }
 
 const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     try {
         const respuesta = await fetch(urlAPI + urlConsulta + datoConsulta);
         const datosJSON = await respuesta.json();
-        const datos = multiple ? datosJSON.response : datosJSON.response[0];      
-        return datos;        
+        const datos = multiple ? datosJSON.response : datosJSON.response[0];
+        return datos;
     } catch (error) {
         console.error(error);
     }
@@ -60,7 +62,7 @@ const imprimirDatos = (datosPublicacion, datosUsuario) => {
 }
 
 const verPerfilVendedor = idSeller => {
-    const {idUser} = obtenerParametrosURL();
+    const { idUser } = obtenerParametrosURL();
     const paginaPerfil = new URL(localhost + 'perfil.html');
     paginaPerfil.searchParams.set('idseller', idSeller);
     paginaPerfil.searchParams.set('iduser', idUser);
@@ -71,8 +73,8 @@ const verPerfilVendedor = idSeller => {
 
 const mostrarPublicacionesRecomendadas = async (categoria) => {
     const publicaciones = await obtenerDatos('publicaciones/getbycategory/', categoria, true);
-    
-    for (let i = 0; i < 4; i++) 
+
+    for (let i = 0; i < 4; i++)
         crearPublicacionRecomendadaHTML(publicaciones[i]);
 }
 
@@ -112,33 +114,47 @@ const crearPublicacionRecomendadaHTML = async (publicacion) => {
 }
 
 const irAlProducto = (idPublicacion) => {
-    const {idUser} = obtenerParametrosURL();
+    const { idUser } = obtenerParametrosURL();
 
     const publicacion = new URL(localhost + 'producto.html');
     publicacion.searchParams.set('idpublication', idPublicacion);
 
-    if(idUser !== null)
+    if (idUser !== null)
         publicacion.searchParams.set('iduser', idUser);
 
     window.location.href = publicacion;
 }
 
-logoInicio.onclick = () =>{
-    const {idUser} = obtenerParametrosURL();
+logoInicio.onclick = () => {
+    const { idUser } = obtenerParametrosURL();
     const inicio = new URL(localhost + 'index.html');
-    
+
     if (idUser !== null)
         inicio.searchParams.set('iduser', idUser);
 
     window.location.href = inicio;
 }
 
+const botonMensaje = async (datosUsuario) => {
+    const { idUser } = obtenerParametrosURL();
+
+    if (idUser) {
+        infoMensaje.classList.add('hidden');
+
+        if (idUser != datosUsuario.id_usuario)
+            mandarMensaje.classList.remove('hidden');
+    }
+}
+
+infoMensaje.onclick = () => info();
+
 mandarMensaje.onclick = async () => {
-    const {idPublicacion} = obtenerParametrosURL();
+    const { idPublicacion, idUser } = obtenerParametrosURL();
     const publicacion = await obtenerDatos('publicaciones/getbyid/', idPublicacion);
 
     const mensajes = new URL(localhost + 'mensajes.html');
     mensajes.searchParams.set('idpublication', idPublicacion);
     mensajes.searchParams.set('idseller', publicacion.id_usuario);
-    window.location.href = publicacion;
+    mensajes.searchParams.set('idbuyer', idUser);
+    window.location.href = mensajes;
 }

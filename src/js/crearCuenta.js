@@ -1,9 +1,8 @@
 import { alertSuccess, alertFail, infoPassword as info } from "./alerts.js";
-import { localhost, urlAPI } from "./urls.js";
+import { urlAPI } from "./urls.js";
 
 const formulario = document.querySelector('#formularioRegistro');
 
-const defaulUserFoto = document.querySelector('#defaulUserFoto');
 const nombreFormulario = document.querySelector('#nombreNuevoUsuario');
 const emailFormulario = document.querySelector('#emailNuevoUsuario');
 const passwordFormulario = document.querySelector('#passwordNuevoUsuario');

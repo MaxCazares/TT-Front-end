@@ -26,3 +26,13 @@ export const infoPassword = () => {
         timer: 2500,
     });
 }
+
+export const infoMensaje = () => {
+    Swal.fire({
+        icon: 'info',
+        title: 'Para mandar un mensaje',
+        text: 'debes de tener una cuenta Quickshop',
+        showConfirmButton: false,
+        timer: 2500,
+    });
+}
