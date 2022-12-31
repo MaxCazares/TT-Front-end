@@ -20,20 +20,19 @@
 <body>
     <nav class="flex p-3 space-x-4 bg-blue-400 shadow-xl">
         <div class="flex items-center justify-center w-2/12 p-2 space-x-6 text-center">
-            <a id="logoInicio">
+            <a>
                 <img src="../img/logo.svg" alt="logo" class="h-16" />
             </a>
         </div>
     </nav>
 
     <div class="grid grid-cols-3 w-11/12 mx-auto shadow-2xl my-6 p-3 space-x-3">
-        
+
         <div class="bg-rose-4000 cols-span-1 shadow-lg overflow-y-auto space-y-5 p-5" id="listaChats">
-            
-            <div class="bg-lime-4000 flex flex-row px-4 py-3 shadow-slate-300 shadow-lg rounded-lg">
+            <!-- <div class="flex flex-row px-4 py-3 shadow-slate-300 shadow-lg rounded-lg">
                 <div class="flex flex-row mr-5 w-40">
-                    <img src="../img/products/dos.jpg" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none -mr-7">
-                    <img src="../img/products/cuatro.png" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none">
+                    <img src="../img/products/dos.jpg" class="w-20 h-20 rounded-full select-none -mr-7">
+                    <img src="../img/products/cuatro.png" class="w-20 h-20 rounded-full select-none">
                 </div>
                 <div class="flex flex-col">
                     <label class="bg-orange-5000 my-auto text-base">¿Es lo menos por la bicicleta?</label>
@@ -42,65 +41,28 @@
                         <i class="fa-solid fa-trash-can justify-end text-red-500 my-auto"></i>
                     </span>
                 </div>
-            </div>
-
-            <div class="bg-lime-4000 flex flex-row px-4 py-3 shadow-slate-300 shadow-lg rounded-lg">
-                <div class="flex flex-row mr-5 w-40">
-                    <img src="../img/products/dos.jpg" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none -mr-7">
-                    <img src="../img/products/cuatro.png" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none">
-                </div>
-                <div class="flex flex-col">
-                    <label class="bg-orange-5000 my-auto text-base">¿Es lo menos por la bicicleta?</label>
-                    <span class="flex flex-row space-x-5">
-                        <i class="fa-brands fa-readme text-blue-400 my-auto"></i>
-                        <i class="fa-solid fa-trash-can justify-end text-red-500 my-auto"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="bg-lime-4000 flex flex-row px-4 py-3 shadow-slate-300 shadow-lg rounded-lg">
-                <div class="flex flex-row mr-5 w-40">
-                    <img src="../img/products/dos.jpg" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none -mr-7">
-                    <img src="../img/products/cuatro.png" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none">
-                </div>
-                <div class="flex flex-col">
-                    <label class="bg-orange-5000 my-auto text-base">¿Es lo menos por la bicicleta?</label>
-                    <span class="flex flex-row space-x-5">
-                        <i class="fa-brands fa-readme text-blue-400 my-auto"></i>
-                        <i class="fa-solid fa-trash-can justify-end text-red-500 my-auto"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="bg-lime-4000 flex flex-row px-4 py-3 shadow-slate-300 shadow-lg rounded-lg">
-                <div class="flex flex-row mr-5 w-40">
-                    <img src="../img/products/dos.jpg" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none -mr-7">
-                    <img src="../img/products/cuatro.png" id="fotoUsuarioMensaje" class="w-20 h-20 rounded-full select-none">
-                </div>
-                <div class="flex flex-col">
-                    <label class="bg-orange-5000 my-auto text-base">¿Es lo menos por la bicicleta?</label>
-                    <span class="flex flex-row space-x-5">
-                        <i class="fa-brands fa-readme text-blue-400 my-auto"></i>
-                        <i class="fa-solid fa-trash-can justify-end text-red-500 my-auto"></i>
-                    </span>
-                </div>
-            </div>
-
+            </div> -->
         </div>
 
         <div class="bg-orange-4000 flex flex-col mx-auto py-7 col-span-2 space-y-10">
             <div class="flex flex-row space-x-0 mx-auto">
-                <textarea id="mensajeIzquierda" cols="31" rows="12" class="border-l-1 border-r-0 border-slate-400 resize-none" disabled></textarea>
-                <textarea id="mensajeDerecha" cols="31" rows="12" class="border-r-1 border-l-0 border-slate-400 resize-none" disabled></textarea>
+                <textarea id="mensajeIzquierda" cols="31" rows="12"
+                    class="border-l-1 border-r-0 border-slate-400 resize-none" disabled></textarea>
+                <textarea id="mensajeDerecha" cols="31" rows="12"
+                    class="border-r-1 border-l-0 border-slate-400 resize-none" disabled></textarea>
             </div>
 
-            <input type="text" id="mensajeUsuario" class="w-11/12 mx-auto border-slate-400 placeholder:text-slate-400 placeholder:italic" autofocus placeholder="Escribe tu mensaje aquí">
+            <input type="text" id="mensajeUsuario"
+                class="w-11/12 mx-auto border-slate-400 placeholder:text-slate-400 placeholder:italic" autofocus
+                placeholder="Escribe tu mensaje aquí">
 
             <div class="flex mx-auto space-x-20 font-base">
                 <a id="enviarMensajeBoton"
-                    class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg rounded-md hover:bg-amber-400 hover:text-black">
+                    class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg rounded-md hover:bg-amber-400 hover:text-black select-none">
                     Enviar mensaje
                 </a>
                 <a id="regresarBoton"
-                    class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg rounded-md hover:bg-amber-400 hover:text-black">
+                    class="bg-blue-800 text-white py-2 px-5 font-semibold text-lg rounded-md hover:bg-amber-400 hover:text-black select-none">
                     Regresar
                 </a>
             </div>

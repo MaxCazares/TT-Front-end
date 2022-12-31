@@ -18,9 +18,8 @@ window.onload = async () => {
     formularioBusqueda.addEventListener('submit', buscarProductos);
     agregarImagenesMosaicos();
     mostrarBotonPerfil();
-    const publicaciones = await obtenerDatos('publicaciones/getrandom', '', true);
-    publicaciones.response.forEach(publicacion => crearPublicacionesHTML(publicacion));
-    // publicaciones.response.forEach(publicacion => console.log(publicacion));
+    const publicaciones = await obtenerDatos('publicaciones/getbycategory/', 'deportes', true);
+    publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
 }
 
 const obtenerParametrosURL = () => {
@@ -120,7 +119,7 @@ const crearPublicacionesHTML = async (publicacion) => {
 
     divExterior.classList.add('md:w-1/3', 'xl:w-1/4', 'p-2');
     divInterior.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'shadow-lg');
-    // la etiqueta 'a' no tiene estilos
+    etiquetaA.classList.add('cursor-pointer');
     imagen.classList.add('w-full', 'rounded-lg', 'mx-auto', 'object-cover', 'object-center', 'mb-6', 'h-52');
     h3.classList.add('tracking-widest', 'text-orange-500', 'text-xs', 'font-bold');
     h2.classList.add('text-lg', 'text-gray-900', 'font-semibold', 'mb-0');
