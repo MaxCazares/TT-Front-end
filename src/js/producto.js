@@ -26,7 +26,7 @@ window.onload = async () => {
 
     imprimirDatos(datosPublicacion, datosUsuario);
     mostrarPublicacionesRecomendadas(datosPublicacion.categoria);
-    botonMensaje(datosUsuario);
+    // botonMensaje(datosUsuario);
 }
 
 const obtenerParametrosURL = () => {
@@ -135,26 +135,26 @@ logoInicio.onclick = () => {
     window.location.href = inicio;
 }
 
-const botonMensaje = async (datosUsuario) => {
-    const { idUser } = obtenerParametrosURL();
+// const botonMensaje = async (datosUsuario) => {
+//     const { idUser } = obtenerParametrosURL();
 
-    if (idUser) {
-        infoMensaje.classList.add('hidden');
+//     if (idUser) {
+//         infoMensaje.classList.add('hidden');
 
-        if (idUser != datosUsuario.id_usuario)
-            mandarMensaje.classList.remove('hidden');
-    }
-}
+//         if (idUser != datosUsuario.id_usuario)
+//             mandarMensaje.classList.remove('hidden');
+//     }
+// }
 
-infoMensaje.onclick = () => info();
+// infoMensaje.onclick = () => info();
 
-mandarMensaje.onclick = async () => {
-    const { idPublicacion, idUser } = obtenerParametrosURL();
-    const publicacion = await obtenerDatos('publicaciones/getbyid/', idPublicacion);
+// mandarMensaje.onclick = async () => {
+//     const { idPublicacion, idUser } = obtenerParametrosURL();
+//     const publicacion = await obtenerDatos('publicaciones/getbyid/', idPublicacion);
 
-    const mensajes = new URL(localhost + 'mensajes.html');
-    mensajes.searchParams.set('idpublication', idPublicacion);
-    mensajes.searchParams.set('idseller', publicacion.id_usuario);
-    mensajes.searchParams.set('idbuyer', idUser);
-    window.location.href = mensajes;
-}
+//     const mensajes = new URL(localhost + 'mensajes.html');
+//     mensajes.searchParams.set('idpublication', idPublicacion);
+//     mensajes.searchParams.set('idseller', publicacion.id_usuario);
+//     mensajes.searchParams.set('idbuyer', idUser);
+//     window.location.href = mensajes;
+// }

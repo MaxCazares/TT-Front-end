@@ -2,6 +2,7 @@ import { alertFail, alertSuccess } from './alerts.js';
 import { urlAPI, localhost } from './urls.js'
 
 const logoInicio = document.querySelector('#logoInicio');
+const cerrarSesionBoton = document.querySelector('#cerrarSesionBoton');
 
 const fotoUsuario = document.querySelector('#fotoUsuario');
 const nombreUsuario = document.querySelector('#nombreUsuario');
@@ -9,11 +10,17 @@ const emailUsuario = document.querySelector('#emailUsuario');
 const telefonoUsuario = document.querySelector('#telefonoUsuario');
 const zonaUsuario = document.querySelector('#zonaUsuario');
 
+const opcionMandarMensaje = document.querySelector('#opcionMandarMensaje');
+const mandarMensaje = document.querySelector('#mandarMensaje');
+
 const opcionPerfil = document.querySelector('#opcionPerfil');
 const editarPerfil = document.querySelector('#editarPerfil');
 
 const opcionPublicaciones = document.querySelector('#opcionPublicaciones');
 const publicaciones = document.querySelector('#publicaciones');
+
+const opcionMensajes = document.querySelector('#opcionMensajes');
+const mensajes = document.querySelector('#mensajes');
 
 const divImagen = document.querySelector('#divImagen');
 const estrellasPuntuacion = document.querySelector('#estrellasPuntuacion');
@@ -28,9 +35,11 @@ const seccionComentarios = document.querySelector('#seccionComentarios');
 let puntuacionComentario = 0;
 
 window.onload = async () => {
-    imprimirDatos();
-    ocultarOpcionesPerfil();
-    mostarComentarios();
+    const { idSeller, idUser, origin } = obtenerParametrosURL();
+    imprimirDatos(idSeller, idUser, origin);
+    ocultarOpcionesPerfil(origin);
+    mostarComentarios(idSeller, idUser, origin);
+
     formularioComentario.addEventListener('submit', enviarComentario);
 }
 
@@ -53,8 +62,7 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     }
 }
 
-const imprimirDatos = async () => {
-    const { idSeller, idUser, origin } = obtenerParametrosURL();
+const imprimirDatos = async (idSeller, idUser, origin) => {
     let usuario;
 
     if (origin === 'inicio') {
@@ -71,15 +79,25 @@ const imprimirDatos = async () => {
     emailUsuario.value = usuario.correo_usuario;
     telefonoUsuario.value = usuario.telefono_usuario;
     zonaUsuario.value = usuario.zona_entrega_usuario;
-    fotoUsuario.src = usuario.img_usuario.file === '' ? 
+    fotoUsuario.src = usuario.img_usuario.file === '' ?
         "../img/defaulUser.jpeg" : usuario.img_usuario.file;
 }
 
-editarPerfil.onclick = () => {
+mandarMensaje.onclick = () => {
     const { idSeller, idUser, origin } = obtenerParametrosURL();
+    console.log(idSeller);
+    const paginaMensajes = new URL(localhost + 'mensajes.html');
+    paginaMensajes.searchParams.set('idseller', idSeller);
+    paginaMensajes.searchParams.set('iduser', idUser);
+    paginaMensajes.searchParams.set('origin', origin);
+
+    window.location.href = paginaMensajes;
+}
+
+editarPerfil.onclick = () => {
+    const { idUser, origin } = obtenerParametrosURL();
 
     const paginaEditarPerfil = new URL(localhost + 'editarPerfil.html');
-    paginaEditarPerfil.searchParams.set('idseller', idSeller);
     paginaEditarPerfil.searchParams.set('iduser', idUser);
     paginaEditarPerfil.searchParams.set('origin', origin);
 
@@ -87,14 +105,24 @@ editarPerfil.onclick = () => {
 }
 
 publicaciones.onclick = () => {
-    const { idSeller, idUser, origin } = obtenerParametrosURL();
+    const { idUser, origin } = obtenerParametrosURL();
 
     const paginaPublicaciones = new URL(localhost + 'publicaciones.html');
-    paginaPublicaciones.searchParams.set('idseller', idSeller);
     paginaPublicaciones.searchParams.set('iduser', idUser);
     paginaPublicaciones.searchParams.set('origin', origin);
 
     window.location.href = paginaPublicaciones;
+}
+
+mensajes.onclick = () => {
+    const { idSeller, idUser, origin } = obtenerParametrosURL();
+
+    const paginaMensajes = new URL(localhost + 'mensajes.html');
+    paginaMensajes.searchParams.set('idseller', idSeller);
+    paginaMensajes.searchParams.set('iduser', idUser);
+    paginaMensajes.searchParams.set('origin', origin);
+
+    window.location.href = paginaMensajes;
 }
 
 logoInicio.onclick = () => {
@@ -108,14 +136,27 @@ logoInicio.onclick = () => {
     window.location.href = inicio;
 }
 
-const ocultarOpcionesPerfil = () => {
-    const { origin } = obtenerParametrosURL();
+const ocultarOpcionesPerfil = (origin) => {
+    const { idSeller, idUser } = obtenerParametrosURL();
 
     if (origin === 'publicacion') {
         opcionPerfil.classList.add('hidden');
         opcionPublicaciones.classList.add('hidden');
+        opcionMensajes.classList.add('hidden');
+        cerrarSesionBoton.classList.add('hidden');
         divImagen.classList.remove('-mt-24');
-        seccionFormularioComentarios.classList.remove('hidden');
+
+        if (idSeller === idUser) {
+            opcionMandarMensaje.classList.add('hidden');
+            seccionFormularioComentarios.classList.add('hidden');
+        } else
+            if (idUser === 'null') {
+                opcionMandarMensaje.classList.add('hidden');
+            }
+
+    } else {
+        opcionMandarMensaje.classList.add('hidden');
+        seccionFormularioComentarios.classList.add('hidden');
     }
 }
 
@@ -168,9 +209,11 @@ const enviarComentario = async (e) => {
     }
 }
 
-const mostarComentarios = async () => {
-    const { idSeller } = obtenerParametrosURL();
-    const comentarios = await obtenerDatos('usercomment/getbyuserid/', idSeller, true);
+const mostarComentarios = async (idSeller, idUser, origin) => {
+    let comentarios = origin === 'publicacion' ?
+        await obtenerDatos('usercomment/getbyuserid/', idSeller, true) :
+        await obtenerDatos('usercomment/getbyuserid/', idUser, true);
+
     comentarios.forEach(comentario => crearComentario(comentario));
 }
 

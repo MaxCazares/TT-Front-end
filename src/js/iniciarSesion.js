@@ -29,7 +29,7 @@ const validarUsuario = async (email, password) => {
         const usuario = usuarioJSON.response[0];
 
         if(email === usuario.correo_usuario && password === usuario.contraseña_usuario){
-            alertSuccess(`Bienvenido de nuevo \n${usuario.nombre_usuario}`);
+            alertSuccess(`Bienvenid@ de nuevo \n${usuario.nombre_usuario}`);
             
             const inicio = new URL(localhost + 'index.html');
             inicio.searchParams.set('iduser', usuario.id_usuario);

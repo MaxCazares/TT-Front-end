@@ -1,5 +1,7 @@
 import { localhost, urlAPI } from "./urls.js";
 
+const logoInicio = document.querySelector('#logoInicio');
+
 const listaChats = document.querySelector('#listaChats');
 
 const mensajeIzquierda = document.querySelector('#mensajeIzquierda');
@@ -12,17 +14,17 @@ const regresarBoton = document.querySelector('#regresarBoton');
 let chatActual = '';
 
 window.onload = () => {
-    const { idSeller, idBuyer } = obtenerParametrosURL();
-    comprobarChat(idSeller, idBuyer);
-    mostrarChats(idBuyer);
+    const { idSeller, idUser } = obtenerParametrosURL();
+    comprobarChat(idSeller, idUser);
+    mostrarChats(idUser);
 }
 
 const obtenerParametrosURL = () => {
     const URLactual = new URL(window.location);
-    const idPublicacion = URLactual.searchParams.get('idpublication');
     const idSeller = URLactual.searchParams.get('idseller');
-    const idBuyer = URLactual.searchParams.get('idbuyer');
-    return { idPublicacion, idSeller, idBuyer };
+    const idUser = URLactual.searchParams.get('iduser');
+    const origin = URLactual.searchParams.get('origin');
+    return { idSeller, idUser, origin };
 }
 
 const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
@@ -36,42 +38,39 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     }
 }
 
-const comprobarChat = async (idSeller, idBuyer) => {
-    const chatExistente = await obtenerDatos('chat/check/', idSeller + ';' + idBuyer);
+const comprobarChat = async (idSeller, idUser) => {
+    const chatExistente = await obtenerDatos('chat/check/', idSeller + ';' + idUser);
 
     if (chatExistente === '1') {
         console.log('el chat existe');
         // console.log(idSeller);
-        // console.log(idBuyer);
-        mostrarChatActual(idSeller, idBuyer);
+        // console.log(idUser);
+        mostrarChatActual(idSeller, idUser);
     } else {
         console.log('el chat no existe');
         console.log(idSeller);
-        console.log(idBuyer);
+        console.log(idUser);
         crearChat();
     }
 }
 
-const mostrarChats = async (idBuyer) => {
-    const chatsBuyer = await obtenerDatos('chat/getalluserchats/', idBuyer, true);
-    // console.log(chatsBuyer);
-    chatsBuyer.forEach(chat => crearChatHTML(chat));
+const mostrarChats = async (idUser) => {
+    const chatsUser = await obtenerDatos('chat/getalluserchats/', idUser, true);
+    chatsUser.forEach(chat => crearChatHTML(chat));
 }
 
-const mostrarChatActual = async (idSeller, idBuyer) => {
-    const chat = await obtenerDatos('chat/getchat/', idSeller + ';' + idBuyer);
+const mostrarChatActual = async (idSeller, idUser) => {
+    const chat = await obtenerDatos('chat/getchat/', idSeller + ';' + idUser);
     chatActual = chat.id_chat;
-    chat.message_list.forEach(mensaje => {
-        mensajeDerecha.textContent += mensaje + '\n';
-    });
+    chat.message_list.forEach(mensaje => burbujasChat(mensaje, idUser));
 }
 
 const crearChat = async () => {
-    const { idSeller, idBuyer } = obtenerParametrosURL();
+    const { idSeller, idUser } = obtenerParametrosURL();
 
     const nuevoChat = {
         "user1_id": idSeller,
-        "user2_id": idBuyer
+        "user2_id": idUser
     }
 
     console.log('creando chat ...');
@@ -97,12 +96,15 @@ const crearChatHTML = async (chat) => {
     const iconoLeer = document.createElement('i');
     const iconoEliminar = document.createElement('i');
 
-    const seller = await obtenerDatos('usuarios/getbyid/', chat.user1_id);
-    const buyer = await obtenerDatos('usuarios/getbyid/', chat.user2_id);
+    const usuario1 = await obtenerDatos('usuarios/getbyid/', chat.user1_id);
+    const usuario2 = await obtenerDatos('usuarios/getbyid/', chat.user2_id);
 
-    imagenUsuario.src = seller.img_usuario.file;
-    imagenPublicacion.src = buyer.img_usuario.file;
-    ultimoMensaje.textContent = chat.message_list;
+    imagenUsuario.src = usuario1.img_usuario.file;
+    imagenPublicacion.src = usuario2.img_usuario.file;
+    ultimoMensaje.textContent = chat.message_list[0].contenido;
+
+    iconoLeer.onclick = () => mostrarChat(chat.user1_id, chat.user2_id);
+    iconoEliminar.onclick = () => eliminarChat(chat.id_chat);
 
     divExterior.classList.add('flex', 'flex-row', 'px-4', 'py-3', 'shadow-slate-300', 'shadow-lg', 'rounded-lg');
     divSuperior.classList.add('flex', 'flex-row', 'mr-5', 'w-40');
@@ -127,11 +129,20 @@ const crearChatHTML = async (chat) => {
 }
 
 enviarMensajeBoton.onclick = async () => {
+    const { idUser } = obtenerParametrosURL();
     const mensajeInput = mensajeUsuario.value;
+
+    // const nuevoMensaje = {
+    //     "id_chat": chatActual,
+    //     "message": mensajeInput
+    // }
 
     const nuevoMensaje = {
         "id_chat": chatActual,
-        "message": mensajeInput
+        "message": {
+            "usuario": idUser,
+            "contenido": mensajeInput
+        }
     }
 
     try {
@@ -149,11 +160,81 @@ enviarMensajeBoton.onclick = async () => {
 }
 
 regresarBoton.onclick = () => {
-    const { idPublicacion, idBuyer } = obtenerParametrosURL();
+    const { idSeller, idUser, origin } = obtenerParametrosURL();
 
-    const paginaProducto = new URL(localhost + 'producto.html');
-    paginaProducto.searchParams.set('idpublication', idPublicacion);
-    paginaProducto.searchParams.set('iduser', idBuyer);
+    const perfil = new URL(localhost + 'perfil.html');
+    perfil.searchParams.set('idseller', idSeller);
+    perfil.searchParams.set('iduser', idUser);
+    perfil.searchParams.set('origin', origin);
 
-    window.location.href = paginaProducto;
+    window.location.href = perfil;
+}
+
+logoInicio.onclick = () => {
+    const { idUser } = obtenerParametrosURL();
+
+    const perfil = new URL(localhost + 'index.html');
+    perfil.searchParams.set('iduser', idUser);
+
+    window.location.href = perfil;
+}
+
+const mostrarChat = async (user1, user2) => {
+    const { idUser } = obtenerParametrosURL();
+
+    const chat = await obtenerDatos('chat/getchat/', user1 + ';' + user2);
+    chatActual = chat.id_chat;
+
+    mensajeDerecha.textContent = '';
+    mensajeIzquierda.textContent = '';
+
+    chat.message_list.forEach(mensaje => burbujasChat(mensaje, idUser));
+}
+
+const eliminarChat = (idChat) => {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'No es posible recuperar chats borrados',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#174e9d',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, borrar chat'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+
+            await fetch(urlAPI + `chat/${idChat}`, {
+                method: "DELETE",
+            });
+
+            Swal.fire({
+                icon: 'success',
+                title: 'El chat ha sido borrado',
+                showConfirmButton: false,
+                timer: 1000
+            })
+
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        }
+    })
+}
+
+const burbujasChat = (mensaje, idUser) => {
+    const message = document.createElement('label');
+    const espacio = document.createElement('label');
+    espacio.classList.add('bg-white', 'text-white', 'rounded-xl', 'py-2', 'px-3', 'selected-none');
+    message.classList.add('bg-indigo-200', 'rounded-xl', 'py-2', 'px-3');
+    espacio.textContent = '?';
+
+    if (mensaje.usuario === idUser) {
+        message.textContent = mensaje.contenido;
+        mensajeDerecha.appendChild(message);
+        mensajeIzquierda.appendChild(espacio);
+    } else {
+        message.textContent = mensaje.contenido;
+        mensajeIzquierda.appendChild(message);
+        mensajeDerecha.appendChild(espacio);
+    }
 }

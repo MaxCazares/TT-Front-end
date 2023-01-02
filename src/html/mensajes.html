@@ -20,7 +20,7 @@
 <body>
     <nav class="flex p-3 space-x-4 bg-blue-400 shadow-xl">
         <div class="flex items-center justify-center w-2/12 p-2 space-x-6 text-center">
-            <a>
+            <a id="logoInicio">
                 <img src="../img/logo.svg" alt="logo" class="h-16" />
             </a>
         </div>
@@ -44,13 +44,23 @@
             </div> -->
         </div>
 
-        <div class="bg-orange-4000 flex flex-col mx-auto py-7 col-span-2 space-y-10">
-            <div class="flex flex-row space-x-0 mx-auto">
+        <div class="flex flex-col mx-auto py-7 col-span-2 space-y-10">
+            <div class="flex flex-row space-x-1 mx-auto w-11/12">
+                <div id="mensajeIzquierda" class="flex flex-col bg-white w-1/2 h-96 p-5 py-6 space-y-3 border border-amber-400 overflow-y-auto">
+                    <!-- <label class="rounded-xl  py-2 px-3">a</label> -->
+                    <!-- <label>a</label> -->
+                </div>
+                <div id="mensajeDerecha" class="flex flex-col bg-white w-1/2 h-96 p-5 py-6 space-y-3 border border-blue-400 overflow-y-auto">
+                    <!-- <label class="rounded-xl bg-indigo-200 py-2 px-3">a</label> -->
+                </div>
+            </div>
+
+            <!-- <div class="flex flex-row space-x-0 mx-auto bg-purple-400">
                 <textarea id="mensajeIzquierda" cols="31" rows="12"
                     class="border-l-1 border-r-0 border-slate-400 resize-none" disabled></textarea>
                 <textarea id="mensajeDerecha" cols="31" rows="12"
                     class="border-r-1 border-l-0 border-slate-400 resize-none" disabled></textarea>
-            </div>
+            </div> -->
 
             <input type="text" id="mensajeUsuario"
                 class="w-11/12 mx-auto border-slate-400 placeholder:text-slate-400 placeholder:italic" autofocus

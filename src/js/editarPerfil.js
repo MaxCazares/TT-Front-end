@@ -15,25 +15,24 @@ const actualizarInformacion = document.querySelector('#actualizarInformacionUsua
 let fotoUsuarioBytes = '';
 
 window.onload = async () => {
-    obtenerDatosUsuario();
+    const {idUser} = obtenerParametrosURL();
+    const usuario = await obtenerDatos('usuarios/getbyid/', idUser);
+    imprimirDatos(usuario);
 }
 
 const obtenerParametrosURL = () => {
     const URLactual = new URL(window.location);
-    const idSeller = URLactual.searchParams.get('idseller');
     const idUser = URLactual.searchParams.get('iduser');
     const origin = URLactual.searchParams.get('origin');
-    return { idSeller, idUser, origin };
+    return { idUser, origin };
 }
 
-const obtenerDatosUsuario = async () => {
-    const {idUser} = obtenerParametrosURL();
+const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     try {
-        const respuesta = await fetch(urlAPI + `usuarios/getbyid/${idUser}`);
-        const usuarioJSON = await respuesta.json();
-        const usuario = usuarioJSON.response[0];
-        imprimirDatos(usuario);
-
+        const respuesta = await fetch(urlAPI + urlConsulta + datoConsulta);
+        const datosJSON = await respuesta.json();
+        const datos = multiple ? datosJSON.response : datosJSON.response[0];
+        return datos;
     } catch (error) {
         console.error(error);
     }
@@ -86,10 +85,9 @@ actualizarInformacion.onclick = async () => {
 }
 
 const regresoPerfil = () => {
-    const { idSeller, idUser, origin } = obtenerParametrosURL();
+    const { idUser, origin } = obtenerParametrosURL();
 
     const paginaPerfil = new URL(localhost + 'perfil.html');
-    paginaPerfil.searchParams.set('idseller', idSeller);
     paginaPerfil.searchParams.set('iduser', idUser);
     paginaPerfil.searchParams.set('origin', origin);
 

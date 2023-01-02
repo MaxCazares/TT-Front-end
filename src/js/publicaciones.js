@@ -21,11 +21,10 @@ window.onload = async () => {
 }
 
 const obtenerParametrosURL = () => {
-    const URLactual = new URL(window.location);
-    const idSeller = URLactual.searchParams.get('idseller');
+    const URLactual = new URL(window.location);    
     const idUser = URLactual.searchParams.get('iduser');
     const origin = URLactual.searchParams.get('origin');
-    return { idSeller, idUser, origin };
+    return { idUser, origin };
 }
 
 const consultarPublicaciones = async () => {
@@ -221,10 +220,9 @@ crearPublicacion.onclick = async () => {
 }
 
 volverPerfil.onclick = () => {
-    const { idSeller, idUser, origin } = obtenerParametrosURL();
+    const { idUser, origin } = obtenerParametrosURL();
 
     const volverPerfil = new URL(localhost + 'perfil.html');
-    volverPerfil.searchParams.set('idseller', idSeller);
     volverPerfil.searchParams.set('iduser', idUser);
     volverPerfil.searchParams.set('origin', origin);
 

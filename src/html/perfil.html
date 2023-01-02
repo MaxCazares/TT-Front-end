@@ -37,7 +37,12 @@
 
 	<div class="w-11/12 px-6 py-6 mx-auto my-10 shadow-2xl rounded-2xl">
 
-		<div class="flex flex-row justify-end p-3 space-x-2 bg-green-5000" id="opcionPerfil">
+		<div class="flex flex-row justify-end p-3 space-x-2 bg-white text-blue-800 hover:text-amber-400" id="opcionMandarMensaje">
+			<label class="my-auto mr-3">Mandar mensaje</label>
+			<i class="text-3xl fa-solid fa-paper-plane " id="mandarMensaje"></i>
+		</div>
+
+		<div class="flex flex-row justify-end p-3 space-x-2 bg-white" id="opcionPerfil">
 			<label class="my-auto text-white hover:text-slate-400">Editar perfil</label>
 			<i class="text-3xl fa-solid fa-user-pen text-slate-300" id="editarPerfil"></i>
 		</div>
@@ -45,6 +50,11 @@
 		<div class="flex flex-row justify-end p-3 space-x-2 bg-white" id="opcionPublicaciones">
 			<label class="my-auto text-white hover:text-slate-400">Publicaciones</label>
 			<i class="text-3xl fa-solid fa-file-pen text-slate-300" id="publicaciones"></i>
+		</div>
+
+		<div class="flex flex-row justify-end p-3 space-x-2 bg-white" id="opcionMensajes">
+			<label class="my-auto text-white hover:text-slate-400">Mensajes</label>
+			<i class="text-3xl fa-solid fa-inbox text-slate-300 px-2" id="mensajes"></i>
 		</div>
 
 		<div class="px-3 py-3 mx-auto -mt-24 bg-blue-4000 w-72" id="divImagen">
@@ -80,7 +90,7 @@
 			</div>
 		</div>
 
-		<div class="w-10/12 py-4 my-10 bg-red-3000 mx-auto text-gray-900 border-2 shadow-xl border-slate-100 hidden"
+		<div class="w-10/12 py-4 my-10  mx-auto text-gray-900 border-2 shadow-xl border-slate-100"
 			id="seccionFormularioComentarios">
 
 			<form id="formularioComentario" class="flex flex-col">
