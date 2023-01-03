@@ -39,18 +39,16 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
 }
 
 const comprobarChat = async (idSeller, idUser) => {
-    const chatExistente = await obtenerDatos('chat/check/', idSeller + ';' + idUser);
-
-    if (chatExistente === '1') {
-        console.log('el chat existe');
-        // console.log(idSeller);
-        // console.log(idUser);
-        mostrarChatActual(idSeller, idUser);
-    } else {
-        console.log('el chat no existe');
-        console.log(idSeller);
-        console.log(idUser);
-        crearChat();
+    if(idSeller != 'null'){
+        const chatExistente = await obtenerDatos('chat/check/', idSeller + ';' + idUser);
+    
+        if (chatExistente === '1') {
+            console.log('el chat existe');
+            mostrarChatActual(idSeller, idUser);
+        } else {
+            console.log('el chat no existe');
+            crearChat();
+        }
     }
 }
 
@@ -131,17 +129,14 @@ const crearChatHTML = async (chat) => {
 enviarMensajeBoton.onclick = async () => {
     const { idUser } = obtenerParametrosURL();
     const mensajeInput = mensajeUsuario.value;
-
-    // const nuevoMensaje = {
-    //     "id_chat": chatActual,
-    //     "message": mensajeInput
-    // }
+    let date = new Date();
 
     const nuevoMensaje = {
         "id_chat": chatActual,
         "message": {
             "usuario": idUser,
-            "contenido": mensajeInput
+            "contenido": mensajeInput,
+            "hora": String(date.toLocaleDateString('es-MX') + ' - ' + date.toLocaleTimeString('es-MX'))
         }
     }
 
@@ -222,19 +217,34 @@ const eliminarChat = (idChat) => {
 }
 
 const burbujasChat = (mensaje, idUser) => {
-    const message = document.createElement('label');
     const espacio = document.createElement('label');
-    espacio.classList.add('bg-white', 'text-white', 'rounded-xl', 'py-2', 'px-3', 'selected-none');
-    message.classList.add('bg-indigo-200', 'rounded-xl', 'py-2', 'px-3');
+    const div = document.createElement('div');
+    const message = document.createElement('label');
+    const hora = document.createElement('label');
+    
+    espacio.classList.add('bg-white', 'text-white', 'rounded-xl', 'py-2', 'px-3', 'select-none');
+    div.classList.add('flex', 'flex-col', 'py-2', 'px-3', 'rounded-xl', 'space-y-2');
+    message.classList.add('text-black');
+    hora.classList.add('text-slate-500', 'text-xs', 'mt-2');
+    
     espacio.textContent = '?';
+    hora.textContent = mensaje.hora;
 
+    div.appendChild(message);
+    div.appendChild(hora);
+    
     if (mensaje.usuario === idUser) {
+        div.classList.add('bg-amber-200');
         message.textContent = mensaje.contenido;
-        mensajeDerecha.appendChild(message);
+        
+        mensajeDerecha.appendChild(div);
         mensajeIzquierda.appendChild(espacio);
+        
     } else {
+        div.classList.add('bg-blue-200');
         message.textContent = mensaje.contenido;
-        mensajeIzquierda.appendChild(message);
+
+        mensajeIzquierda.appendChild(div);
         mensajeDerecha.appendChild(espacio);
     }
 }

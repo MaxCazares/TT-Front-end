@@ -45,7 +45,7 @@ const mostrarBotonPerfil = async () => {
 
     if (usuario) {
         const nombreUsuario = usuario.nombre_usuario.split(' ');
-        const nombreUsuarioApellido = nombreUsuario[0] + ' ' + nombreUsuario[1];
+        // const nombreUsuarioApellido = nombreUsuario[0] + ' ' + nombreUsuario[1];
 
         botones.classList.remove('justify-center');
         botones.classList.remove('space-x-8');
@@ -54,7 +54,7 @@ const mostrarBotonPerfil = async () => {
         crearCuentaBoton.classList.add('hidden');
         iniciarSesionBoton.classList.add('hidden');
 
-        perfilUsuarioBoton.innerHTML = nombreUsuarioApellido;
+        perfilUsuarioBoton.innerHTML = nombreUsuario[0];
 
         perfilUsuarioBoton.classList.remove('hidden');
         cerrarSesionBoton.classList.remove('hidden');

@@ -4,7 +4,7 @@ const createWindow = () => {
     const win = new BrowserWindow({
         width: 1310,
         height: 600,
-        minWidth: 1295,
+        minWidth: 1310,
         minHeight: 600,
         center: true,
         autoHideMenuBar: true,
