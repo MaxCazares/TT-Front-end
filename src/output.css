@@ -1290,6 +1290,11 @@ select{
   background-color: rgb(191 219 254 / var(--tw-bg-opacity));
 }
 
+.bg-amber-200{
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 230 138 / var(--tw-bg-opacity));
+}
+
 .bg-cover{
   background-size: cover;
 }
