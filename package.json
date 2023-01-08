@@ -1,19 +1,19 @@
 {
-  "name": "tt-ui",
-  "version": "1.0.0",
-  "description": "TT UI 2022",
-  "main": "./src/index.js",
-  "scripts": {
-    "start": "electron .",
-    "tailwind": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
-    "tailwindMini": "npx tailwindcss -o ./src/css/final.css --minify"
-  },
-  "keywords": [],
-  "author": "Max Cazares",
-  "license": "MIT",
-  "devDependencies": {
-    "@tailwindcss/forms": "^0.5.0",
-    "electron": "^22.0.0",
-    "tailwindcss": "^3.0.24"
-  }
+	"name": "tt-ui",
+	"version": "1.0.0",
+	"description": "TT UI 2022",
+	"main": "./src/index.js",
+	"scripts": {
+		"start": "electron .",
+		"tailwind": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+		"tailwindMini": "npx tailwindcss -o ./src/css/final.css --minify"
+	},
+	"keywords": [],
+	"author": "Max Cazares",
+	"license": "MIT",
+	"devDependencies": {
+		"@tailwindcss/forms": "^0.5.0",
+		"electron": "^22.0.0",
+		"tailwindcss": "^3.0.24"
+	}
 }

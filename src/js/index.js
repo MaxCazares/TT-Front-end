@@ -1,10 +1,14 @@
 import { alertFail } from "./alerts.js";
+import { anunciosImagenes } from "./anuncios.js";
 import { mosaicos as M } from "./mosaicos.js";
 import { urlAPI, localhost } from "./urls.js";
 
 const logoInicio = document.querySelector('#logoInicio');
 const formularioBusqueda = document.querySelector('#formularioBusqueda');
 const botones = document.querySelector('#botones');
+
+const modalPublicidad = document.querySelector('#modalPublicidad');
+const divPublicidad = document.querySelector('#divPublicidad');
 
 const mosaicos = document.querySelector('#mosaicos');
 const contenidoInicio = document.querySelector('#contenidoInicio');
@@ -18,8 +22,9 @@ window.onload = async () => {
     formularioBusqueda.addEventListener('submit', buscarProductos);
     agregarImagenesMosaicos();
     mostrarBotonPerfil();
-    const publicaciones = await obtenerDatos('publicaciones/getbycategory/', 'deportes', true);
-    publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
+    cargarPublicidad();
+    const publicacionesRandom = await obtenerDatos('publicaciones/getrandom', '', true);
+    publicacionesRandom.response.forEach(publicacion => crearPublicacionesHTML(publicacion));
 }
 
 const obtenerParametrosURL = () => {
@@ -94,8 +99,8 @@ const buscarProductos = async (e) => {
 
 mosaicos.onclick = async (e) => {
     const categoria = e.target.dataset.categoria;
-    contenidoInicio.innerHTML = '';
     // console.log(categoria);
+    contenidoInicio.innerHTML = '';
     const publicaciones = await obtenerDatos('publicaciones/getbycategory/', categoria, true);
     publicaciones.forEach(publicacion => crearPublicacionesHTML(publicacion));
 };
@@ -164,4 +169,29 @@ const agregarImagenesMosaicos = () => {
     M.mosaicoJuguetes.style.cssText = `background-image: url(${M.juguetes})`;
     M.mosaicoAutomoviles.style.cssText = `background-image: url(${M.automoviles})`;
     M.mosaicoInstrumentos.style.cssText = `background-image: url(${M.instrumentosMusicales})`;
+}
+
+const cargarPublicidad = () => {
+    const anuncioInicio = document.createElement('img');
+    anuncioInicio.src = `../img/anuncios/${anunciosImagenes[numerosAleatorios(0, 9)]}`;
+    modalPublicidad.appendChild(anuncioInicio);
+    modalPublicidad.showModal();
+
+    for (let i = 0; i < 3; i++) {
+        const anuncio = document.createElement('img');
+        anuncio.classList.add('w-1/3');
+        anuncio.src = `../img/anuncios/${anunciosImagenes[numerosAleatorios(0, 9)]}`;
+        divPublicidad.appendChild(anuncio);
+    }
+
+    divPublicidad.classList.remove('hidden');
+
+    setTimeout(() => {
+        modalPublicidad.close();
+    }, 3000);
+
+}
+
+const numerosAleatorios = (min, max) => {
+    return Math.round(Math.random() * (max - min) + min);
 }
