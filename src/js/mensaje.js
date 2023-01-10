@@ -39,15 +39,16 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
 }
 
 const comprobarChat = async (idSeller, idUser) => {
-    if(idSeller != 'null'){
+    if (idSeller != 'null') {
         const chatExistente = await obtenerDatos('chat/check/', idSeller + ';' + idUser);
-    
+
         if (chatExistente === '1') {
             console.log('el chat existe');
             mostrarChatActual(idSeller, idUser);
         } else {
             console.log('el chat no existe');
             crearChat();
+            mostrarChatActual(idSeller, idUser);
         }
     }
 }
@@ -78,16 +79,19 @@ const crearChat = async () => {
             body: JSON.stringify(nuevoChat),
             headers: { "Content-type": "application/json; charset=UTF-8" }
         });
+        mostrarChatActual(idSeller, idUser);
     } catch (error) {
         console.error(error);
     }
 }
 
 const crearChatHTML = async (chat) => {
+    const { idUser } = obtenerParametrosURL()
+
     const divExterior = document.createElement('div');
     const divSuperior = document.createElement('div');
-    const imagenUsuario = document.createElement('img');
-    const imagenPublicacion = document.createElement('img');
+    const imagenUsuario1 = document.createElement('img');
+    const imagenUsuario2 = document.createElement('img');
     const divInferior = document.createElement('div');
     const ultimoMensaje = document.createElement('label');
     const span = document.createElement('span');
@@ -97,8 +101,14 @@ const crearChatHTML = async (chat) => {
     const usuario1 = await obtenerDatos('usuarios/getbyid/', chat.user1_id);
     const usuario2 = await obtenerDatos('usuarios/getbyid/', chat.user2_id);
 
-    imagenUsuario.src = usuario1.img_usuario.file;
-    imagenPublicacion.src = usuario2.img_usuario.file;
+    if (usuario2.id_usuario === idUser) {
+        imagenUsuario1.src = usuario1.img_usuario.file;
+        imagenUsuario2.src = usuario2.img_usuario.file;
+    } else {
+        imagenUsuario1.src = usuario2.img_usuario.file;
+        imagenUsuario2.src = usuario1.img_usuario.file;
+    }
+
     ultimoMensaje.textContent = chat.message_list[0].contenido;
 
     iconoLeer.onclick = () => mostrarChat(chat.user1_id, chat.user2_id);
@@ -106,8 +116,8 @@ const crearChatHTML = async (chat) => {
 
     divExterior.classList.add('flex', 'flex-row', 'px-4', 'py-3', 'shadow-slate-300', 'shadow-lg', 'rounded-lg');
     divSuperior.classList.add('flex', 'flex-row', 'mr-5', 'w-40');
-    imagenUsuario.classList.add('w-20', 'h-20', 'rounded-full', 'select-none', '-mr-7');
-    imagenPublicacion.classList.add('w-20', 'h-20', 'rounded-full', 'select-none');
+    imagenUsuario1.classList.add('w-20', 'h-20', 'rounded-full', 'select-none', '-mr-7');
+    imagenUsuario2.classList.add('w-20', 'h-20', 'rounded-full', 'select-none');
     divInferior.classList.add('flex', 'flex-col');
     ultimoMensaje.classList.add('my-auto', 'text-base');
     span.classList.add('flex', 'flex-row', 'space-x-5');
@@ -118,8 +128,8 @@ const crearChatHTML = async (chat) => {
     span.appendChild(iconoEliminar);
     divInferior.appendChild(ultimoMensaje);
     divInferior.appendChild(span);
-    divSuperior.appendChild(imagenUsuario);
-    divSuperior.appendChild(imagenPublicacion);
+    divSuperior.appendChild(imagenUsuario1);
+    divSuperior.appendChild(imagenUsuario2);
     divExterior.appendChild(divSuperior);
     divExterior.appendChild(divInferior);
 
@@ -221,25 +231,25 @@ const burbujasChat = (mensaje, idUser) => {
     const div = document.createElement('div');
     const message = document.createElement('label');
     const hora = document.createElement('label');
-    
+
     espacio.classList.add('bg-white', 'text-white', 'rounded-xl', 'py-2', 'px-3', 'select-none');
     div.classList.add('flex', 'flex-col', 'py-2', 'px-3', 'rounded-xl', 'space-y-2');
     message.classList.add('text-black');
     hora.classList.add('text-slate-500', 'text-xs', 'mt-2');
-    
+
     espacio.textContent = '?';
     hora.textContent = mensaje.hora;
 
     div.appendChild(message);
     div.appendChild(hora);
-    
+
     if (mensaje.usuario === idUser) {
         div.classList.add('bg-amber-200');
         message.textContent = mensaje.contenido;
-        
+
         mensajeDerecha.appendChild(div);
         mensajeIzquierda.appendChild(espacio);
-        
+
     } else {
         div.classList.add('bg-blue-200');
         message.textContent = mensaje.contenido;

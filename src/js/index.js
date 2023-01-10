@@ -22,7 +22,7 @@ window.onload = async () => {
     formularioBusqueda.addEventListener('submit', buscarProductos);
     agregarImagenesMosaicos();
     mostrarBotonPerfil();
-    cargarPublicidad();
+    // cargarPublicidad();
     const publicacionesRandom = await obtenerDatos('publicaciones/getrandom', '', true);
     publicacionesRandom.response.forEach(publicacion => crearPublicacionesHTML(publicacion));
 }
@@ -52,9 +52,9 @@ const mostrarBotonPerfil = async () => {
         const nombreUsuario = usuario.nombre_usuario.split(' ');
         // const nombreUsuarioApellido = nombreUsuario[0] + ' ' + nombreUsuario[1];
 
-        botones.classList.remove('justify-center');
-        botones.classList.remove('space-x-8');
-        botones.classList.add('justify-between');
+        // botones.classList.remove('justify-center');
+        // botones.classList.remove('space-x-8');
+        // botones.classList.add('justify-between');
 
         crearCuentaBoton.classList.add('hidden');
         iniciarSesionBoton.classList.add('hidden');

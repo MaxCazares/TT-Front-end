@@ -1,4 +1,4 @@
-import { alertFail, alertSuccess } from './alerts.js';
+import { alertFail, alertSuccess, infoMensaje } from './alerts.js';
 import { urlAPI, localhost } from './urls.js'
 
 const logoInicio = document.querySelector('#logoInicio');
@@ -9,6 +9,8 @@ const nombreUsuario = document.querySelector('#nombreUsuario');
 const emailUsuario = document.querySelector('#emailUsuario');
 const telefonoUsuario = document.querySelector('#telefonoUsuario');
 const zonaUsuario = document.querySelector('#zonaUsuario');
+
+const verAlertaMensaje = document.querySelector('#verAlertaMensaje');
 
 const opcionMandarMensaje = document.querySelector('#opcionMandarMensaje');
 const mandarMensaje = document.querySelector('#mandarMensaje');
@@ -37,7 +39,7 @@ let puntuacionComentario = 0;
 window.onload = async () => {
     const { idSeller, idUser, origin } = obtenerParametrosURL();
     imprimirDatos(idSeller, idUser, origin);
-    ocultarOpcionesPerfil(origin);
+    ocultarOpcionesPerfil(idSeller, idUser, origin);
     mostarComentarios(idSeller, idUser, origin);
 
     formularioComentario.addEventListener('submit', enviarComentario);
@@ -83,9 +85,10 @@ const imprimirDatos = async (idSeller, idUser, origin) => {
         "../img/defaulUser.jpeg" : usuario.img_usuario.file;
 }
 
+verAlertaMensaje.onclick = () => infoMensaje();
+
 mandarMensaje.onclick = () => {
     const { idSeller, idUser, origin } = obtenerParametrosURL();
-    console.log(idSeller);
     const paginaMensajes = new URL(localhost + 'mensajes.html');
     paginaMensajes.searchParams.set('idseller', idSeller);
     paginaMensajes.searchParams.set('iduser', idUser);
@@ -136,9 +139,7 @@ logoInicio.onclick = () => {
     window.location.href = inicio;
 }
 
-const ocultarOpcionesPerfil = (origin) => {
-    const { idSeller, idUser } = obtenerParametrosURL();
-
+const ocultarOpcionesPerfil = (idSeller, idUser, origin) => {
     if (origin === 'publicacion') {
         opcionPerfil.classList.add('hidden');
         opcionPublicaciones.classList.add('hidden');
@@ -147,14 +148,18 @@ const ocultarOpcionesPerfil = (origin) => {
         divImagen.classList.remove('-mt-24');
 
         if (idSeller === idUser) {
+            verAlertaMensaje.classList.add('hidden');
             opcionMandarMensaje.classList.add('hidden');
             seccionFormularioComentarios.classList.add('hidden');
         } else
             if (idUser === 'null') {
                 opcionMandarMensaje.classList.add('hidden');
+                seccionFormularioComentarios.classList.add('hidden');
+            } else {
+                verAlertaMensaje.classList.add('hidden');
             }
-
     } else {
+        verAlertaMensaje.classList.add('hidden');
         opcionMandarMensaje.classList.add('hidden');
         seccionFormularioComentarios.classList.add('hidden');
     }
@@ -232,7 +237,7 @@ const crearComentario = (comentario) => {
 
     divExterior.classList.add('flex', 'flex-col', 'flex-wrap', 'py-4', 'space-y-3');
     divSuperior.classList.add('w-auto', 'flex', 'shadow-sm', 'flex-row', 'py-0.5', 'space-x-5');
-    span.classList.add('text-blue-700', 'space-x-2', 'text-base');
+    span.classList.add('space-x-2', 'text-base');
     etiquetaFecha.classList.add('text-gray-500');
     divInferior.classList.add('space-y-3');
     etiquetaEncabezado.classList.add('text-2xl', 'font-medium', 'text-gray-900');
@@ -240,7 +245,7 @@ const crearComentario = (comentario) => {
 
     for (let i = 0; i < comentario.puntuacion; i++) {
         const iconoEstrella = document.createElement('i');
-        iconoEstrella.classList.add('fa-solid', 'fa-star');
+        iconoEstrella.classList.add('fa-solid', 'fa-star', 'text-blue-700');
         span.appendChild(iconoEstrella);
     }
 
