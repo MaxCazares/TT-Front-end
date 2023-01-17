@@ -26,27 +26,33 @@ const obtenerImagen = async (hostImage, idPublicacion) => {
     const consultaImagen = ':5000/publicaciones/getimage/';
     try {
         const respuesta = await fetch('http://' + hostImage + consultaImagen + idPublicacion);
-        const a = await respuesta.arrayBuffer();
+        const a = await respuesta.text();
+        // const b = new DataView(a);
         // const b = new Uint8Array(a);
-        // const c = arrayBufferToBase64(a);
+        // const b = arrayBufferToBase64(a);
         return a;
     } catch (error) {
         console.error(error);
     }
 }
 
-function arrayBufferToBase64(ab) {
+// function arrayBufferToBase64(ab) {
+//     var dView = new Uint8Array(ab);   //Get a byte view        
+//     var arr = Array.prototype.slice.call(dView); //Create a normal array        
+//     var arr1 = arr.map(function (item) {
+//         return String.fromCharCode(item);    //Convert
+//     });
+//     return window.btoa(arr1.join(''));   //Form a string
+// }
 
-    var dView = new Uint8Array(ab);   //Get a byte view        
-
-    var arr = Array.prototype.slice.call(dView); //Create a normal array        
-
-    var arr1 = arr.map(function (item) {
-        return String.fromCharCode(item);    //Convert
-    });
-
-    return window.btoa(arr1.join(''));   //Form a string
-
+function arrayBufferToBase64(buffer) {
+    var binary = '';
+    var bytes = new Uint8Array(buffer);
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
 }
 
 const crearPublicacionesHTML = async (publicacion) => {
@@ -60,11 +66,11 @@ const crearPublicacionesHTML = async (publicacion) => {
 
     const usuario = await obtenerDatos('usuarios/getbyid/', publicacion.id_usuario);
     const imagen = await obtenerImagen(publicacion.host, publicacion.id_publicacion);
-    console.log(imagen);
+    // console.log(imagen);
 
     etiquetaA.onclick = () => irAlProducto(publicacion.id_publicacion);
-    imagenProducto.src = '../img/defaultProduct.png';
-    // imagenProducto.src = imagen;
+    // imagenProducto.src = '../img/defaultProduct.png';
+    imagenProducto.src = imagen;
     h3.innerHTML = usuario.zona_entrega_usuario;
     h2.innerHTML = publicacion.nombre;
     etiquetaP.innerHTML = '$' + Number(publicacion.precio).toLocaleString('mx');
