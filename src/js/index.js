@@ -21,10 +21,13 @@ const cerrarSesionBoton = document.querySelector('#cerrarSesionBoton');
 window.onload = async () => {
     formularioBusqueda.addEventListener('submit', buscarProductos);
     agregarImagenesMosaicos();
-    mostrarBotonPerfil();
+    // mostrarBotonPerfil();
     // cargarPublicidad();
+    let t1 = performance.now();
     const publicacionesRandom = await obtenerDatos('publicaciones/getrandom', '', true);
-    publicacionesRandom.response.forEach(publicacion => crearPublicacionesHTML(publicacion));
+    publicacionesRandom.forEach(publicacion => crearPublicacionesHTML(publicacion));
+    let t2 = performance.now();
+    console.log(`Las publicaciones random tardan: ${t2-t1} milisegundos`);
 }
 
 const obtenerParametrosURL = () => {
@@ -39,6 +42,17 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
         const datosJSON = await respuesta.json();
         const datos = multiple ? datosJSON.response : datosJSON.response[0];
         return datos;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const obtenerImagen = async (hostImage, idPublicacion) => {
+    const consultaImagen = ':5000/publicaciones/getimage/';
+    try {
+        const respuesta = await fetch('http://' + hostImage + consultaImagen + idPublicacion);
+        const base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(respuesta)));
+        return base64String;
     } catch (error) {
         console.error(error);
     }
@@ -109,15 +123,17 @@ const crearPublicacionesHTML = async (publicacion) => {
     const divExterior = document.createElement('div');
     const divInterior = document.createElement('div');
     const etiquetaA = document.createElement('a');
-    const imagen = document.createElement('img');
+    const imagenProducto = document.createElement('img');
     const h3 = document.createElement('h3');
     const h2 = document.createElement('h2');
     const etiquetaP = document.createElement('p');
 
     const usuario = await obtenerDatos('usuarios/getbyid/', publicacion.id_usuario);
+    const imagen = await obtenerImagen(publicacion.host, publicacion.id_publicacion);
+    console.log(imagen);
 
     etiquetaA.onclick = () => irAlProducto(publicacion.id_publicacion);
-    imagen.src = publicacion.img_list[0].file;
+    imagenProducto.src = '../img/defaultProduct.png';
     h3.innerHTML = usuario.zona_entrega_usuario;
     h2.innerHTML = publicacion.nombre;
     etiquetaP.innerHTML = '$' + Number(publicacion.precio).toLocaleString('mx');
@@ -125,12 +141,12 @@ const crearPublicacionesHTML = async (publicacion) => {
     divExterior.classList.add('md:w-1/3', 'xl:w-1/4', 'p-2');
     divInterior.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'shadow-lg');
     etiquetaA.classList.add('cursor-pointer');
-    imagen.classList.add('w-full', 'rounded-lg', 'mx-auto', 'object-cover', 'object-center', 'mb-6', 'h-52');
+    imagenProducto.classList.add('w-full', 'rounded-lg', 'mx-auto', 'object-cover', 'object-center', 'mb-6', 'h-52');
     h3.classList.add('tracking-widest', 'text-orange-500', 'text-xs', 'font-bold');
     h2.classList.add('text-lg', 'text-gray-900', 'font-semibold', 'mb-0');
     etiquetaP.classList.add('leading-relaxed', 'text-base');
 
-    etiquetaA.appendChild(imagen);
+    etiquetaA.appendChild(imagenProducto);
     etiquetaA.appendChild(h3);
     etiquetaA.appendChild(h2);
     etiquetaA.appendChild(etiquetaP);
@@ -195,3 +211,4 @@ const cargarPublicidad = () => {
 const numerosAleatorios = (min, max) => {
     return Math.round(Math.random() * (max - min) + min);
 }
+
