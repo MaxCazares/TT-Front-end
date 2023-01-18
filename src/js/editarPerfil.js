@@ -17,7 +17,8 @@ let fotoUsuarioBytes = '';
 window.onload = async () => {
     const {idUser} = obtenerParametrosURL();
     const usuario = await obtenerDatos('usuarios/getbyid/', idUser);
-    imprimirDatos(usuario);
+    const imagenUsuario = await obtenerImagen(usuario.host, 'usuarios', usuario.id_usuario);
+    imprimirDatos(usuario, imagenUsuario);
 }
 
 const obtenerParametrosURL = () => {
@@ -38,15 +39,26 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     }
 }
 
-const imprimirDatos = (usuario) => {  
+const obtenerImagen = async (hostImage, tipoImagen, idPublicacion) => {
+    const consultaImagen = `:5000/${tipoImagen}/getimage/`;
+    try {
+        const respuesta = await fetch('http://' + hostImage + consultaImagen + idPublicacion);
+        const a = await respuesta.text();
+        return a;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const imprimirDatos = (usuario, imagenUsuario) => {  
     nombreUsuario.value = usuario.nombre_usuario;
     emailUsuario.value = usuario.correo_usuario;
     passwordUsuario.value = usuario.contraseña_usuario;
     telefonoUsuario.value = usuario.telefono_usuario;
     zonaUsuario.value = usuario.zona_entrega_usuario;
-    fotoUsuarioBytes = usuario.img_usuario.file;
-    fotoUsuario.src = usuario.img_usuario.file === '' ? 
-        "../img/defaulUser.jpeg" : usuario.img_usuario.file;
+    fotoUsuarioBytes = imagenUsuario;
+    fotoUsuario.src = imagenUsuario === '' ? 
+        "../img/defaulUser.jpeg" : imagenUsuario;
 }
 
 actualizarInformacion.onclick = async () => {
@@ -100,11 +112,61 @@ inputFotoUsuario.addEventListener('change', e => {
 
     reader.addEventListener('load', () => {
         fotoUsuario.src = reader.result;
-        fotoUsuarioBytes = reader.result;
     });
 
     reader.readAsDataURL(foto);
+
+    fotoUsuario.addEventListener('load', () => {
+        compressImage(fotoUsuario, 0.7, 0.7);
+    });
+
+    console.log(fotoUsuarioBytes);
 });
+
+const compressImage = (imgToCompress, resizingFactor, quality) => {
+    // showing the compressed image
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    const originalWidth = imgToCompress.width;
+    const originalHeight = imgToCompress.height;
+
+    const canvasWidth = originalWidth * resizingFactor;
+    const canvasHeight = originalHeight * resizingFactor;
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    let compressedImageBlob;
+
+    context.drawImage(
+        imgToCompress,
+        0,
+        0,
+        originalWidth * resizingFactor,
+        originalHeight * resizingFactor
+    );
+
+    // reducing the quality of the image
+    canvas.toBlob(
+        (blob) => {
+            if (blob) {
+                compressedImageBlob = blob;
+                imgToBytes(compressedImageBlob);
+            }
+        },
+        "image/jpeg",
+        quality
+    );
+}
+
+const imgToBytes = (img) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(img);
+    reader.addEventListener('load', () => {
+        fotoUsuarioBytes = reader.result;
+    });
+}
 
 esconderPassword.onclick = () => {
     if (passwordUsuario.type == 'password') {

@@ -21,7 +21,7 @@ const cerrarSesionBoton = document.querySelector('#cerrarSesionBoton');
 window.onload = async () => {
     formularioBusqueda.addEventListener('submit', buscarProductos);
     agregarImagenesMosaicos();
-    // mostrarBotonPerfil();
+    mostrarBotonPerfil();
     // cargarPublicidad();
     let t1 = performance.now();
     const publicacionesRandom = await obtenerDatos('publicaciones/getrandom', '', true);

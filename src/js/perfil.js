@@ -64,16 +64,31 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     }
 }
 
+const obtenerImagen = async (hostImage, tipoImagen, idPublicacion) => {
+    const consultaImagen = `:5000/${tipoImagen}/getimage/`;
+    try {
+        const respuesta = await fetch('http://' + hostImage + consultaImagen + idPublicacion);
+        const a = await respuesta.text();
+        return a;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 const imprimirDatos = async (idSeller, idUser, origin) => {
-    let usuario;
+    let usuario, imagenUsuario;
 
     if (origin === 'inicio') {
         const usuarioPerfil = await obtenerDatos('usuarios/getbyid/', idUser);
+        const imagenUsuarioPerfil = await obtenerImagen(usuarioPerfil.host, 'usuarios', usuarioPerfil.id_usuario);
         usuario = usuarioPerfil;
+        imagenUsuario = imagenUsuarioPerfil;
         // console.log('Perfil');
     } else {
         const usuarioVendedor = await obtenerDatos('usuarios/getbyid/', idSeller);
+        const imagenUsuarioPerfil = await obtenerImagen(usuarioVendedor.host, 'usuarios', usuarioVendedor.id_usuario);
         usuario = usuarioVendedor;
+        imagenUsuario = imagenUsuarioPerfil;
         // console.log('Vendedor');
     }
 
@@ -81,8 +96,8 @@ const imprimirDatos = async (idSeller, idUser, origin) => {
     emailUsuario.value = usuario.correo_usuario;
     telefonoUsuario.value = usuario.telefono_usuario;
     zonaUsuario.value = usuario.zona_entrega_usuario;
-    fotoUsuario.src = usuario.img_usuario.file === '' ?
-        "../img/defaulUser.jpeg" : usuario.img_usuario.file;
+    fotoUsuario.src = imagenUsuario === '' ?
+        "../img/defaulUser.jpeg" : imagenUsuario;
 }
 
 verAlertaMensaje.onclick = () => infoMensaje();

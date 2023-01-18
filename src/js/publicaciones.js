@@ -27,13 +27,23 @@ const obtenerParametrosURL = () => {
     return { idUser, origin };
 }
 
+const obtenerImagen = async (hostImage, tipoImagen, idPublicacion) => {
+    const consultaImagen = `:5000/${tipoImagen}/getimage/`;
+    try {
+        const respuesta = await fetch('http://' + hostImage + consultaImagen + idPublicacion);
+        const a = await respuesta.text();
+        return a;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 const consultarPublicaciones = async () => {
     const {idUser} = obtenerParametrosURL();
     try {
         const respuesta = await fetch(urlAPI + `publicaciones/getbyuserid/${idUser}`);
         const publicacionesJSON = await respuesta.json();
         const publicaciones = publicacionesJSON.response;
-        
         publicaciones.forEach(publicacion => crearPublicacionHTML(publicacion));
 
     } catch (error) {
@@ -41,9 +51,8 @@ const consultarPublicaciones = async () => {
     }
 }
 
-const crearPublicacionHTML = (publicacion) => {
+const crearPublicacionHTML = async (publicacion) => {
     const idPublicacion = publicacion.id_publicacion;
-    const imagenPublicacion = publicacion.img_list[0].file;
     const nombrePublicacion = publicacion.nombre;
     const precioPublicacion = publicacion.precio;
 
@@ -55,6 +64,8 @@ const crearPublicacionHTML = (publicacion) => {
     const precio = document.createElement('label');
     const iconoEdicion = document.createElement('i');
     const iconoEliminar = document.createElement('i');
+
+    const imagenPublicacion = await obtenerImagen(publicacion.host, 'publicaciones', publicacion.id_publicacion);
 
     imagen.src = imagenPublicacion;
     titulo.innerHTML = nombrePublicacion;
@@ -85,13 +96,14 @@ const crearPublicacionHTML = (publicacion) => {
     listaPublicaciones.appendChild(divExterior);
 }
 
-const editarPublicacion = publicacion => {
+const editarPublicacion = async (publicacion) => {
     const idPublicacion = publicacion.id_publicacion;
-    const imagen = publicacion.img_list[0].file;
     const nombre = publicacion.nombre;
     const precio = publicacion.precio;
     const categoria = publicacion.categoria;
     const descripcion = publicacion.descripcion;
+
+    const imagen = await obtenerImagen(publicacion.host, 'publicaciones', publicacion.id_publicacion);
 
     fotoPublicacionBytes = imagen;
 
@@ -229,14 +241,64 @@ volverPerfil.onclick = () => {
     window.location.href = volverPerfil;
 }
 
-inputFotoPublicacion.addEventListener('change', () => {
+inputFotoPublicacion.addEventListener('change', e => {
     const foto = inputFotoPublicacion.files[0];
     const reader = new FileReader();
 
     reader.addEventListener('load', () => {
         fotoPublicacion.src = reader.result;
-        fotoPublicacionBytes = reader.result;
     });
 
     reader.readAsDataURL(foto);
+
+    fotoPublicacion.addEventListener('load', () => {
+        compressImage(fotoPublicacion, 0.7, 0.7);
+    });
+
+    console.log(fotoPublicacionBytes);
 });
+
+const compressImage = (imgToCompress, resizingFactor, quality) => {
+    // showing the compressed image
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    const originalWidth = imgToCompress.width;
+    const originalHeight = imgToCompress.height;
+
+    const canvasWidth = originalWidth * resizingFactor;
+    const canvasHeight = originalHeight * resizingFactor;
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    let compressedImageBlob;
+
+    context.drawImage(
+        imgToCompress,
+        0,
+        0,
+        originalWidth * resizingFactor,
+        originalHeight * resizingFactor
+    );
+
+    // reducing the quality of the image
+    canvas.toBlob(
+        (blob) => {
+            if (blob) {
+                compressedImageBlob = blob;
+                imgToBytes(compressedImageBlob);
+            }
+        },
+        "image/jpeg",
+        quality
+    );
+}
+
+const imgToBytes = (img) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(img);
+    reader.addEventListener('load', () => {
+        fotoPublicacionBytes = reader.result;
+    });
+}
