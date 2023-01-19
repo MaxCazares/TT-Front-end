@@ -3,6 +3,7 @@ import { urlAPI } from "./urls.js";
 
 const formulario = document.querySelector('#formularioRegistro');
 
+const imagenUsuarioDefault = document.querySelector('#imagenUsuarioDefault');
 const nombreFormulario = document.querySelector('#nombreNuevoUsuario');
 const emailFormulario = document.querySelector('#emailNuevoUsuario');
 const passwordFormulario = document.querySelector('#passwordNuevoUsuario');
@@ -10,8 +11,11 @@ const passwordFormulario = document.querySelector('#passwordNuevoUsuario');
 const infoPassword = document.querySelector('#infoPassword');
 const esconderPassword = document.querySelector('#esconderPassword');
 
+let fotoUsuarioBytes = '';
+
 window.onload = () => {
     formulario.addEventListener('submit', validarCampos);
+    compressImage(imagenUsuarioDefault, 0.9, 0.7);
 }
 
 const validarCampos = async (e) => {
@@ -22,16 +26,17 @@ const validarCampos = async (e) => {
     }
     else {
         const usuarioRegistrado = await obtenerDatos('usuarios/getbyemail/', emailFormulario.value);
-        if (usuarioRegistrado){
+        if (usuarioRegistrado) {
             alertFail('Este correo ha sido registrado en otra cuenta');
             formulario.reset();
-        }else{
+        } else {
             registrarUsuario(nombreFormulario.value, emailFormulario.value, passwordFormulario.value)
         }
     }
 }
 
-const registrarUsuario = async (nombre, email, password) => {
+const registrarUsuario = async (nombre, email, password) => {    
+    console.log(fotoUsuarioBytes);
     let nuevoUsuario = {
         "nombre_usuario": `${nombre}`,
         "contraseña_usuario": `${password}`,
@@ -39,9 +44,10 @@ const registrarUsuario = async (nombre, email, password) => {
         "correo_usuario": `${email}`,
         "zona_entrega_usuario": "",
         "img_usuario": {
-            "file": ""
+            "file": fotoUsuarioBytes
         }
     }
+    console.log(nuevoUsuario);
 
     try {
         await fetch(urlAPI + 'usuarios', {
@@ -49,7 +55,7 @@ const registrarUsuario = async (nombre, email, password) => {
             body: JSON.stringify(nuevoUsuario),
             headers: { "Content-type": "application/json; charset=UTF-8" }
         });
-        
+
         alertSuccess('Usuario registrado correctamente');
 
         setTimeout(() => {
@@ -82,9 +88,55 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     try {
         const respuesta = await fetch(urlAPI + urlConsulta + datoConsulta);
         const datosJSON = await respuesta.json();
-        const datos = multiple ? datosJSON.response: datosJSON.response[0];      
-        return datos;        
+        const datos = multiple ? datosJSON.response : datosJSON.response[0];
+        return datos;
     } catch (error) {
         console.error(error);
     }
+}
+
+const compressImage = (imgToCompress, resizingFactor, quality) => {
+    // showing the compressed image
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    const originalWidth = imgToCompress.width;
+    const originalHeight = imgToCompress.height;
+
+    const canvasWidth = originalWidth * resizingFactor;
+    const canvasHeight = originalHeight * resizingFactor;
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    let compressedImageBlob;
+
+    context.drawImage(
+        imgToCompress,
+        0,
+        0,
+        originalWidth * resizingFactor,
+        originalHeight * resizingFactor
+    );
+
+    // reducing the quality of the image
+    canvas.toBlob(
+        (blob) => {
+            if (blob) {
+                compressedImageBlob = blob;
+                imgToBytes(compressedImageBlob);
+            }
+        },
+        "image/jpeg",
+        quality
+    );
+}
+
+const imgToBytes = (img) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(img);
+    reader.addEventListener('load', () => {
+        fotoUsuarioBytes = reader.result;
+        console.log(fotoUsuarioBytes);
+    });
 }

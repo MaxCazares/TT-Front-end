@@ -27,7 +27,7 @@ window.onload = async () => {
     const publicacionesRandom = await obtenerDatos('publicaciones/getrandom', '', true);
     publicacionesRandom.forEach(publicacion => crearPublicacionesHTML(publicacion));
     let t2 = performance.now();
-    console.log(`Las publicaciones random tardan: ${t2-t1} milisegundos`);
+    console.log(`Las publicaciones random tardan: ${t2 - t1} milisegundos`);
 }
 
 const obtenerParametrosURL = () => {
@@ -47,12 +47,12 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     }
 }
 
-const obtenerImagen = async (hostImage, idPublicacion) => {
-    const consultaImagen = ':5000/publicaciones/getimage/';
+const obtenerImagen = async (hostImage, tipoImagen, id) => {
+    const consultaImagen = `:5000/${tipoImagen}/getimage/`;
     try {
-        const respuesta = await fetch('http://' + hostImage + consultaImagen + idPublicacion);
-        const base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(respuesta)));
-        return base64String;
+        const respuesta = await fetch('http://' + hostImage + consultaImagen + id);
+        const a = await respuesta.text();
+        return a;
     } catch (error) {
         console.error(error);
     }
@@ -129,14 +129,17 @@ const crearPublicacionesHTML = async (publicacion) => {
     const etiquetaP = document.createElement('p');
 
     const usuario = await obtenerDatos('usuarios/getbyid/', publicacion.id_usuario);
-    const imagen = await obtenerImagen(publicacion.host, publicacion.id_publicacion);
-    console.log(imagen);
 
-    etiquetaA.onclick = () => irAlProducto(publicacion.id_publicacion);
-    imagenProducto.src = '../img/defaultProduct.png';
+    const t1 = performance.now();
+    const imagenPublicacion = await obtenerImagen(publicacion.host, 'publicaciones', publicacion.id_publicacion);
+    imagenProducto.src = imagenPublicacion;
+    const t2 = performance.now();
+    console.log(`Tarda ${t2 - t1} en consultar la imagen`);
+
     h3.innerHTML = usuario.zona_entrega_usuario;
     h2.innerHTML = publicacion.nombre;
     etiquetaP.innerHTML = '$' + Number(publicacion.precio).toLocaleString('mx');
+    etiquetaA.onclick = () => irAlProducto(publicacion.id_publicacion);
 
     divExterior.classList.add('md:w-1/3', 'xl:w-1/4', 'p-2');
     divInterior.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'shadow-lg');

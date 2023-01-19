@@ -57,8 +57,7 @@ const imprimirDatos = (usuario, imagenUsuario) => {
     telefonoUsuario.value = usuario.telefono_usuario;
     zonaUsuario.value = usuario.zona_entrega_usuario;
     fotoUsuarioBytes = imagenUsuario;
-    fotoUsuario.src = imagenUsuario === '' ? 
-        "../img/defaulUser.jpeg" : imagenUsuario;
+    fotoUsuario.src = imagenUsuario;
 }
 
 actualizarInformacion.onclick = async () => {

@@ -27,10 +27,10 @@ const obtenerParametrosURL = () => {
     return { idUser, origin };
 }
 
-const obtenerImagen = async (hostImage, tipoImagen, idPublicacion) => {
+const obtenerImagen = async (hostImage, tipoImagen, id) => {
     const consultaImagen = `:5000/${tipoImagen}/getimage/`;
     try {
-        const respuesta = await fetch('http://' + hostImage + consultaImagen + idPublicacion);
+        const respuesta = await fetch('http://' + hostImage + consultaImagen + id);
         const a = await respuesta.text();
         return a;
     } catch (error) {
@@ -172,7 +172,6 @@ const eliminarPublicacion = (idPublicacion) => {
         confirmButtonText: 'Sí, borrar publicación'
     }).then(async (result) => {
         if (result.isConfirmed) {
-
             await fetch(urlAPI + `publicaciones/${idPublicacion}`, {
                 method: "DELETE",
             });
@@ -186,7 +185,7 @@ const eliminarPublicacion = (idPublicacion) => {
 
             setTimeout(() => {
                 location.reload();
-            }, 1500);
+            }, 2000);
         }
     })
 }
@@ -214,7 +213,7 @@ crearPublicacion.onclick = async () => {
     }
 
     try {
-        const respuesta = await fetch(urlAPI + 'publicaciones', {
+        await fetch(urlAPI + 'publicaciones', {
             method: "POST",
             body: JSON.stringify(nuevaPublicacion),
             headers: { "Content-type": "application/json; charset=UTF-8" }

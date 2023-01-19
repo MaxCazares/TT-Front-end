@@ -47,8 +47,21 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     }
 }
 
-const imprimirDatos = (datosPublicacion, datosUsuario) => {
-    fotoPublicacion.src = datosPublicacion.img_list[0].file;
+const obtenerImagen = async (hostImage, tipoImagen, id) => {
+    const consultaImagen = `:5000/${tipoImagen}/getimage/`;
+    try {
+        const respuesta = await fetch('http://' + hostImage + consultaImagen + id);
+        const a = await respuesta.text();
+        return a;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const imprimirDatos = async (datosPublicacion, datosUsuario) => {
+    const imagenPublicacion = await obtenerImagen(datosPublicacion.host, 'publicaciones', datosPublicacion.id_publicacion);
+
+    fotoPublicacion.src = imagenPublicacion;
     nombrePublicacion.innerHTML = datosPublicacion.nombre;
     descripcionPublicacion.innerHTML = datosPublicacion.descripcion;
     precioPublicacion.innerHTML = '$' + Number(datosPublicacion.precio).toLocaleString('mx');
@@ -74,8 +87,10 @@ const verPerfilVendedor = idSeller => {
 const mostrarPublicacionesRecomendadas = async (categoria) => {
     const publicaciones = await obtenerDatos('publicaciones/getbycategory/', categoria, true);
 
-    for (let i = 0; i < 4; i++)
-        crearPublicacionRecomendadaHTML(publicaciones[i]);
+    // for (let i = 0; i < 4; i++)
+    //     crearPublicacionRecomendadaHTML(publicaciones[i]);
+
+    publicaciones.forEach(publicacion => crearPublicacionRecomendadaHTML(publicacion));
 }
 
 const crearPublicacionRecomendadaHTML = async (publicacion) => {
@@ -88,12 +103,13 @@ const crearPublicacionRecomendadaHTML = async (publicacion) => {
     const etiquetaP = document.createElement('p');
 
     const usuario = await obtenerDatos('usuarios/getbyid/', publicacion.id_usuario);
+    const imagenPublicacion = await obtenerImagen(publicacion.host, 'publicaciones', publicacion.id_publicacion);
 
-    etiquetaA.onclick = () => irAlProducto(publicacion.id_publicacion);
-    imagen.src = publicacion.img_list[0].file;
+    imagen.src = imagenPublicacion;
     h3.innerHTML = usuario.zona_entrega_usuario;
     h2.innerHTML = publicacion.nombre;
     etiquetaP.innerHTML = '$' + Number(publicacion.precio).toLocaleString('mx');
+    etiquetaA.onclick = () => irAlProducto(publicacion.id_publicacion);
 
     divExterior.classList.add('md:w-1/3', 'xl:w-1/4', 'p-2');
     divInterior.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'shadow-lg');
@@ -134,27 +150,3 @@ logoInicio.onclick = () => {
 
     window.location.href = inicio;
 }
-
-// const botonMensaje = async (datosUsuario) => {
-//     const { idUser } = obtenerParametrosURL();
-
-//     if (idUser) {
-//         infoMensaje.classList.add('hidden');
-
-//         if (idUser != datosUsuario.id_usuario)
-//             mandarMensaje.classList.remove('hidden');
-//     }
-// }
-
-// infoMensaje.onclick = () => info();
-
-// mandarMensaje.onclick = async () => {
-//     const { idPublicacion, idUser } = obtenerParametrosURL();
-//     const publicacion = await obtenerDatos('publicaciones/getbyid/', idPublicacion);
-
-//     const mensajes = new URL(localhost + 'mensajes.html');
-//     mensajes.searchParams.set('idpublication', idPublicacion);
-//     mensajes.searchParams.set('idseller', publicacion.id_usuario);
-//     mensajes.searchParams.set('idbuyer', idUser);
-//     window.location.href = mensajes;
-// }

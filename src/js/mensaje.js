@@ -38,6 +38,17 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     }
 }
 
+const obtenerImagen = async (hostImage, tipoImagen, id) => {
+    const consultaImagen = `:5000/${tipoImagen}/getimage/`;
+    try {
+        const respuesta = await fetch('http://' + hostImage + consultaImagen + id);
+        const a = await respuesta.text();
+        return a;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 const comprobarChat = async (idSeller, idUser) => {
     if (idSeller != 'null') {
         const chatExistente = await obtenerDatos('chat/check/', idSeller + ';' + idUser);
@@ -99,14 +110,17 @@ const crearChatHTML = async (chat) => {
     const iconoEliminar = document.createElement('i');
 
     const usuario1 = await obtenerDatos('usuarios/getbyid/', chat.user1_id);
+    const imgUsuario1 = await obtenerImagen(usuario1.host, 'usuarios', usuario1.id_usuario);
+    
     const usuario2 = await obtenerDatos('usuarios/getbyid/', chat.user2_id);
+    const imgUsuario2 = await obtenerImagen(usuario2.host, 'usuarios', usuario2.id_usuario);
 
     if (usuario2.id_usuario === idUser) {
-        imagenUsuario1.src = usuario1.img_usuario.file;
-        imagenUsuario2.src = usuario2.img_usuario.file;
+        imagenUsuario1.src = imgUsuario1;
+        imagenUsuario2.src = imgUsuario2;
     } else {
-        imagenUsuario1.src = usuario2.img_usuario.file;
-        imagenUsuario2.src = usuario1.img_usuario.file;
+        imagenUsuario1.src = imgUsuario2;
+        imagenUsuario2.src = imgUsuario1;
     }
 
     ultimoMensaje.textContent = chat.message_list[0].contenido;

@@ -96,8 +96,7 @@ const imprimirDatos = async (idSeller, idUser, origin) => {
     emailUsuario.value = usuario.correo_usuario;
     telefonoUsuario.value = usuario.telefono_usuario;
     zonaUsuario.value = usuario.zona_entrega_usuario;
-    fotoUsuario.src = imagenUsuario === '' ?
-        "../img/defaulUser.jpeg" : imagenUsuario;
+    fotoUsuario.src = imagenUsuario;
 }
 
 verAlertaMensaje.onclick = () => infoMensaje();
