@@ -87,10 +87,10 @@ const verPerfilVendedor = idSeller => {
 const mostrarPublicacionesRecomendadas = async (categoria) => {
     const publicaciones = await obtenerDatos('publicaciones/getbycategory/', categoria, true);
 
-    // for (let i = 0; i < 4; i++)
-    //     crearPublicacionRecomendadaHTML(publicaciones[i]);
+    for (let i = 0; i < 4; i++)
+        crearPublicacionRecomendadaHTML(publicaciones[i]);
 
-    publicaciones.forEach(publicacion => crearPublicacionRecomendadaHTML(publicacion));
+    // publicaciones.forEach(publicacion => crearPublicacionRecomendadaHTML(publicacion));
 }
 
 const crearPublicacionRecomendadaHTML = async (publicacion) => {

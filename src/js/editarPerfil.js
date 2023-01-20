@@ -116,7 +116,7 @@ inputFotoUsuario.addEventListener('change', e => {
     reader.readAsDataURL(foto);
 
     fotoUsuario.addEventListener('load', () => {
-        compressImage(fotoUsuario, 0.7, 0.7);
+        compressImage(fotoUsuario, 1, 0.6);
     });
 
     console.log(fotoUsuarioBytes);

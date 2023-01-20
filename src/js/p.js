@@ -5,8 +5,12 @@ const contenidoInicio = document.querySelector('#contenidoInicio');
 window.onload = async () => {
     let t1 = performance.now();
     const publicacionesRandom = await obtenerDatos('publicaciones/getrandom', '', true);
-    publicacionesRandom.forEach(publicacion => crearPublicacionesHTML(publicacion));
-    // console.log(publicacionesRandom);
+
+    publicacionesRandom.forEach(publicacion => {
+        crearPublicacionesHTML(publicacion);
+        insertarImagesPublicacion(publicacion);
+    });
+
     let t2 = performance.now();
     console.log(`Las publicaciones random tardan: ${t2 - t1} milisegundos`);
 }
@@ -22,15 +26,23 @@ const obtenerDatos = async (urlConsulta, datoConsulta, multiple = false) => {
     }
 }
 
-const obtenerImagen = async (hostImage, idPublicacion) => {
+const obtenerImagen = async (hostImage, id) => {
     const consultaImagen = ':5000/publicaciones/getimage/';
     try {
-        const respuesta = await fetch('http://' + hostImage + consultaImagen + idPublicacion);
+        const respuesta = await fetch('http://' + hostImage + consultaImagen + id);
         const a = await respuesta.text();
         return a;
     } catch (error) {
         console.error(error);
     }
+}
+
+const insertarImagesPublicacion = async (publicacion) => {
+    const imgPublicacion = document.getElementsByName(publicacion.id_publicacion);
+    console.log(imgPublicacion);
+    // const imagen = await obtenerImagen(publicacion.host, publicacion.id_publicacion);
+    // // console.log(imagen);
+    // imgPublicacion.src = '../img/defaultProduct.png';
 }
 
 const crearPublicacionesHTML = async (publicacion) => {
@@ -43,13 +55,16 @@ const crearPublicacionesHTML = async (publicacion) => {
     const etiquetaP = document.createElement('p');
 
     const usuario = await obtenerDatos('usuarios/getbyid/', publicacion.id_usuario);
-    const t1 = performance.now();
-    const imagen = await obtenerImagen(publicacion.host, publicacion.id_publicacion);
-    // imagenProducto.src = '../img/defaultProduct.png';
-    imagenProducto.src = imagen;
-    const t2 = performance.now();
-    console.log(`Tiempo de la imagen: ${t2-t1}`);
 
+    // const t1 = performance.now();
+    // const imagen = await obtenerImagen(publicacion.host, publicacion.id_publicacion);
+    // imagenProducto.src = imagen;
+    // const t2 = performance.now();
+    // console.log(`Tiempo de la imagen: ${t2-t1}`);
+
+    imagenProducto.name = publicacion.id_publicacion;
+
+    // imagenProducto.src = '../img/defaultProduct.png';
     etiquetaA.onclick = () => irAlProducto(publicacion.id_publicacion);
     h3.innerHTML = usuario.zona_entrega_usuario;
     h2.innerHTML = publicacion.nombre;

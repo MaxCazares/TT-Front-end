@@ -15,7 +15,7 @@ let fotoUsuarioBytes = '';
 
 window.onload = () => {
     formulario.addEventListener('submit', validarCampos);
-    compressImage(imagenUsuarioDefault, 0.9, 0.7);
+    compressImage(imagenUsuarioDefault, 1, 0.6);
 }
 
 const validarCampos = async (e) => {
