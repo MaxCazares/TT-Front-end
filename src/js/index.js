@@ -22,12 +22,9 @@ window.onload = async () => {
     formularioBusqueda.addEventListener('submit', buscarProductos);
     agregarImagenesMosaicos();
     mostrarBotonPerfil();
-    // cargarPublicidad();
-    let t1 = performance.now();
+    cargarPublicidad();
     const publicacionesRandom = await obtenerDatos('publicaciones/getrandom', '', true);
     publicacionesRandom.forEach(publicacion => crearPublicacionesHTML(publicacion));
-    let t2 = performance.now();
-    console.log(`Las publicaciones random tardan: ${t2 - t1} milisegundos`);
 }
 
 const obtenerParametrosURL = () => {
@@ -130,11 +127,8 @@ const crearPublicacionesHTML = async (publicacion) => {
 
     const usuario = await obtenerDatos('usuarios/getbyid/', publicacion.id_usuario);
 
-    const t1 = performance.now();
     const imagenPublicacion = await obtenerImagen(publicacion.host, 'publicaciones', publicacion.id_publicacion);
     imagenProducto.src = imagenPublicacion;
-    const t2 = performance.now();
-    console.log(`Tarda ${t2 - t1} en consultar la imagen`);
 
     h3.innerHTML = usuario.zona_entrega_usuario;
     h2.innerHTML = publicacion.nombre;
@@ -214,4 +208,3 @@ const cargarPublicidad = () => {
 const numerosAleatorios = (min, max) => {
     return Math.round(Math.random() * (max - min) + min);
 }
-
